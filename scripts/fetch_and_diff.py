@@ -40,7 +40,33 @@ TIMEOUT = 60
 MAX_DIFF_LINES_PER_SOURCE = 200  # latest-diff.md 单条目最多保留多少行 diff，防止刷屏
 
 TAG_RE = re.compile(r"<[^>]+>")
-SCRIPT_RE = re.compile(r"<(script|style)[^>]*>.*?</\1>", re.DOTALL | re.IGNORECASE)
+SCRIPT_RE = re.compile(
+    r"<(script|style|noscript|svg)\b[^>]*>.*?</\1>", re.DOTALL | re.IGNORECASE
+)
+COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
+# Docusaurus / readme.io 等文档站的固定噪声块：导航条、侧边栏目录、SDK 推广、页脚 footer。
+# 这些每次发版都会变（菜单顺序、SDK 列表），但与 API 文档实质内容无关，必须先剔除再 diff。
+NOISE_BLOCK_RE = re.compile(
+    r"<(nav|aside|header|footer|form)\b[^>]*>.*?</\1>",
+    re.DOTALL | re.IGNORECASE,
+)
+TOC_BLOCK_RE = re.compile(
+    r"<(?:ul|div|nav)\b[^>]*class\s*=\s*[\"'][^\"']*"
+    r"(?:table-of-contents|tocSection|theme-doc-toc|on-this-page|right-side|sidebar)"
+    r"[^\"']*[\"'][^>]*>.*?</(?:ul|div|nav)>",
+    re.DOTALL | re.IGNORECASE,
+)
+# 页面主体抽取：优先 <article>，其次 Docusaurus 的 markdown 容器，最后 <main>。
+MAIN_PATTERNS = [
+    re.compile(r"<article\b[^>]*>(.*?)</article>", re.DOTALL | re.IGNORECASE),
+    re.compile(
+        r"<div\b[^>]*class\s*=\s*[\"'][^\"']*"
+        r"(?:theme-doc-markdown|markdown|docMainContainer|content)"
+        r"[^\"']*[\"'][^>]*>(.*?)</div>\s*</main>",
+        re.DOTALL | re.IGNORECASE,
+    ),
+    re.compile(r"<main\b[^>]*>(.*?)</main>", re.DOTALL | re.IGNORECASE),
+]
 WS_RE = re.compile(r"[ \t]+")
 BLANK_RE = re.compile(r"\n{3,}")
 
@@ -74,12 +100,37 @@ def fetch(url: str) -> str:
         return raw.decode(encoding, errors="replace")
 
 
+def extract_main(html_text: str) -> str:
+    """尝试只保留 HTML 主体内容区，剔除导航/侧边栏/footer 等装饰元素。
+
+    匹配优先级：<article> > Docusaurus markdown 容器 > <main>。任一命中即返回。
+    都没命中则原样返回（少数小站点没有语义标签）。
+    """
+    for pat in MAIN_PATTERNS:
+        m = pat.search(html_text)
+        if m:
+            return m.group(1) if m.groups() else m.group(0)
+    return html_text
+
+
 def normalize(content: str, url: str) -> str:
-    """把 HTML 抓取结果清洗成可对比的纯文本。Markdown / yaml 直接保留。"""
+    """把 HTML 抓取结果清洗成可对比的纯文本。Markdown / yaml 直接保留。
+
+    清洗顺序很关键：
+    1. 先 strip 注释 / script / style / svg 等不可见内容
+    2. 再抽主体内容区（避免后续把侧边栏/导航也带进来）
+    3. 再剔除主体内仍可能存在的导航条 / 侧边栏目录 / footer
+    4. 最后剥剩余标签、合并空白
+    """
     lower = url.lower()
     if lower.endswith((".md", ".markdown", ".txt", ".yml", ".yaml", ".json")):
         return content.rstrip() + "\n"
-    text = SCRIPT_RE.sub("", content)
+
+    text = COMMENT_RE.sub("", content)
+    text = SCRIPT_RE.sub("", text)
+    text = extract_main(text)
+    text = NOISE_BLOCK_RE.sub("", text)
+    text = TOC_BLOCK_RE.sub("", text)
     text = TAG_RE.sub("\n", text)
     text = html.unescape(text)
     text = WS_RE.sub(" ", text)
