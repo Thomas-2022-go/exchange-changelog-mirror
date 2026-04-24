@@ -14,7 +14,6 @@
 """
 from __future__ import annotations
 
-import html
 import json
 import re
 import ssl
@@ -23,6 +22,7 @@ import sys
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone, timedelta
+from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -39,36 +39,46 @@ USER_AGENT = (
 TIMEOUT = 60
 MAX_DIFF_LINES_PER_SOURCE = 200  # latest-diff.md 单条目最多保留多少行 diff，防止刷屏
 
-TAG_RE = re.compile(r"<[^>]+>")
-SCRIPT_RE = re.compile(
-    r"<(script|style|noscript|svg)\b[^>]*>.*?</\1>", re.DOTALL | re.IGNORECASE
-)
 COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
 # Docusaurus / readme.io 等文档站的固定噪声块：导航条、侧边栏目录、SDK 推广、页脚 footer。
 # 这些每次发版都会变（菜单顺序、SDK 列表），但与 API 文档实质内容无关，必须先剔除再 diff。
-NOISE_BLOCK_RE = re.compile(
-    r"<(nav|aside|header|footer|form)\b[^>]*>.*?</\1>",
-    re.DOTALL | re.IGNORECASE,
-)
 TOC_BLOCK_RE = re.compile(
     r"<(?:ul|div|nav)\b[^>]*class\s*=\s*[\"'][^\"']*"
     r"(?:table-of-contents|tocSection|theme-doc-toc|on-this-page|right-side|sidebar)"
     r"[^\"']*[\"'][^>]*>.*?</(?:ul|div|nav)>",
     re.DOTALL | re.IGNORECASE,
 )
-# 页面主体抽取：优先 <article>，其次 Docusaurus 的 markdown 容器，最后 <main>。
-MAIN_PATTERNS = [
+# 默认主体抽取顺序：<article> → Docusaurus markdown 容器 → <main>。
+# sources.json 可通过 `content_class_re` 字段为 OKX/Gate 等无 main/article 的站点指定精确抽取。
+DEFAULT_MAIN_PATTERNS = [
     re.compile(r"<article\b[^>]*>(.*?)</article>", re.DOTALL | re.IGNORECASE),
     re.compile(
         r"<div\b[^>]*class\s*=\s*[\"'][^\"']*"
-        r"(?:theme-doc-markdown|markdown|docMainContainer|content)"
+        r"(?:theme-doc-markdown|docMainContainer)"
         r"[^\"']*[\"'][^>]*>(.*?)</div>\s*</main>",
         re.DOTALL | re.IGNORECASE,
     ),
     re.compile(r"<main\b[^>]*>(.*?)</main>", re.DOTALL | re.IGNORECASE),
 ]
-WS_RE = re.compile(r"[ \t]+")
+INTRA_LINE_WS_RE = re.compile(r"[ \t]+")
 BLANK_RE = re.compile(r"\n{3,}")
+INTRA_DATA_WS_RE = re.compile(r"[ \t\r\n]+")
+
+# 在 HtmlToText 中区分标签语义：
+# - SKIP_TAGS：标签 + 内容整体丢弃（脚本/样式/噪声块）
+# - BLOCK_TAGS：开/闭合时换行（段落、标题、表格行）
+# - 其他默认 inline，文本直接拼接（保证 inline <code>/<a>/<span> 不会打断一行）
+SKIP_TAGS = {
+    "script", "style", "noscript", "svg", "template", "iframe",
+    "nav", "aside", "header", "footer", "form",
+}
+BLOCK_TAGS = {
+    "p", "div", "section", "article", "main",
+    "h1", "h2", "h3", "h4", "h5", "h6",
+    "pre", "blockquote", "hr",
+    "tr", "thead", "tbody", "tfoot", "table", "figure", "figcaption",
+    "details", "summary",
+}
 
 
 def log_error(msg: str) -> None:
@@ -100,43 +110,197 @@ def fetch(url: str) -> str:
         return raw.decode(encoding, errors="replace")
 
 
-def extract_main(html_text: str) -> str:
+def _extract_balanced_div(html_text: str, class_re: re.Pattern) -> str | None:
+    """从 html_text 中找到 class 匹配 class_re 的第一个 <div>，返回其完整内层 HTML。
+
+    用栈做配对，正确处理嵌套 <div>，避免被首个 </div> 提前截断。找不到返回 None。
+    """
+    open_re = re.compile(r"<div\b([^>]*)>", re.IGNORECASE)
+    close_re = re.compile(r"</div\s*>", re.IGNORECASE)
+    pos = 0
+    while True:
+        m = open_re.search(html_text, pos)
+        if not m:
+            return None
+        attrs = m.group(1)
+        cls_m = re.search(r"class\s*=\s*[\"']([^\"']+)[\"']", attrs)
+        pos = m.end()
+        if not cls_m or not class_re.search(cls_m.group(1)):
+            continue
+        depth = 1
+        cur = pos
+        while depth > 0:
+            nxt_open = open_re.search(html_text, cur)
+            nxt_close = close_re.search(html_text, cur)
+            if not nxt_close:
+                return html_text[pos:]
+            if nxt_open and nxt_open.start() < nxt_close.start():
+                depth += 1
+                cur = nxt_open.end()
+            else:
+                depth -= 1
+                if depth == 0:
+                    return html_text[pos:nxt_close.start()]
+                cur = nxt_close.end()
+
+
+def extract_main(html_text: str, content_class_re: str | None) -> str:
     """尝试只保留 HTML 主体内容区，剔除导航/侧边栏/footer 等装饰元素。
 
-    匹配优先级：<article> > Docusaurus markdown 容器 > <main>。任一命中即返回。
+    优先用 source 配置的 content_class_re（针对 OKX/Gate 这种无 main/article 的站点），
+    其次走默认链：<article> → Docusaurus markdown 容器 → <main>。
     都没命中则原样返回（少数小站点没有语义标签）。
     """
-    for pat in MAIN_PATTERNS:
+    if content_class_re:
+        body = _extract_balanced_div(html_text, re.compile(content_class_re, re.IGNORECASE))
+        if body:
+            return body
+    for pat in DEFAULT_MAIN_PATTERNS:
         m = pat.search(html_text)
         if m:
             return m.group(1) if m.groups() else m.group(0)
     return html_text
 
 
-def normalize(content: str, url: str) -> str:
+class HtmlToText(HTMLParser):
+    """把 HTML 转成保留语义层次（标题、段落、嵌套列表）的纯文本。
+
+    设计要点：
+    - SKIP_TAGS：标签 + 内容整体丢弃。
+    - <ul>/<ol>：进入时 list_depth+=1，退出时 -=1。
+    - <li>：根据 list_depth 输出 `(depth-1)*"  " + "- "` 的缩进项，模仿 markdown
+      bullet（保留 Binance Derivatives 这种 "Portfolio Margin Pro → User Data Stream
+      → Add new event ..." 的两级嵌套结构）。
+    - BLOCK_TAGS：开/闭合时换行；其他标签当作 inline，文本流过即可。
+    - 文本中的连续空白先压缩成单空格，最后再做整体的多空行合并。
+    """
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.parts: list[str] = []
+        self.skip_depth = 0
+        self.list_depth = 0
+        self._last_was_newline = True  # 控制不必要的空行/前导换行
+        # 刚开了一个 <li> 但还没写过内容时为 True：此时若紧接着出现块元素（<p>/<div>/...）
+        # 就吞掉它的换行，避免出现孤立的 "-" + 内容另起一行的情况。
+        self._li_pending = False
+
+    def _emit(self, s: str) -> None:
+        if not s:
+            return
+        if s == "\n":
+            if self._last_was_newline:
+                return
+            self.parts.append("\n")
+            self._last_was_newline = True
+        else:
+            self.parts.append(s)
+            self._last_was_newline = s.endswith("\n")
+
+    def handle_starttag(self, tag: str, attrs):
+        if tag in SKIP_TAGS:
+            self.skip_depth += 1
+            return
+        if self.skip_depth > 0:
+            return
+        if tag in ("ul", "ol"):
+            self._emit("\n")
+            self.list_depth += 1
+        elif tag == "li":
+            self._emit("\n")
+            indent = "  " * max(self.list_depth - 1, 0)
+            self.parts.append(indent + "- ")
+            self._last_was_newline = False
+            self._li_pending = True
+        elif tag == "br":
+            self._emit("\n")
+        elif tag in ("td", "th"):
+            # 表格单元格用 " | " 分隔，渲染成 markdown 风格的表格行（KuCoin 文档大量用 <table>）
+            if not self._last_was_newline:
+                if self.parts and not self.parts[-1].endswith(" "):
+                    self.parts.append(" ")
+                self.parts.append("| ")
+            else:
+                self.parts.append("| ")
+                self._last_was_newline = False
+        elif tag in BLOCK_TAGS:
+            if self._li_pending:
+                # 吞掉紧跟在 <li> 后的块级换行，让 bullet 与首段文字保持同一行
+                return
+            self._emit("\n")
+
+    def handle_endtag(self, tag: str):
+        if tag in SKIP_TAGS:
+            self.skip_depth = max(0, self.skip_depth - 1)
+            return
+        if self.skip_depth > 0:
+            return
+        if tag in ("ul", "ol"):
+            self.list_depth = max(0, self.list_depth - 1)
+            self._emit("\n")
+            self._li_pending = False
+        elif tag == "li":
+            self._emit("\n")
+            self._li_pending = False
+        elif tag in BLOCK_TAGS:
+            self._emit("\n")
+
+    def handle_startendtag(self, tag: str, attrs):
+        if tag == "br":
+            self._emit("\n")
+
+    def handle_data(self, data: str):
+        if self.skip_depth > 0:
+            return
+        cleaned = INTRA_DATA_WS_RE.sub(" ", data)
+        if cleaned and cleaned != " ":
+            self.parts.append(cleaned)
+            self._last_was_newline = False
+            if cleaned.strip():
+                self._li_pending = False
+        elif cleaned == " " and not self._last_was_newline and self.parts and not self.parts[-1].endswith(" "):
+            self.parts.append(" ")
+
+    def get_text(self) -> str:
+        return "".join(self.parts)
+
+
+def html_to_text(html_text: str) -> str:
+    parser = HtmlToText()
+    parser.feed(html_text)
+    parser.close()
+    return parser.get_text()
+
+
+def normalize(content: str, url: str, content_class_re: str | None = None) -> str:
     """把 HTML 抓取结果清洗成可对比的纯文本。Markdown / yaml 直接保留。
 
-    清洗顺序很关键：
-    1. 先 strip 注释 / script / style / svg 等不可见内容
-    2. 再抽主体内容区（避免后续把侧边栏/导航也带进来）
-    3. 再剔除主体内仍可能存在的导航条 / 侧边栏目录 / footer
-    4. 最后剥剩余标签、合并空白
+    清洗顺序：
+    1. 先 strip 注释（HTMLParser 内部也能处理但提前删掉省事）
+    2. 抽主体内容区（避免把侧边栏/导航/footer 带进来）
+    3. 剔除主体内的 ToC / on-this-page 侧边目录
+    4. 用 HtmlToText 解析剩余 HTML，保留段落 + 嵌套列表层次
+    5. 合并多余空白
     """
     lower = url.lower()
     if lower.endswith((".md", ".markdown", ".txt", ".yml", ".yaml", ".json")):
         return content.rstrip() + "\n"
 
     text = COMMENT_RE.sub("", content)
-    text = SCRIPT_RE.sub("", text)
-    text = extract_main(text)
-    text = NOISE_BLOCK_RE.sub("", text)
+    text = extract_main(text, content_class_re)
     text = TOC_BLOCK_RE.sub("", text)
-    text = TAG_RE.sub("\n", text)
-    text = html.unescape(text)
-    text = WS_RE.sub(" ", text)
+    text = html_to_text(text)
     text = BLANK_RE.sub("\n\n", text)
-    lines = [line.strip() for line in text.splitlines()]
-    return "\n".join(line for line in lines if line) + "\n"
+
+    out: list[str] = []
+    for line in text.splitlines():
+        # 保留行首缩进（list bullet "  - foo"），仅压缩行内多余空白
+        stripped = line.lstrip(" \t")
+        if not stripped.strip():
+            continue
+        indent = line[: len(line) - len(stripped)]
+        out.append(indent + INTRA_LINE_WS_RE.sub(" ", stripped).rstrip())
+    return "\n".join(out) + "\n"
 
 
 def git_diff(file_path: Path) -> str:
@@ -194,7 +358,7 @@ def main() -> int:
             log_error(f"{key}: fetch failed: {type(e).__name__}: {e}")
             summary.append(f"- [FAIL] **{name}** (`{key}`): {type(e).__name__}")
             continue
-        normalized = normalize(raw, url)
+        normalized = normalize(raw, url, src.get("content_class_re"))
         prev = out_file.read_text(encoding="utf-8") if out_file.exists() else ""
         if normalized == prev:
             summary.append(f"- [OK] {name} (`{key}`): no change ({len(normalized)} bytes)")

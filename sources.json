@@ -1,5 +1,5 @@
 {
-  "_comment": "blofin-index 对接的 6 家主要交易所 API/Websocket 文档变更监控源。新增/修改条目无需改脚本。raw_url 必须返回纯文本(html/md/txt/yml)，不能是需要 JS 渲染才出内容的 SPA；如果某个 url 抓回的是空壳，请改用文档站对应的 markdown 端点或 GitHub 上的源文件 raw 链接。本配置中已经合并：Binance 衍生品共用一份 change-log，KuCoin 现货/合约共用一份 change-log，Bitget 现货/合约共用一份 changelog。",
+  "_comment": "blofin-index 对接的 6 家主要交易所 API/Websocket 文档变更监控源。新增/修改条目无需改脚本。raw_url 必须返回纯文本(html/md/txt/yml)，不能是需要 JS 渲染才出内容的 SPA。可选字段 content_class_re：当页面没有 <article>/<main>，或者主体被特定 class 包裹时，用正则锁定主体容器（针对 OKX/Gate/KuCoin 这种）。本配置中已经合并：Binance 衍生品共用一份 change-log，KuCoin 现货/合约共用一份 change-log，Bitget 现货/合约共用一份 changelog。",
   "sources": [
     {
       "key": "binance-spot",
@@ -17,7 +17,8 @@
       "key": "okx",
       "name": "OKX V5",
       "doc_url": "https://www.okx.com/docs-v5/log_zh/",
-      "raw_url": "https://www.okx.com/docs-v5/log_zh/"
+      "raw_url": "https://www.okx.com/docs-v5/log_zh/",
+      "content_class_re": "(?:^|\\s)content(?:\\s|$)"
     },
     {
       "key": "bitget",
@@ -35,19 +36,22 @@
       "key": "kucoin",
       "name": "KuCoin (Spot + Futures)",
       "doc_url": "https://www.kucoin.com/docs-new/change-log",
-      "raw_url": "https://www.kucoin.com/docs-new/change-log"
+      "raw_url": "https://www.kucoin.com/docs-new/change-log",
+      "content_class_re": "markdown-body"
     },
     {
       "key": "gate-spot-ws",
       "name": "Gate.io Spot WebSocket v4",
       "doc_url": "https://www.gate.io/docs/developers/apiv4/ws/zh_CN/",
-      "raw_url": "https://www.gate.io/docs/developers/apiv4/ws/zh_CN/"
+      "raw_url": "https://www.gate.io/docs/developers/apiv4/ws/zh_CN/",
+      "content_class_re": "content__container"
     },
     {
       "key": "gate-futures-ws",
       "name": "Gate.io Futures WebSocket v4",
       "doc_url": "https://www.gate.io/docs/developers/futures/ws/zh_CN/",
-      "raw_url": "https://www.gate.io/docs/developers/futures/ws/zh_CN/"
+      "raw_url": "https://www.gate.io/docs/developers/futures/ws/zh_CN/",
+      "content_class_re": "content__container"
     }
   ]
 }
