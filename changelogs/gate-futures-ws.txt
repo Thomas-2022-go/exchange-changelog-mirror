@@ -9,7 +9,6 @@ Alpha
 CrossEx
 🔥 Agent
 公告
-Search
 Gate 永续合约 WebSocket v4
 服务地址
 变更日志

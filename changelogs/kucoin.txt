@@ -11,526 +11,35 @@ API DOC V1
 Language
 繁體中文
 Kucoin
-Home
 Copy Page
-Introduction
-Authentication
-Enums Definitions
-Terms Definitions
-SDK
-OpenClaw
-Rate Limit
-Change Log
-User Service
-Market Making Incentive Scheme
-VIP Fast Track
-Broker Program
-Pro REST
-Introduction
-Market Data
-Get Announcements
-Get Currency
-Get Currencies
-Get Symbol
-Get Ticker
-Get OrderBook
-Get Klines
-Get Trades
-Get Collateral Ratio
-Get Cross Margin Config
-Get Index Price
-Get Current Funding Rate
-Get History Funding Rate
-Get Position Tiers
-Get Futures Open Interest
-Get Service Status
-Get Third-Party Custody Currencies
-Get Borrowable Currencies
-Account
-Get Account Overview (UTA)
-Get Account Currency Assets (UTA)
-Get Account Currency Assets (Classic)
-Get Sub Account Currency Assets
-Get Transfer Quotas
-Flex Transfer
-Set Sub Account Transfer Permission
-Get Account Mode
-Set Account Mode
-Get Fee Rate
-Get Account Ledger
-Get Interest History (UTA)
-Modify Futures Leverage (UTA)
-Get Deposit Address
-Get Third-Party Custody Account Currency Limits
-Modify Leverage Margin Cross (UTA)
-Get Leverage (UTA)
-Get Borrowing Rates and Limits
-Orders
-Place Order
-Batch Place Order (Classic)
-Cancel Order
-Batch Cancel Orders By ID
-Batch Cancel Orders By Symbol
-Get Order Details
-Get Open Order List
-Get Order History
-Get Trade History
-Set DCP (Classic)
-Get DCP (Classic)
-Positions
-Get Position List (UTA)
-Get Positions History (UTA)
-Get Account Position Tiers
-Get Private Funding Fee History
-VIP Lending
-Introduction
-Get Collateral Ratio
-Get Loan Info
-Get Accounts
-Pro WebSocket
-Base Info
-Introduction
-Get Private Token - Pro API Private Channels
-Public Channels
-Kline
-Ticker
-Orderbook
-Trade
-Private Channels
-Order
-Balance
-Execution
-Execution Lite
-Position
-Leverage
-LiquidationWarning
-Add/Cancel Order
-Add Order
-Cancel Order
-Classic REST
-Account Info
-Account & Funding
-Get Account Summary Info
-Get Apikey Info
-Get Account Type - Spot
-Get Account List - Spot
-Get Account Detail - Spot
-Get Account - Cross Margin
-Get Account - Isolated Margin
-Get Account - Futures
-Get Account Ledgers - Spot/Margin
-Get Account Ledgers - Trade_hf
-Get Account Ledgers - Margin_hf
-Get Account Ledgers - Futures
 Sub Account
-Add sub-account
-Add sub-account Margin Permission
-Add sub-account Futures Permission
-Get sub-account List - Summary Info
-Get sub-account Detail - Balance
-Get sub-account List - Spot Balance (V2)
-Get sub-account List - Futures Balance (V2)
 Sub Account API
-Get sub-account API List
-Add sub-account API
-Modify sub-account API
-Delete sub-account API
 Deposit
-Add Deposit Address (V3)
-Get Deposit Address (V3)
-Get Deposit History
 Withdrawals
-Get Withdrawal Quotas
-Withdraw (V3)
-Cancel Withdrawal
-Get Withdrawal History
-Get Withdrawal History By ID
 Transfer
-Get Transfer Quotas
-Flex Transfer
 Trade Fee
-Get Basic Fee - Spot/Margin
-Get Actual Fee - Spot/Margin
-Get Actual Fee - Futures
-Spot Trading
-Market Data
-Get Announcements
-Get Currency
-Get All Currencies
-Get Symbol
-Get All Symbols
-Get Ticker
-Get All Tickers
-Get Trade History
-Get Klines
-Get Part OrderBook
-Get Full OrderBook
-Get Call Auction Part OrderBook
-Get Call Auction Info
-Get Fiat Price
-Get 24hr Stats
-Get Market List
-Get Client IP Address
-Get Server Time
-Get Service Status
-Get KYC Regions
 Orders
-Add Order
-Add Order Sync
-Add Order Test
-Batch Add Orders
-Batch Add Orders Sync
-Cancel Order By OrderId
-Cancel Order By OrderId Sync
-Cancel Order By ClientOid
-Cancel Order By ClientOid Sync
-Cancel Partial Order
-Cancel All Orders By Symbol
-Cancel All Orders
-Modify Order
-Get Order By OrderId
-Get Order By ClientOid
-Get Symbols With Open Order
-Get Open Orders
-Get Open Orders By Page
-Get Closed Orders
-Get Trade History
-Get DCP
-Set DCP
-Add Stop Order
-Cancel Stop Order By ClientOid
-Cancel Stop Order By OrderId
-Batch Cancel Stop Orders
-Get Stop Orders List
-Get Stop Order By OrderId
-Get Stop Order By ClientOid
-Add OCO Order
-Cancel OCO Order By OrderId
-Cancel OCO Order By ClientOid
-Batch Cancel OCO Order
-Get OCO Order By OrderId
-Get OCO Order By ClientOid
-Get OCO Order Detail By OrderId
-Get OCO Order List
-Margin Trading
-Market Data
-Get Symbols - Cross Margin
-Get Symbols - Isolated Margin
-Get ETF Info
-Get Mark Price Detail
-Get Margin Config
-Get Mark Price List
-Get Margin Collateral Ratio
-Get Market Available Inventory
 Orders
-Add Order
-Add Order Test
-Cancel Order By OrderId
-Cancel Order By ClientOid
-Cancel All Orders By Symbol
-Get Symbols With Open Order
-Get Open Orders
-Get Closed Orders
-Get Trade History
-Get Order By OrderId
-Get Order By ClientOid
-Add Stop Order
-Cancel Stop Order By OrderId
-Cancel Stop Order By ClientOid
-Batch Cancel Stop Orders
-Get Stop Orders List
-Get Stop Order By OrderId
-Get Stop Order By ClientOid
-Add OCO Order
-Cancel OCO Order By OrderId
-Cancel OCO Order By ClientOid
-Batch Cancel OCO Order
-Get OCO Order By OrderId
-Get OCO Order By ClientOid
-Get OCO Order Detail By OrderId
-Get OCO Order List
 Debit
-Get Borrow Interest Rate
-Borrow
-Get Borrow History
-Repay
-Get Repay History
-Get Interest History
-Modify Leverage
 Credit
-Get Loan Market
-Get Loan Market Interest Rate
-Purchase
-Modify Purchase
-Get Purchase Orders
-Redeem
-Get Redeem Orders
 Risk Limit
-Get Margin Risk Limit
-Futures Trading
-Introduction
-Market Data
-Get Symbol
-Get All Symbols
-Get Ticker
-Get All Tickers
-Get Full OrderBook
-Get Part OrderBook
-Get Trade History
-Get Klines
-Get Mark Price
-Get Spot Index Price
-Get Interest Rate Index
-Get Premium Index
-Get 24hr stats
-Get Server Time
-Get Service Status
 Orders
-Add Order
-Add Order Test
-Batch Add Orders
-Add Take Profit And Stop Loss Order
-Cancel Order By OrderId
-Cancel Order By ClientOid
-Batch Cancel Orders
-Cancel All Orders
-Cancel All Stop orders
-Get Order By OrderId
-Get Order By ClientOid
-Get Order List
-Get Recent Closed Orders
-Get Stop Order List
-Get Open Order Value
-Get Recent Trade History
-Get Trade History
 Positions
-Get Margin Mode
-Switch Margin Mode
-Batch Switch Margin Mode
-Get Position Mode
-Switch Position Mode
-Get Max Open Size
-Get Position Details
-Get Position List
-Get Positions History
-Get Max Withdraw Margin
-Get Cross Margin Leverage
-Modify Cross Margin Leverage
-Add Isolated Margin
-Remove Isolated Margin
-Get Cross Margin Risk Limit
-Get Cross Margin Requirement
-Get Isolated Margin Risk Limit
-Modify Isolated Margin Risk Limit
 Funding Fees
-Get Current Funding Rate
-Get Public Funding History
-Get Private Funding History
-Earn
-Simple Earn
-Purchase
-Get Redeem Preview
-Redeem
-Get Savings Products
-Get Promotion Products
-Get Staking Products
-Get KCS Staking Products
-Get ETH Staking Products
-Get Account Holding
 Structured Earn - Dual
-Structured Product Purchase
-Get Dual Investment Products
-Get Structured Product Orders
-VIP Lending
-Introduction
-Get Collateral Ratio
-Get Loan Info
-Get Accounts
-Affiliate
-Introduction
-Get Invited
-Get Commission
-Get Trade History
-Get Transaction
-Get Kumining
-Broker
-Introduction
-Broker Application
-Instructions
-Broker Pro
-Introduction
-Broker Fast API Service
-Get Broker Rebate
-Get Commission
-Get User List
-Get User Transactions
 Exchange Broker
-Introduction
-Submit KYC
-Get KYC Status
-Get KYC Status List
-Get Broker Info
-Add sub-account
-Get sub-account
-Add sub-account API
-Get sub-account API
-Modify sub-account API
-Delete sub-account API
-Transfer
-Get Transfer History
-Get Deposit List
-Get Deposit Detail
-Get Withdraw Detail
-Get Broker Rebate
-Copy Trading
-Introduction
-Add Order
-Add Order Test
-Add Take Profit And Stop Loss Order
-Cancel Order By OrderId
-Cancel Order By ClientOid
-Get Max Open Size
-Get Max Withdraw Margin
-Add Isolated Margin
-Remove Isolated Margin
-Modify Isolated Margin Risk Limit
-Modify Isolated Margin Auto-Deposit Status
-Switch Margin Mode
-Modify Cross Margin Leverage
-Get Cross Margin Requirement
-Switch Position Mode
-Convert
-Introduction
-Get Convert Symbol
-Get Convert Currencies
-Get Convert Quote
-Add Convert Order
-Get Convert Order Detail
-Get Convert Order History
-Add Convert Limit Order
-Get Convert Limit Quote
-Get Convert Limit Order Detail
-Get Convert Limit Orders
-Cancel Convert Limit Order
-Classic WebSocket
-Base Info
-Introduction
-Get Public Token - Classic Spot/Margin
-Get Private Token - Classic Spot/Margin
-Get Public Token - Classic Futures
-Get Private Token - Classic Futures
 Spot Trading
-Public Channels
-Ticker
-All Tickers
-Orderbook - Level 1
-Orderbook - Level 5
-Orderbook - Level 50
-Orderbook - Increment
-Call Auction Orderbook - Level 50
-Call Auction Data
-Klines
-Trade
-Symbol Snapshot
-Market Snapshot
 Private Channels
-Order V2
-Order V1
-Balance
-Stop Order
 Margin Trading
-Public Channels
-Index Price
-Mark Price
 Private Channels
-Order V2
-Order V1
-Balance
-Stop Order
-Cross Margin Position
-Isolated Margin Position
 Futures Trading
-Public Channels
-Ticker V2
-Ticker V1
-Orderbook - Level 5
-Orderbook - Level 50
-Orderbook - Increment
-Klines
-Trade
-Instrument
-Funding Fee Settlement
-Symbol Snapshot
 Private Channels
-Orders
-Balance
-Positions
-Margin Mode
-Cross Margin Leverage
-Stop Orders
 Add/Cancel Order
-Add Order
-Cancel Order
-Web3 Wallet
-Browser Extension Wallet
-Error Code
-HTTP
-Spot
-Margin
-Futures
-Earn
-Broker
-CopyTrading
-Websocket
-Pro API
-Abandoned Endpoints
-Introduction
-Account & Funding
-Get sub-account List - Summary Info (V1)
-Get sub-account List - Spot Balance (V1)
-Get Deposit Addresses (V2)
-Get Deposit Addresses - V1
-Sub-account Transfer
-Get Deposit History - Old
-Internal Transfer
-Get Futures Account Transfer Out Ledger
-Get Withdrawal History - Old
-Futures Account Transfer Out
-Futures Account Transfer In
-Add Deposit Address - V1
-Withdraw - V1
 Spot Trading
-Orders
-Add Order - Old
-Add Order Test - Old
-Batch Add Orders - Old
-Cancel Order By OrderId - Old
-Cancel Order By ClientOid - Old
-Batch Cancel Order - Old
-Get Orders List - Old
-Get Recent Orders List - Old
-Get Order By OrderId - Old
-Get Order By ClientOid - Old
-Get Trade History - Old
-Get Recent Trade History - Old
 Margin Trading
-Get Account Detail - Margin
-Add Order - V1
-Add Order Test - V1
-Get Account List - Isolated Margin - V1
-Get Account Detail - Isolated Margin - V1
 Futures Trading
-Modify Isolated Margin Auto - Deposit Status
-Cancel All Orders - V1
-Get Position Details - V1
 Affiliate
-Get Account
 Broker
-Broker Pro
-Get Broker Rebate
-Developing
-Introduction
-Home
 Copy Page
 Change Log
 WARNING
@@ -600,11 +109,9 @@ Added new field in subscribe: “symbols”.
 [Modify]
 Get Position List (UTA)
 :
-1
-.
+1.
 Added new fields in the request "pageSize", "pageNumber"
-2
-.
+2.
 Added new fields in the response "liquidationPrice"
 [Add]
 Get Third-Party Custody Currencies
@@ -1523,20 +1030,17 @@ We are excited to announce the launch of public interfaces for the Unified Tradi
 Domain Unification: All API requests for the Unified Trading Account will use the unified domain:
 https://api.kucoin.com
 .
-1
-.
+1.
 Get Announcements
 Description: Obtain the latest news announcements, with default page search for announcements within a month.
 Replaces: GET /api/v3/announcements
-2
-.
+2.
 Get Currency
 Description: Request the currency details of a specified currency.
 Replaces:
 GET /api/v3/currencies/{currency}
 GET /api/v3/currencies
-3
-.
+3.
 Get Symbol
 Description: Request a list of available currency pairs for trading.
 Replaces:
@@ -1544,8 +1048,7 @@ SPOT: GET /api/v2/symbols/{symbol}
 SPOT: GET /api/v2/symbols
 FUTURES: GET /api/v1/contracts/{symbol}
 FUTURES: GET /api/v1/contracts/active
-4
-.
+4.
 Get Ticker
 Description: Request market tickers for all the trading pairs in the market (including 24h volume); takes a snapshot every 2 seconds.
 Replaces:
@@ -1553,15 +1056,13 @@ SPOT: GET /api/v1/market/orderbook/level1
 SPOT: GET /api/v1/market/allTickers
 FUTURES: GET /api/v1/ticker
 FUTURES: GET /api/v1/allTickers
-5
-.
+5.
 Get Trades
 Description: Get the latest 100 trades of the specified symbol.
 Replaces:
 SPOT: GET /api/v1/market/histories
 FUTURES: GET /api/v1/trade/history
-6
-.
+6.
 Get OrderBook
 Description: Query order book depth data (aggregated by price). Suitable for professional traders; use WebSocket incremental feed for updates due to strict rate limits.
 Replaces:
@@ -1569,30 +1070,25 @@ SPOT: GET /api/v1/market/orderbook/level2_{size}
 SPOT: GET /api/v3/market/orderbook/level2
 FUTURES: GET /api/v1/level2/depth{size}
 FUTURES: GET /api/v1/level2/snapshot
-7
-.
+7.
 Get Klines
 Description: Get the Kline (candlestick) data of the symbol, returned in grouped buckets based on requested type. Returns up to 1500 pieces of data per query; page by time for more data.
 Replaces:
 SPOT: GET /api/v1/market/candles
 FUTURES: GET /api/v1/kline/query
-8
-.
+8.
 Get Current Funding Rate
 Description: Get the current futures funding fee rate.
 Replaces: GET /api/v1/funding-rate/{symbol}/current
-9
-.
+9.
 Get History Funding Rate
 Description: Query the funding rate at each settlement time point within a certain time range for the corresponding contract.
 Replaces: GET /api/v1/contract/funding-rates
-10
-.
+10.
 Get Cross Margin Config
 Description: Request the configuration info of cross-margin trading.
 Replaces: GET /api/v1/margin/config
-11
-.
+11.
 Get Service Status
 Description: Get the service status.
 Replaces:
@@ -2047,4 +1543,3 @@ Previous
 Rate Limit
 Next
 Market Making Incentive Scheme
-LLMs.txt

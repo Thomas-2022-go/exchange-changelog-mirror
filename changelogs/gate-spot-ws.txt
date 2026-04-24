@@ -9,7 +9,6 @@ Alpha
 CrossEx
 🔥 Agent
 公告
-Search
 现货 WebSocket v4
 Websocket API 概述
 鉴权

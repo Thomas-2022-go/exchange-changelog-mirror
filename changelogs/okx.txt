@@ -1,17 +1,5 @@
 欧易 API接入指南 | 欧易技术对接 | 欧易
--->
 导航
-API接口
-🔥 Agent
-Broker接入
-最佳实践
-更新日志
-API接口
-Agent
-Broker接入
-最佳实践
-更新日志
-English
 待发布内容
 大宗商品产品
 instCategory
@@ -1812,7 +1800,6 @@ instIdCode
 映射为
 instId
 。
-附带止盈止损支持动态涨跌幅（%）功能已上线实盘
 新增请求参数：
 POST / 下单
 POST / 批量下单
@@ -4480,8 +4467,6 @@ Boolean
 查看历史持仓信息
 持仓频道
 账户余额和持仓频道
-开仓均价
-会随结算周期变化，特别是在交割合约全仓模式下，结算时开仓均价会更新为结算价格，同时新增头寸也会改变开仓均价。
 参数名
 类型
 *
@@ -4746,8 +4731,6 @@ String
 组合保证金模式
 2025-01-17
 组合保证金账户模式的保证金计算规则升级
-风险提示
-新的保证金计算规则会对您的账户风险率产生影响，请根据您的交易情况管理账户风险。
 为了提供更好的交易服务，欧易将升级组合保证金账户模式的保证金计算规则。
 详情见
 欧易将升级组合保证金账户模式的保证金计算规则
@@ -5010,13 +4993,6 @@ websocket服务升级断线提示
 为提升API服务质量，WebSocket新增一类新的消息类型(event =
 notice
 )。在推送服务升级前30秒会推送如下信息，告知用户WebSocket服务即将升级，请重新建立新的连接避免由于断线对用户造成的影响。
-推送示例
-{
-"event": "notice",
-"code": "64008",
-"msg": "The connection will soon be closed for a service upgrade. Please reconnect.",
-"connId": "a4d3ae55"
-}
 目前支持WebSocket公共频道(/ws/v5/public)和私有频道(/ws/v5/private)。
 2024-12-16
 新增功能模块
@@ -5621,7 +5597,6 @@ String
 2024-10-17
 闪兑相关接口调整
 闪兑
-闪兑结算从资金账户调整为交易账户。即闪兑资金来源从资金账户可用资产调整为交易账户可用资产，闪兑得到的资产也只存在于交易账户。
 新增错误码
 错误码
 HTTP 状态码
@@ -5709,7 +5684,6 @@ String
 225
 ：一键还债卖出
 小额资产兑换
-原接口已下线，推荐使用 "一键兑换主流币"。
 接口下线
 小额资产兑换
 2024-10-15
@@ -5750,8 +5724,6 @@ String
 12
 ：托管交易子账户 - Komainu
 2024-10-14
-现货模式支持借币
-更多详情参考：https://www.okx.com/zh-hans/help/borrow-in-spot-mode
 新增接口
 手动借/还币
 设置自动还币
@@ -6438,70 +6410,8 @@ rcvrFirstName
 可以填公司名称，
 rcvrLastName
 可以填"N/A"，地址信息可以填写公司注册地址。示例如下：
-链上提币到交易所钱包
-POST /api/v5/asset/withdrawal
-body
-{
-"amt":"1",
-"fee":"0.0005",
-"dest":"4",
-"ccy":"BTC",
-"chain":"BTC-Bitcoin",
-"toAddr":"17DKe3kkkkiiiiTvAKKi2vMPbm1Bz3CMKw",
-"rcvrInfo":{
-"walletType":"exchange",
-"exchId":"did:ethr:0xfeb4f99829a9acdf52979abee87e83addf22a7e1",
-"rcvrFirstName":"Bruce",
-"rcvrLastName":"Wayne",
-"rcvrCountry":"United States",
-"rcvrCountrySubDivision":"California",
-"rcvrTownName":"San Jose",
-"rcvrStreetName":"Clementi Avenue 1"
-}
-}
-闪电网络提币到交易所钱包
-POST /api/v5/asset/withdrawal-lightning
-body
-{
-"invoice":"lnbc100u1psnnvhtpp5yq2x3q5hhrzsuxpwx7ptphwzc4k4wk0j3stp0099968m44cyjg9sdqqcqzpgxqzjcsp5hz",
-"ccy":"BTC",
-"rcvrInfo":{
-"walletType":"exchange",
-"exchId":"did:ethr:0xfeb4f99829a9acdf52979abee87e83addf22a7e1",
-"rcvrFirstName":"Bruce",
-"rcvrLastName":"Wayne",
-"rcvrCountry":"United States",
-"rcvrCountrySubDivision":"California",
-"rcvrTownName":"San Jose",
-"rcvrStreetName":"Clementi Avenue 1"
-}
-}
 用户提币到私人钱包
 如果用户提币到私人钱包，不需要提供接收方信息。示例如下：
-链上提币到交易所钱包
-POST /api/v5/asset/withdrawal
-body
-{
-"amt":"1",
-"fee":"0.0005",
-"dest":"4",
-"ccy":"BTC",
-"chain":"BTC-Bitcoin",
-"toAddr":"17DKe3kkkkiiiiTvAKKi2vMPbm1Bz3CMKw",
-"rcvrInfo":{
-"walletType":"private"
-}
-}
-闪电网络提币到交易所钱包
-POST /api/v5/asset/withdrawal-lightning
-body
-{
-"invoice":"lnbc100u1psnnvhtpp5yq2x3q5hhrzsuxpwx7ptphwzc4k4wk0j3stp0099968m44cyjg9sdqqcqzpgxqzjcsp5hz",
-"ccy":"BTC",
-"rcvrInfo":{
-"walletType":"private"
-}
-}
 新增错误码
 当巴哈马主体用户没有传入新参数
 rcvrInfo
@@ -6700,9 +6610,6 @@ String
 ,
 0.3
 2024-07-04
-如下调整可能会影响API提币
-2024年7月4日 15:00 (UTC+8) 起，欧易提币地址簿中现有的免验证地址的验证状态将在 30 天后过期。过期后的免认证地址将不会被允许通过API提币。
-详细内容见公告: https://www.okx.com/zh-hans/help/okx-introduces-30-day-verification-for-withdrawal-address-book
 2024-07-03
 新增参数枚举值
 获取未完成定投策略委托单列表
@@ -6770,7 +6677,6 @@ HTTP 状态码
 当前维护的标签维度倒计时全部撤单达到数量上限
 固定单个连接、交易产品维度不同深度频道的数据推送顺序。调整后，单个连接、交易产品维度，深度频道的推送顺序将被固定为：bbo-tbt -> books-l2-tbt -> books50-l2-tbt -> books -> books5。
 WS / 深度频道
-为了整体上更好的使用体验, Open API 已在实盘限制跟单功能, 详情如下
 仅支持白名单用户使用跟单功能，带单功能不受影响。
 首次跟单设置
 修改跟单设置
@@ -6955,8 +6861,6 @@ String
 > vol24h
 String
 24小时交易量，单元为交易货币或美元
-vol24h
-对于现货/U本位合约价差交易产品，以及U本位合约价差交易产品，交易量以交易货币为单位；对于币本位合约价差交易产品，交易量以USD为单位。
 2024-05-08
 新增接口
 加仓
@@ -7667,7 +7571,6 @@ quick_margin
 。
 GET / 获取账户限速
 2024-02-06
-已上线模拟盘，预计 2024/02/28 上线实盘
 新增接口
 仓位创建器
 2024-02-01
@@ -7789,7 +7692,6 @@ String
 适用于
 合约模式
 2024-01-17
-Open API 已在实盘支持合约带单功能（仅支持 ND 子账号使用）
 新增接口和频道
 带单申请
 停止带单
@@ -7939,7 +7841,6 @@ tradeId
 "0"
 请注意：爆仓或自动减仓后，仓位对应的tradeId将被设置为"0"。通过查询或推送，用户将收到"tradeId": "0"，直至该仓位有新的成交。
 2024-01-15
-已上线模拟盘，预计 2024/01/18 上线实盘
 新增返回参数
 查看账户余额
 获取子账户交易账户余额
@@ -8262,7 +8163,6 @@ serviceType
 11
 ：跟单交易
 2023-11-30
-Open API 已在实盘支持合约跟单功能
 新增接口和频道
 首次跟单设置
 修改跟单设置
@@ -8601,7 +8501,6 @@ HTTP 状态码
 200
 单笔订单价值不能超过 {maxOrderValue} USD
 2023-11-10
-现货带单功能已在实盘开放
 当前仅白名单用户可使用，将于11月中旬开放该功能
 新增请求参数枚举值：
 下单
@@ -8789,7 +8688,6 @@ String
 永续
 ,
 期权
-分批止盈功能已上线实盘
 对于下单和改单，原有附带止盈止损的参数会从文档上隐藏，建议使用新的参数。
 新增请求参数：
 下单
@@ -9267,7 +9165,6 @@ String
 > maker
 String
 挂单手续费率
-USDⓈ 代表除 USDT 之外的稳定币。
 调整请求参数
 获取当前账户交易手续费费率
 调整前：
@@ -10151,7 +10048,6 @@ String
 ，对于
 交割/期权
 ，为交割/行权日期；亦可以为产品下线时间，有变动就会推送。
-杠杆平仓功能优化
 新增请求参数：
 获取最大可用余额/保证金
 参数名
@@ -10472,7 +10368,6 @@ String
 平价期权的隐含波动率
 新增接口
 设置账户模式
-如下 MMP 接口优化已上线实盘。
 参数 ordType 新增枚举值:
 请求参数相关接口：
 下单
@@ -10529,7 +10424,6 @@ true
 ，用户必须同时传入 reduceOnly = true，说明当下单与仓位关联的止盈止损订单时，必须为只减仓。
 适用于合约模式、跨币种保证金模式。
 2023-07-07
-如下 MMP 接口优化已上线模拟盘，预计2023年7月19日上线实盘。
 参数 ordType 新增枚举值:
 请求参数相关接口：
 下单
@@ -10630,7 +10524,6 @@ int
 组合保证金的持仓保证金计算
 的调用权限由"交易"，调整为了"读取"。
 2023-06-28
-文档新增期权 MMP 相关的接口信息
 参数 ordType 新增枚举值:
 请求参数相关接口：
 下单
@@ -11541,7 +11434,6 @@ API 支持 USDC 指数的调整公告
 获取期权价格梯度
 平台公共爆仓单频道
 2023-03-15
-余币宝接口调整，老接口后续会下线，请尽快迁移
 新增
 余币宝
 功能模块，原余币宝相关接口做如下调整
@@ -11632,7 +11524,6 @@ String
 algoClOrdId
 String
 客户自定义策略订单ID
-请求参数`clOrdId`已经替换为了`algoClOrdId`，仍然返回`clOrdId`是为了向前兼容。
 新增返回参数
 获取订单信息
 获取未成交订单列表
@@ -11655,7 +11546,6 @@ String
 2023-02-20
 调整推送数据参数
 订单频道
-合并“系统撤单”为枚举值 0，以及更新枚举值对应含义。
 调整前：
 参数名
 类型
@@ -11923,7 +11813,6 @@ String
 last
 String
 下单时的最新成交价
-一键借币已经上线实盘
 新增请求参数：
 下单
 批量下单
@@ -12156,7 +12045,6 @@ HTTP 状态码
 51736
 200
 {ccy} 余额不足
-跟单接口已经上线实盘
 新增返回参数
 查看账户配置
 参数名
@@ -12282,7 +12170,6 @@ String
 cancelSourceReason
 String
 订单取消来源的对应具体原因
-尊享借币稳定利率优化已经上线实盘。
 请求和返回参数变动
 尊享借币还币
 调整返回参数
@@ -12647,7 +12534,6 @@ test
 批量下单
 下单频道
 批量下单频道
-将来其他接口和频道可能会有相同的调整，因此建议提前做好兼容
 调整前：
 参数名
 类型
@@ -12752,7 +12638,6 @@ Websocket 批量撤单
 调整后：
 * 限速规则（期权以外）：User ID + Instrument ID
 * 限速规则（只限期权）：User ID + Instrument Family
-为支持策略委托止盈止损平仓功能，对接口进行调整，
 新增请求参数和参数必须性
 策略委托下单
 参数名
@@ -12861,7 +12746,6 @@ closeFraction 仅适用于买卖模式
 51330
 200
 closeFraction 仅适用于止盈止损市价订单
-为支持一键借币，对接口进行调整，如下调整已上模拟盘，预计将于12月逐步上线实盘。
 新增请求参数：
 下单
 批量下单
@@ -13010,7 +12894,6 @@ HTTP 状态码
 200
 一键借币模式下，不支持自动借币与自动还币和手动类型混合下单。
 2022-11-29
-为支持尊享借币稳定利率优化，对接口进行调整，如下调整已上模拟盘，预计12月14日上线实盘。
 请求和返回参数变动
 尊享借币还币
 调整返回参数
@@ -13307,7 +13190,6 @@ String
 acctMmr
 String
 账户维度的维持保证金
-为确保向前兼容，在 `data` 中新添加了一组 JSON 放置 acctImr 和 acctMmr 参数。
 2022-11-08
 新增返回参数
 获取交易产品K线数据
@@ -13479,11 +13361,6 @@ serviceType
 ”的返回字段。
 调整之后，会返回预开盘阶段的币对，且产品状态为预上线 (preopen)。
 2022-10-14
-为支持USDC合约查询和订阅，新增了参数instFamily（交易品种）。
-例："BTC-USD-SWAP"和"BTC-USDC-SWAP"的uly（指数标的）同为BTC-USD，但是"BTC-USD-SWAP"的instFamily为BTC-USD，"BTC-USDC-SWAP"的instFamily为BTC-USDC。
-若请求参数指定uly为"BTC-USD"，会包含"BTC-USDC"合约和"BTC-USD"币本位合约的数据
-若请求参数指定instFamily为"BTC-USD"，则只包含"BTC-USD"币本位合约的数据，"BTC-USDC"合约的数据不会包含。
-您可以通过"获取交易产品基础信息"接口获取交易产品对应的instFamily。
 新增参数
 获取交易产品基础信息
 参数名
@@ -13688,9 +13565,6 @@ instFamily
 必须传一个,若传两个，以
 instFamily
 为主
-推送频道原请求参数uly替换为instFamily，如果传入uly则按照instFamily处理。
-例：如果想订阅uly为"BTC-USD"的"BTC-USDC"合约和"BTC-USD"币本位合约的数据，需要分别订阅instFamily为"BTC-USD"和"BTC-USDC"。只订阅instFamily为"BTC-USD"是收不到"BTC-USDC"合约的数据的。
-建议您尽快将uly调整为instFamily，未来参数uly将不再支持。
 调整请求参数
 持仓频道
 订单频道
@@ -13863,10 +13737,6 @@ addrEx
 Object
 提币地址备注，部分币种提币需要，若不需要则不返回此参数。如币种TONCOIN的提币地址备注标签名为comment,则该参数返回：{'comment':'123456'}
 2022-09-28
-为支持USDC合约查询和订阅，新增了参数instFamily（交易品种）。
-例："BTC-USD-SWAP"和"BTC-USDC-SWAP"的uly（指数标的）同为BTC-USD，但是"BTC-USD-SWAP"的instFamily为BTC-USD，"BTC-USDC-SWAP"的instFamily为BTC-USDC。
-您可以通过"获取交易产品基础信息"接口获取交易产品对应的instFamily。
-如下调整已上模拟盘，预计10月中旬上线实盘。
 新增参数
 获取交易产品基础信息
 参数名
@@ -14071,8 +13941,6 @@ instFamily
 必须传一个,若传两个，以
 instFamily
 为主
-推送频道原请求参数uly替换为instFamily，如果传入uly则按照instFamily处理。
-建议您尽快将uly调整为instFamily，未来参数uly将不再支持。
 调整请求参数
 持仓频道
 订单频道
@@ -14156,7 +14024,6 @@ USDC 交易区的吃单手续费率
 makerUSDC
 String
 USDC 交易区的挂单手续费率
-USDⓈ 代表除 USDT 和 USDC 之外的稳定币。
 新增参数
 策略委托下单
 获取未完成策略委托单列表
@@ -14231,7 +14098,6 @@ USDC 交易区的吃单手续费率
 makerUSDC
 String
 USDC 交易区的挂单手续费率
-USDⓈ 代表除 USDT 和 USDC 之外的稳定币。
 2022-09-05
 为CSV文件新增参数
 获取返佣明细下载链接
@@ -14280,7 +14146,6 @@ clOrdId
 String
 客户自定义ID
 字母（区分大小写）与数字的组合，可以是纯字母、纯数字且长度要在1-32位之间。
-网格交易支持"天地网格"
 网格交易
 新增
 algoOrdType
@@ -14449,7 +14314,6 @@ HTTP 状态码
 200
 51415
 2022-08-24
-支持现货对冲功能
 新增请求参数
 获取最大可用余额/保证金
 获取最大可下单数量
@@ -16034,7 +15898,6 @@ String
 订单标签
 字母（区分大小写）与数字的组合，可以是纯字母、纯数字，且长度在1-16位之间。
 2022-01-17
-计划委托订单支持多触发价格类型
 新增返回参数
 获取未完成策略委托单列表
 获取历史策略委托单列表
@@ -16313,7 +16176,6 @@ String
 用户VIP等级，如
 VIP5
 2021-12-04
-止盈止损订单支持多触发价格类型
 新增返回参数
 获取订单信息
 获取未成交订单列表
@@ -17323,7 +17185,6 @@ String
 新增接口
 获取指数成分接口
 2021-09-06
-以下接口调整仅针对模拟盘
 模拟盘支持冰山委托和时间加权委托
 策略委托下单
 请求参数字段调整：
@@ -17677,7 +17538,6 @@ USDT-ERC20
 USDT-TRC20
 多个链
 如果没有不填此参数，则默认为主链
-资金接口中ccy参数中不再包含chain信息。
 2021-06-11
 新增错误码
 55000
