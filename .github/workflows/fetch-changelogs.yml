@@ -1,0 +1,46 @@
+name: Fetch Exchange API Changelogs
+
+on:
+  schedule:
+    # 每天 09:50 CST (01:50 UTC)，比 Dify workflow 提前 10 分钟运行
+    - cron: '50 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch all exchange changelogs
+        run: |
+          python scripts/fetch_and_diff.py | tee fetch.log
+
+      - name: Show error log if any
+        if: always()
+        run: |
+          if [ -f fetch-errors.log ]; then
+            echo "::warning title=Fetch errors::Some sources failed to fetch"
+            cat fetch-errors.log
+          fi
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add changelogs/ latest-diff.md
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: refresh changelogs $(date -u +%Y-%m-%d)"
+            git push
+          fi
