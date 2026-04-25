@@ -1,11 +1,11 @@
-<!-- has_changes=true date=2026-04-24 -->
+<!-- has_changes=false date=2026-04-25 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-04-24 (Asia/Shanghai)
+Generated: 2026-04-25 (Asia/Shanghai)
 
 ## Summary
 
-- [CHANGED] **Binance Spot** (`binance-spot`): 17 diff lines
+- [OK] Binance Spot (`binance-spot`): no change (126374 bytes)
 
 - [OK] Binance Derivatives (USDS-M / Coin-M / Options) (`binance-derivatives`): no change (85776 bytes)
 
@@ -25,27 +25,4 @@ Generated: 2026-04-24 (Asia/Shanghai)
 
 ## Changes
 
-### Binance Spot (`binance-spot`)
-- Source: https://developers.binance.com/docs/binance-spot-api-docs/CHANGELOG
-- Raw: https://raw.githubusercontent.com/binance/binance-spot-api-docs/master/CHANGELOG.md
-
-```diff
-diff --git a/changelogs/binance-spot.txt b/changelogs/binance-spot.txt
-index 7db4415..140eb18 100644
---- a/changelogs/binance-spot.txt
-+++ b/changelogs/binance-spot.txt
-@@ -3,4 +3,12 @@
- **Last Updated: 2026-04-17**
- 
-+### 2026-04-17
-+
-+The following will occur on **2026-05-05 at approximately 10:00 UTC**.
-+
-+* The update speed of the below SBE Market Data Streams will be changed **from 50ms to 25ms**:
-+  * SBE Market Data Streams: [Diff Depth Streams](sbe-market-data-streams.md#diff-depth-streams)
-+  * FIX SBE: [MarketDataIncrementalDepth](fix-api.md#marketdataincrementaldepth)
-+
- 
- ---
-
-```
+No changes on 2026-04-25.
