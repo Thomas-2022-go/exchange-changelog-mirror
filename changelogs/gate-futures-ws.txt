@@ -1,4 +1,4 @@
-# Gate 永续合约 WebSocket v4
+# Gate Futures WebSocket v4.0.0
 Gate 提供简单而强大的 Websocket API，将 Gate BTCUSDT 永续合约交易状态集成到您的业务或应用程序中。
 我们在 Python 和 Golang 中有语言绑定，将来还会有更多！您可以在右侧的深色区域中查看代码示例，并且可以通过右上角的选项卡切换示例的编程语言
 # 服务地址
@@ -1946,4 +1946,4 @@ req_param` API 订单模型的 JSON 字节数据:
 | »errs | Object | 仅当请求失败时可用
 | »»label | String | 错误类型
 | »»message | String | 详细错误信息
-Last Updated: 4/14/2026, 1:16:45 AM
+Last Updated: 4/27/2026, 1:01:38 AM
