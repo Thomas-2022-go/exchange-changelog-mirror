@@ -1,3 +1,7 @@
+2026-04-27​
+REST API​
+- Strategy [NEW]
+  - Add strategy open APIs
 2026-04-23​
 REST API​
 - Get Instruments Info [UPDATE]
