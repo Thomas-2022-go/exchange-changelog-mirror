@@ -1476,4 +1476,4 @@ account: 指定查询账户。不指定默认现货，保证金和逐仓杠杆�
 | »errs | Object | 只有在请求失败时才可用
 | »»label | String | 以字符串格式表示错误类型
 | »»message | String | 错误信息详情
-Last Updated: 4/26/2026, 6:24:01 AM
+Last Updated: 4/27/2026, 10:15:14 AM
