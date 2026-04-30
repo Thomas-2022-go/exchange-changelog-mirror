@@ -1,11 +1,11 @@
-<!-- has_changes=true date=2026-04-29 -->
+<!-- has_changes=true date=2026-04-30 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-04-29 (Asia/Shanghai)
+Generated: 2026-04-30 (Asia/Shanghai)
 
 ## Summary
 
-- [CHANGED] **Binance Spot** (`binance-spot`): 23 diff lines
+- [OK] Binance Spot (`binance-spot`): no change (126608 bytes)
 
 - [OK] Binance Derivatives (USDS-M / Coin-M / Options) (`binance-derivatives`): no change (85776 bytes)
 
@@ -15,77 +15,32 @@ Generated: 2026-04-29 (Asia/Shanghai)
 
 - [OK] Bybit V5 (`bybit`): no change (76863 bytes)
 
-- [OK] KuCoin (Spot + Futures) (`kucoin`): no change (28151 bytes)
+- [CHANGED] **KuCoin (Spot + Futures)** (`kucoin`): 12 diff lines
 
-- [CHANGED] **Gate.io Spot WebSocket v4** (`gate-spot-ws`): 9 diff lines
+- [OK] Gate.io Spot WebSocket v4 (`gate-spot-ws`): no change (116554 bytes)
 
-- [CHANGED] **Gate.io Futures WebSocket v4** (`gate-futures-ws`): 9 diff lines
+- [OK] Gate.io Futures WebSocket v4 (`gate-futures-ws`): no change (139392 bytes)
 
 
 
 ## Changes
 
-### Binance Spot (`binance-spot`)
-- Source: https://developers.binance.com/docs/binance-spot-api-docs/CHANGELOG
-- Raw: https://raw.githubusercontent.com/binance/binance-spot-api-docs/master/CHANGELOG.md
+### KuCoin (Spot + Futures) (`kucoin`)
+- Source: https://www.kucoin.com/docs-new/change-log
+- Raw: https://www.kucoin.com/docs-new/change-log
 
 ```diff
-diff --git a/changelogs/binance-spot.txt b/changelogs/binance-spot.txt
-index 140eb18..c745ad1 100644
---- a/changelogs/binance-spot.txt
-+++ b/changelogs/binance-spot.txt
-@@ -1,5 +1,11 @@
- # CHANGELOG for Binance's API
- 
--**Last Updated: 2026-04-17**
-+**Last Updated: 2026-04-28**
-+
-+### 2026-04-28
-+
-+* Corrected the JSON in the `Price Range Execution Rule FAQ` for the question [`How does the Price Range Execution Rule work?`](./faqs/price_range_execution_rules.md#how-does-the-price-range-execution-rule-work).
-+
-+---
- 
- ### 2026-04-17
-@@ -11,5 +17,4 @@ The following will occur on **2026-05-05 at approximately 10:00 UTC**.
-   * FIX SBE: [MarketDataIncrementalDepth](fix-api.md#marketdataincrementaldepth)
- 
--
- ---
- 
-
-```
-
-### Gate.io Spot WebSocket v4 (`gate-spot-ws`)
-- Source: https://www.gate.io/docs/developers/apiv4/ws/zh_CN/
-- Raw: https://www.gate.io/docs/developers/apiv4/ws/zh_CN/
-
-```diff
-diff --git a/changelogs/gate-spot-ws.txt b/changelogs/gate-spot-ws.txt
-index 2567e1d..dff8154 100644
---- a/changelogs/gate-spot-ws.txt
-+++ b/changelogs/gate-spot-ws.txt
-@@ -1477,3 +1477,3 @@ account: 指定查询账户。不指定默认现货，保证金和逐仓杠杆
- | »»label | String | 以字符串格式表示错误类型
- | »»message | String | 错误信息详情
--Last Updated: 4/26/2026, 6:24:01 AM
-+Last Updated: 4/27/2026, 10:15:14 AM
-
-```
-
-### Gate.io Futures WebSocket v4 (`gate-futures-ws`)
-- Source: https://www.gate.io/docs/developers/futures/ws/zh_CN/
-- Raw: https://www.gate.io/docs/developers/futures/ws/zh_CN/
-
-```diff
-diff --git a/changelogs/gate-futures-ws.txt b/changelogs/gate-futures-ws.txt
-index 9f3884f..83275bb 100644
---- a/changelogs/gate-futures-ws.txt
-+++ b/changelogs/gate-futures-ws.txt
-@@ -1947,3 +1947,3 @@ req_param` API 订单模型的 JSON 字节数据:
- | »»label | String | 错误类型
- | »»message | String | 详细错误信息
--Last Updated: 4/27/2026, 1:01:38 AM
-+Last Updated: 4/27/2026, 10:15:14 AM
+diff --git a/changelogs/kucoin.txt b/changelogs/kucoin.txt
+index 3e6e6fa..bb4fbd3 100644
+--- a/changelogs/kucoin.txt
++++ b/changelogs/kucoin.txt
+@@ -1,4 +1,7 @@
+ WARNING
+ The Pro API is currently in beta testing and should not be used in production trading environments.
++2026.04.28#
++[Modify] Get Account Ledger：
++The "amount" parameters will be presented as positive numbers.
+ 2026.04.19#
+ [Add] Modify Leverage Margin Cross (UTA)
 
 ```
