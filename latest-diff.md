@@ -1,19 +1,19 @@
-<!-- has_changes=true date=2026-05-06 -->
+<!-- has_changes=true date=2026-05-07 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-05-06 (Asia/Shanghai)
+Generated: 2026-05-07 (Asia/Shanghai)
 
 ## Summary
 
-- [CHANGED] **Binance Spot** (`binance-spot`): 51 diff lines
+- [CHANGED] **Binance Spot** (`binance-spot`): 11 diff lines
 
 - [OK] Binance Derivatives (USDS-M / Coin-M / Options) (`binance-derivatives`): no change (85776 bytes)
 
-- [CHANGED] **OKX V5** (`okx`): 28 diff lines
+- [CHANGED] **OKX V5** (`okx`): 36 diff lines
 
 - [OK] Bitget (Spot + Futures) (`bitget`): no change (26700 bytes)
 
-- [OK] Bybit V5 (`bybit`): no change (77256 bytes)
+- [CHANGED] **Bybit V5** (`bybit`): 25 diff lines
 
 - [OK] KuCoin (Spot + Futures) (`kucoin`): no change (28255 bytes)
 
@@ -31,56 +31,16 @@ Generated: 2026-05-06 (Asia/Shanghai)
 
 ```diff
 diff --git a/changelogs/binance-spot.txt b/changelogs/binance-spot.txt
-index c745ad1..98f4f24 100644
+index 98f4f24..cb1559e 100644
 --- a/changelogs/binance-spot.txt
 +++ b/changelogs/binance-spot.txt
-@@ -1,5 +1,45 @@
- # CHANGELOG for Binance's API
+@@ -7,5 +7,5 @@
+ **Notice: The following changes will be deployed on 2026-05-08, starting at 06:00 UTC and may take several hours to complete.**
  
--**Last Updated: 2026-04-28**
-+**Last Updated: 2026-05-06**
-+
-+### 2026-05-06
-+
-+**Notice: The following changes will be deployed on 2026-05-08, starting at 06:00 UTC and may take several hours to complete.**
-+
-+* Added `serverShutdown` event to [WebSocket API](web-socket-api.md) and [WebSocket Streams](web-socket-streams.md).
-+  * `serverShutdown` event will be sent 10 minutes before disconnection.
-+
-+* [`PERCENT_PRICE`](./filters.md#percent_price), [`PERCENT_PRICE_BY_SIDE`](./filters.md#percent_price_by_side), [`MIN_NOTIONAL`](./filters.md#min_notional), and [`NOTIONAL`](./filters.md#notional) filters now use [reference price](./faqs/price_range_execution_rules.md) when it exists and is non-null. The filters fall back to their previous behavior when the reference price does not exist or is null.
-+
-+* Market data for [Block Trades](https://www.binance.info/en/support/faq/detail/557f95eaf8fb4460aed0a891d42a1425).
-+  * New Endpoints/Methods
-+    * REST API:
-+      * `GET /api/v3/historicalBlockTrades`
-+    * WebSocket API:
-+      * `blockTrades.historical`
-+
-+* Order query responses may include an [`expiryReason`](./enums.md#expiryreasons) field.
-+  * This field is returned **only for expired orders** and helps users understand why an order expired, including cases where the order is expired due to the **execution price range rule**.
-+  * This field is included in both JSON and SBE 3:4 responses.
-+  * This applies to the following endpoint/method:
-+    * REST API:
-+      * `GET /api/v3/order`
-+      * `GET /api/v3/allOrders`
-+      * `GET /api/v3/orderList`
-+      * `GET /api/v3/allOrderList`
-+    * WebSocket API:
-+      * `order.status`
-+      * `allOrders`
-+      * `orderList.status`
-+      * `allOrderLists`
-+
-+* REST and WebSocket API SBE schema 3:4
-+  * The current schema 3:3 [spot_3_3.xml](https://github.com/binance/binance-spot-api-docs/blob/master/sbe/schemas/spot_3_3.xml) is deprecated and will be retired in 6 months as per our schema deprecation policy.
-+  * Changes in schema 3:4:
-+    * New message `BlockTradesResponse`
-+    * New type `blockTradeId`
-+    * New field `expiryReason` in `OrderResponse` and `OrdersResponse`
-+
-+---
+-* Added `serverShutdown` event to [WebSocket API](web-socket-api.md) and [WebSocket Streams](web-socket-streams.md).
++* Added `serverShutdown` event to [WebSocket API](./web-socket-api.md#serverShutdown) and [WebSocket Streams](./web-socket-streams.md#serverShutdown).
+   * `serverShutdown` event will be sent 10 minutes before disconnection.
  
- ### 2026-04-28
 
 ```
 
@@ -90,32 +50,73 @@ index c745ad1..98f4f24 100644
 
 ```diff
 diff --git a/changelogs/okx.txt b/changelogs/okx.txt
-index 48e59b6..13344a0 100644
+index 13344a0..00165cc 100644
 --- a/changelogs/okx.txt
 +++ b/changelogs/okx.txt
-@@ -1,19 +1,13 @@
+@@ -1,3 +1,31 @@
  待发布内容
--Post-only 合约状态
--最近更新: 2026年4月29日
--产品状态新增 post_only 枚举值。合约处于 post_only 状态时，仅接受 post-only 限价单（以及对已有 post-only 订单的改单和撤单）；市价单、IOC、FOK 和普通限价单将被拒绝。预计 2026 年 5 月上线。
--产品接口/频道
--- 返回参数 state 新增枚举值 post_only
-+2026-05-06
-+已有接口改动
-+- 返回参数 state 新增枚举值 post_only。合约处于 post_only 状态时，仅接受 post-only 限价单（以及对已有 post-only 订单的改单和撤单）；市价单、IOC、FOK 和普通限价单将被拒绝。仅适用于 SWAP：
-   - 获取交易产品基础信息（私有）
-   - 获取交易产品基础信息（公共）
-   - 产品频道
++2026-05-07
++新增接口
++- 以下为新增接口，仅适用于模拟交易环境：
++  - 调整模拟盘余额
++请求参数
++| 参数名 | 类型 | 是否必须 | 描述
++| type | String | 是 | 调整方向。
++increase：增加余额
++reduce：减少余额
++每次请求只能选择一个方向，不可同时包含增加和减少。
++| adjustments | Array | 是 | 币种调整列表，至少包含一项，不允许重复币种。
++| > ccy | String | 是 | 币种。支持：BTC ETH USDT OKB
++| > amt | String | 是 | 调整数量。必须为非负数，小数位数不超过该币种精度。
++单次增加上限：BTC：1，ETH：1，USDT：5000，OKB：100。
++减少操作无单次数量限制，仅受可用余额 ≥ 0 约束。
 +返回参数
- | 参数名 | 类型 | 描述
- | state | String | 产品状态
--live：交易中
--suspend：暂停中
--rebase：合约在变基中，不可交易，仅适用于SWAP
- post_only：仅接受 post-only 订单；已有 post-only 订单可改单和撤单。其他订单类型（市价单、IOC、FOK、普通限价单）将被拒绝。仅适用于 SWAP
--preopen：预上线，交割和期权合约轮转生成到开始交易；部分交易产品上线前
--test：测试中（测试产品，不可交易）
- 2026-04-28
++| 参数名 | 类型 | 描述
++| remainCnt | String | 当日剩余增加余额次数。减少操作也会返回该字段，但减少操作不消耗次数。
++| totalCnt | String | 每日增加余额总次数（默认为 3）。
++| details | Array | 各币种操作详情。
++| > ccy | String | 币种。
++| > amt | String | 实际调整数量。
++| > bal | String | 操作后该币种的余额。
++错误码
++| 错误码 | HTTP 状态码 | 错误提示
++| 59691 | 200 | 每日增加余额次数已达上限{param0}，请于 UTC 0:00 后重试或重置模拟盘
++| 59692 | 200 | {param0} 余额不足，操作后余额不可小于零
++| 59693 | 200 | {param0} 可转余额不足，部分资金被挂单或持仓占用，请取消订单或平仓后重试
+ 2026-05-06
  已有接口改动
+
+```
+
+### Bybit V5 (`bybit`)
+- Source: https://bybit-exchange.github.io/docs/changelog/v5
+- Raw: https://bybit-exchange.github.io/docs/changelog/v5
+
+```diff
+diff --git a/changelogs/bybit.txt b/changelogs/bybit.txt
+index 200fa6a..ce04575 100644
+--- a/changelogs/bybit.txt
++++ b/changelogs/bybit.txt
+@@ -1,2 +1,6 @@
++2026-05-07​
++REST API​
++- Get Staked Position [UPDATE]
++  - Add new response fields availableAmount (redeemable amount) and freezeDetails (freeze detail list with amount and description)
+ 2026-05-06​
+ REST API​
+@@ -5,4 +9,13 @@ REST API​
+ - Cancel Supply Order [UPDATE]
+   - Add new optional request parameter refundedAccount to specify the account to receive the refund (0: Funding Account, 1: EasyEarn, default: 0)
++2026-04-30​
++REST API​
++- Get Instruments Info [UPDATE]
++  - Add new field symbolId (futures & options)
++- Get Account Instruments Info [UPDATE]
++  - Add new field symbolId (futures)
++- Get Coin Information [UPDATE]
++  - Add withdrawMax to indicate the max amount per transaction per chain that can be withdrawn, "-1" means no limit
++  - Deprecate field remainAmount
+ 2026-04-27​
+ REST API​
 
 ```
