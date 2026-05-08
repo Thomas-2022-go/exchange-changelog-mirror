@@ -1,5 +1,7 @@
 WARNING
 The Pro API is currently in beta testing and should not be used in production trading environments.
+2026.05.08#
+[Margin Deprecate] Get ETF Info: Deprecated the /api/v3/etf/info endpoint.
 2026.04.28#
 [Modify] Get Account Ledger：
 The "amount" parameters will be presented as positive numbers.
