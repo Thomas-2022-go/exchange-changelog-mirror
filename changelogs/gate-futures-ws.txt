@@ -819,18 +819,18 @@ update
 | create_time | Integer | 订单创建时间（已弃用）
 | create_time_ms | Integer | 订单创建时间戳（以毫秒为单位）
 | fill_price | Float | 订单成交价格
-| finish_as | String | 订单是如何完成的。
-- filled：全部成交
-- cancelled：手动取消
-- liquidated：因清算而取消
-- ioc：生效时间为 IOC，立即完成
-- auto_deleveraging：ADL 完成
-- reduce_only：因减仓设置而增仓而取消
-- position_close：因平仓而取消
-- stp：订单发生自成交限制而被撤销
-- _new：新建
- - _update：成交或部分成交或更新订单
-- reduce_out: 只减仓被排除的不容易成交的挂单
+| finish_as | String | 订单结束方式，包括：
+- open: 等待处理
+- filled: 完全成交
+- cancelled: 用户撤销
+- liquidate_cancelled: 爆仓撤销
+- small: 订单数量太小
+- depth_not_enough: 深度不足导致撤单
+- trader_not_enough: 对手方不足导致撤单
+- ioc: 未立即成交，因为 tif 设置为 ioc
+- poc: 未满足挂单策略，因为 tif 设置为 poc
+- fok: 未立即完全成交，因为 tif 设置为 fok
+- stp: 订单发生自成交限制而被撤销
 | iceberg | String/Integer | 冰山下单显示的数量，不指定或传 0 都默认为普通下单。目前不支持全部冰山。
 | id | Integer | 订单 ID
 | is_close | Bool | 该订单是否为 close position
@@ -1285,7 +1285,7 @@ update
 | last_close_pnl | Float | 最近一次平仓的盈亏
 | leverage | Integer | 杠杆倍数，0代表全仓，正数代表逐仓
 | leverage_max | Integer | 当前风险限额下，允许的最大杠杆倍数
-| liq_price | Float | 爆仓价格
+| liq_price | Float | 已废弃
 | maintenance_rate | Float | 当前风险限额下，维持保证金比例
 | margin | Float | 保证金
 | realised_pnl | Float | 已实现盈亏
@@ -1946,4 +1946,4 @@ req_param` API 订单模型的 JSON 字节数据:
 | »errs | Object | 仅当请求失败时可用
 | »»label | String | 错误类型
 | »»message | String | 详细错误信息
-Last Updated: 4/27/2026, 10:15:14 AM
+Last Updated: 5/9/2026, 8:04:46 AM

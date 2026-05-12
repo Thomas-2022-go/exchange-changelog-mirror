@@ -1,4 +1,15 @@
 Change Log
+2026-05-11​
+Effective Date: 2026-05-13
+USDⓈ-M Futures
+- POST /fapi/v1/positionSide/dual
+  - New error code -4531: When changing UM dualSidePosition, the system will automatically sync CM dualSidePosition. If the CM account has any open position or open order, the sync cannot proceed and the UM position mode change will be rejected with error code -4531.
+  - Error payload:
+{
+ "code": -4531,
+ "msg": "Position mode change requires syncing UM and CM. Please close any open positions or orders in CM and try again."
+}
+  - Note: This error code is temporary and will only be active until CM enters Guard (approximately 1 month). After CM enters Guard, this error will no longer occur.
 2026-04-17​
 Portfolio Margin Pro
 - User Data Stream:
@@ -411,7 +422,7 @@ COIN-M Futures
 - WEBSOCKET User Data Stream:
   - Add new field pm in ORDER_TRADE_UPDATE to show price match mode.
 2024-10-10​
-USDⓈ-M Futures
+USD Ⓢ-M Futures
 - Binance will update the following endpoints, estimated to be in force on 2024-10-17 03:00 (UTC). After 2024-10-17 03:00 (UTC), the endpoints will support querying futures trade histories that are not older than one year:
   - GET /fapi/v1/aggTrades
   - GET /dapi/v1/aggTrades
