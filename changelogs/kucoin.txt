@@ -1,5 +1,27 @@
 WARNING
 The Pro API is currently in beta testing and should not be used in production trading environments.
+2026.05.15#
+[Modify] Pro Websocket Private Channel Order
+Added new enum value MATCH for the response field eT, supporting pushing MATCH events for UTA FUTURES trading
+[Modify] Get Pro REST Position List (UTA)
+Added response field:
+adlPercentage：ADL ranking percentage of the futures position. For example, a value of 0.12 represents 12%.
+[Modify] Pro Websocket Position Push
+Added response field:
+adl: ADL ranking percentage of the futures position. For example, a value of 0.12 represents 12%.
+[Modify] Pro REST Batch Cancel Orders by Symbol
+Added new enum value:MARGIN
+[Modify] Classic REST Get Trade History
+For liquidation orders, the tradeType will return the value: liquid
+[Add] Pro REST Get API Key Info
+[Add] Pro REST Add Sub-Account
+[Add] Pro REST Add Sub-Account API
+[Add] Pro REST Delete Sub-Account API
+[Add] Pro REST Get Deposit Address
+[Add] Pro REST Get Withdrawal Quotas
+[Add] Pro REST Withdraw
+[Add] Pro REST Cancel Withdrawal
+[Add] Pro REST Get KYC Region
 2026.05.08#
 [Margin Deprecate] Get ETF Info: Deprecated the /api/v3/etf/info endpoint.
 2026.04.28#
