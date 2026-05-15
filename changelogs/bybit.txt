@@ -1,4 +1,13 @@
 2026-05-14​
+REST API​
+- Get Affiliate User List [UPDATE]
+  - The size range update from [0, 1000] to [0, 100]
+- Get Affiliate Sub-Affiliate List [NEW]
+  - Add a new endpoint to query sub affiliates
+- Get API Key Information [UPDATE]
+  - Remove FiatBybitPay key from the response
+- Modify Master API Key [UPDATE]
+  - Remove FiatBybitPay key from the response
 Websocket API​
 - SBE Order Entry
   - XML template has been updated. 1. Update retMsg type from "varString8" to "varString16"; 2. Remove createAt from "BatchCreateRespV5"
