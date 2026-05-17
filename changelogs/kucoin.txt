@@ -3,10 +3,10 @@ The Pro API is currently in beta testing and should not be used in production tr
 2026.05.15#
 [Modify] Pro Websocket Private Channel Order
 Added new enum value MATCH for the response field eT, supporting pushing MATCH events for UTA FUTURES trading
-[Modify] Get Pro REST Position List (UTA)
+[Modify] Pro REST Get Position List (UTA)
 Added response field:
 adlPercentage：ADL ranking percentage of the futures position. For example, a value of 0.12 represents 12%.
-[Modify] Pro Websocket Position Push
+[Modify] Pro Websocket Position
 Added response field:
 adl: ADL ranking percentage of the futures position. For example, a value of 0.12 represents 12%.
 [Modify] Pro REST Batch Cancel Orders by Symbol
