@@ -1,7 +1,7 @@
-<!-- has_changes=false date=2026-05-18 -->
+<!-- has_changes=true date=2026-05-19 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-05-18 (Asia/Shanghai)
+Generated: 2026-05-19 (Asia/Shanghai)
 
 ## Summary
 
@@ -15,7 +15,7 @@ Generated: 2026-05-18 (Asia/Shanghai)
 
 - [OK] Bybit V5 (`bybit`): no change (78327 bytes)
 
-- [OK] KuCoin (Spot + Futures) (`kucoin`): no change (29311 bytes)
+- [CHANGED] **KuCoin (Spot + Futures)** (`kucoin`): 18 diff lines
 
 - [OK] Gate.io Spot WebSocket v4 (`gate-spot-ws`): no change (116554 bytes)
 
@@ -25,4 +25,28 @@ Generated: 2026-05-18 (Asia/Shanghai)
 
 ## Changes
 
-No changes on 2026-05-18.
+### KuCoin (Spot + Futures) (`kucoin`)
+- Source: https://www.kucoin.com/docs-new/change-log
+- Raw: https://www.kucoin.com/docs-new/change-log
+
+```diff
+diff --git a/changelogs/kucoin.txt b/changelogs/kucoin.txt
+index 5eb0126..4aeda20 100644
+--- a/changelogs/kucoin.txt
++++ b/changelogs/kucoin.txt
+@@ -2,6 +2,4 @@ WARNING
+ The Pro API is currently in beta testing and should not be used in production trading environments.
+ 2026.05.15#
+-[Modify] Pro Websocket Private Channel Order
+-Added new enum value MATCH for the response field eT, supporting pushing MATCH events for UTA FUTURES trading
+ [Modify] Pro REST Get Position List (UTA)
+ Added response field:
+@@ -14,4 +12,6 @@ Added new enum value:MARGIN
+ [Modify] Classic REST Get Trade History
+ For liquidation orders, the tradeType will return the value: liquid
++[修改]Pro Websocket Execution Lite
++Push to add clientOid field
+ [Add] Pro REST Get API Key Info
+ [Add] Pro REST Add Sub-Account
+
+```
