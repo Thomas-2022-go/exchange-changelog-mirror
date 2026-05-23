@@ -1,3 +1,43 @@
+2026-05-26​
+Websocket API​
+- Order [UPDATE]
+  - Add new response fields rpiTakerAccess (whether the order has matched with an RPI order) and rpiMatchedQty (cumulative RPI matched quantity)
+2026-05-22​
+REST API​
+- Get Airdrop Products
+  - Add Byfi airdrop product endpoint
+- Get Airdrop Daily PnL Records
+  - Add Byfi airdrop daily pnl record endpoint
+PWM (Private Wealth Management) — New Endpoints
+- Get All Investment Plans [NEW]
+- Get Investment Plan Detail [NEW]
+- Get Pending Investment Plan Detail [NEW]
+- Claim Withdrawable Funds [NEW]
+- Get Asset Trend [NEW]
+- Get Fund Historical NAV [NEW]
+- Subscribe Investment Plan [NEW]
+- Invest More [NEW]
+- Redeem [NEW]
+- Get Investment Plan Orders [NEW]
+- Get Subscribable Product Info [NEW]
+- Create Customize Investment Plan [NEW]
+- Get All Funds [NEW]
+- Settle Fund Profit [NEW]
+- Create Fund [NEW]
+- Create Investment Plan [NEW]
+- Get Investment Plans [NEW]
+- Manage Investment Plan [NEW]
+- Get All Fund Orders [NEW]
+- Manage Order [NEW]
+- Create Fund Sub-Account [NEW]
+- Fund Transfer Between Sub-Accounts [NEW]
+- Get Fund Transfer Records [NEW]
+2026-05-21​
+REST API​
+- Get Order History [UPDATE]
+  - Add new response fields rpiTakerAccess (whether the order has matched with an RPI order) and rpiMatchedQty (cumulative RPI matched quantity)
+- Get Transaction Log [UPDATE]
+  - The api rate limit downgraded from 50 req/s to 25 req/s
 2026-05-14​
 REST API​
 - Get Affiliate User List [UPDATE]
