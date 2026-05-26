@@ -1,3 +1,12 @@
+2026-05-28​
+REST API​
+- Get Crypto Loan Position [UPDATE]
+  - Add new response field colRes (platform level collateral restriction status)
+- Get Wallet Balance [UPDATE]
+  - Add new response field colRes (platform level collateral restriction status)
+Websocket API​
+- Wallet [UPDATE]
+  - Add new response field colRes (platform level collateral restriction status)
 2026-05-26​
 Websocket API​
 - Order [UPDATE]

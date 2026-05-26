@@ -11,7 +11,7 @@ adl: ADL ranking percentage of the futures position. For example, a value of 0.1
 Added new enum value:MARGIN
 [Modify] Classic REST Get Trade History
 For liquidation orders, the tradeType will return the value: liquid
-[修改]Pro Websocket Execution Lite
+[Modify]Pro Websocket Execution Lite
 Push to add clientOid field
 [Add] Pro REST Get API Key Info
 [Add] Pro REST Add Sub-Account
