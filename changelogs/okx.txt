@@ -1,9 +1,13 @@
 待发布内容
 SPACEX 永续合约重命名
-最后更新：2026年5月28日
-为了优化用户交易体验，欧易将在 2026 年 6 月 1 日至 6 月 5 日（UTC）期间的某一天 将 SPACEXUSDT 永续合约更名为 SPCXUSDT 永续合约。
+最后更新：2026年6月1日
+为了优化用户交易体验，欧易将于 2026 年 6 月 2 日 将 SPACEXUSDT 永续合约更名为 SPCXUSDT 永续合约。更多内容请参考公告详情
 - 更名时：
-  - 产品频道 会推送 instId: SPCX-USDT-SWAP, state: expired 的更新数据，和 instId: SPCX-USDT-SWAP, state: live 的数据。
+  - 产品频道 将按以下顺序推送更新数据：
+    - instId: SPACEX-USDT-SWAP, state: expired
+    - instId: SPCX-USDT-SWAP, state: rebase
+    - instId: SPCX-USDT-SWAP, state: post_only
+    - instId: SPCX-USDT-SWAP, state: live
 - 更名后：
   - 推送数据中的 instId instFamily, uly 会使用新的参数值。
   - 平台将不再支持使用 instId: SPACEX-USDT-SWAP 以及 instFamily: SPACEX-USDT 订阅该合约的 WebSocket 频道，或是通过 OpenAPI 发送 HTTP 请求。请您在合约更名后使用 instId: SPCX-USDT-SWAP 或 instFamily: SPCX-USDT 进行相关交易。
@@ -59,6 +63,26 @@ POST /api/v5/copytrade/create-sgl-link body { "orderId": "3556007031710728192", 
 注意:
  1. books5 和 bbo-tbt 频道本身不包含 checksum 字段，不在本次变更范围内。
  2. WebSocket 连接已全面启用 TLS（wss://），具备防窃听、防篡改以及完整性校验的能力；结合 seqId/prevSeqId 的严格校验，可有效防止数据乱序、部分丢失或被恶意注入，实现与原 checksum 等效甚至更强的完整性保护。
+风险保证金 API 更新 — REST 日级快照与 WS 推送变更
+最近更新：2026年5月29日
+为优化风险保证金数据披露，REST GET /api/v5/public/insurance-fund 接口和 WS adl-warning 频道将进行以下变更。本次变更预计于 2026年6月9日 上线。
+不兼容变更
+WS adl-warning 频道将停止在 normal 状态下推送数据。所有字段保留在推送响应中，但以下字段将返回空值（""）。如果您的应用依赖 normal 状态推送或这些字段的值，请在上线日期前完成相应调整。
+- 更新了 regular_update 类型的描述。数据粒度从分钟级变更为日级快照。数据在每日结算后更新一次（约 UTC 08:00）。type 字段保留 regular_update 值，但关联字段将返回空值：
+  - GET / 获取风险保证金余额
+- WS adl-warning 频道将停止在 normal 状态下推送数据。在 warning 或 adl 状态下，数据继续每秒推送一次。所有字段保留，但以下字段将返回空值（""）：
+  - WS / 自动减仓预警频道
+WS 推送数据中将返回空值的字段
+| 参数名 | 类型 | 描述
+| > ccy | String | 风险保证金余额对应币种。将返回 ""
+| > maxBal | String | 过去八小时内的风险保证金余额最大值。将返回 ""
+| > maxBalTs | String | 过去八小时内风险保证金余额最大值对应的时间戳。将返回 ""
+| > adlType | String | 关于自动减仓的事件。将返回 ""
+| > adlBal | String | 触发自动减仓的风险保证金余额。将返回 ""
+| > adlRecBal | String | 自动减仓结束的风险保证金余额。将返回 ""
+| > decRate | String | 风险保证金实时下降率（已弃用）。将返回 ""
+| > adlRate | String | 触发自动减仓的风险保证金下降率（已弃用）。将返回 ""
+| > adlRecRate | String | 自动减仓结束的风险保证金下降率（已弃用）。将返回 ""
 ELP 合并深度订单簿
 最近更新：2026年5月29日
 为简化 ELP 行情数据集成，OKX 将推出合并深度订单簿，将非 ELP 和当前可交易的 ELP 流动性合并为一个数据流。本次变更预计于 2026年6月11日 上线。

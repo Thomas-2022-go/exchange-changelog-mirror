@@ -1,5 +1,39 @@
 WARNING
 The Pro API is currently in beta testing and should not be used in production trading environments.
+2026.06.03#
+1. UTA API Upgrade#
+Currently, certain Pro API endpoints are compatible with both Classic Accounts and Unified Trading Accounts (UTA). Moving forward, we will continue to focus on the Unified Trading Account framework and further enhance the UTA API with new capabilities and feature optimizations. Compatibility support related to Classic Accounts will enter maintenance mode and will no longer be the primary focus for future feature development, performance improvements, or long-term platform evolution.
+[Adjustment Details]
+The Pro API will be upgraded to the UTA API, which will primarily support the Unified Trading Account (UTA) going forward.
+Compatibility support related to the Classic Account within UTA API will enter maintenance mode.
+If you are currently using the “Pro API + Classic Account” model, we strongly recommend completing one of the following migration options as soon as possible:
+Switch to the Unified Trading Account (UTA) mode for trading;
+Continue using the Classic API for Classic Account trading.
+This will help ensure a smooth migration and uninterrupted trading operations.
+2. API Upgrades#
+[Modify] UTA REST Get Position List (UTA), added response field:
+positionMargin: Margin occupied by the futures position.
+riskRatio: Risk ratio of an isolated futures position.
+[Modify] UTA Websocket Position, added response field:
+pM: Margin occupied by the futures position.
+r: Risk ratio of an isolated futures position. For example, 0.65 represents 65%.
+[Modify] Classic REST Get Deposit List & Classic REST Get Deposit Detail. The endpoints have added the following status return values to display more detailed deposit statuses:
+ROLLBACKING : Reversing deposit. Please wait.
+ROLLBACK : Deposit reversed. No funds have been credited to the account. Please contact support for assistance.
+WAIT_RISK_MGT: The deposit is undergoing standard risk verification. Please contact support for assistance.
+RISK_MGT_REJECTED : The deposit is rejected after risk verification. Please contact support to submit required information for review.
+PRE_SUCCESS: Funds have been credited to the account ahead of final Block confirmation.
+WAIT_TRM_MGT: The deposit is undergoing standard compliance verification. Please contact support for assistance.
+TRM_MGT_REJECTED : The deposit is rejected after risk verification. Please contact support to submit required information for review.
+[Add] UTA REST Batch Modify Margin Mode ,batch modifies the margin mode for futures positions
+[Add] UTA REST Modify Isolated Futures Margin ,extract or add margin for Isolated Futures position
+[Modify] UTA REST Place Order ,add new field 'closeOrder' to support closing position for specified symbol
+[Modify] UTA REST Get Transfer Quotas ,add new enum 'UNIFIED' in feild 'accountType' in query params and response params
+[Modify] UTA Error Code updated to the new version, split into the following modules: UTA General, UTA Account Opening, UTA Order, UTA Account, UTA Position, UTA Spot Trading, UTA Leverage, UTA Futures Trading, UTA Loan
+[Add] Fast API Apply for Fast Withdrawal
+Support user-defined API key permissions in the OAuth authorization flow, including granting withdrawal permissions
+New permission: Fast Withdrawal (Fast API withdrawal permission)
+Support API withdrawal with 2FA verification
 2026.05.15#
 [Modify] Pro REST Get Position List (UTA)
 Added response field:
