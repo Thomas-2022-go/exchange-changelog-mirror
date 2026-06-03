@@ -1,3 +1,7 @@
+2026-06-02​
+Websocket API​
+- SBE Order Entry [UPDATE]
+  - SBE Order Entry is now available in production.
 2026-05-28​
 REST API​
 - Get Crypto Loan Position [UPDATE]
