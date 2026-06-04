@@ -1,3 +1,18 @@
+2026-06-09​
+REST API​
+- Set MMP [UPDATE]
+  - Add new optional request parameter vegaLimit (vega limit, default: 500000)
+- Get MMP State [UPDATE]
+  - Add new response field vegaLimit
+- Reset MMP [UPDATE]
+  - vegaLimit will also be reset to 0 upon reset
+2026-06-03​
+- Place Order [UPDATE]
+  - add a new request parameter rpiTakerAccess, this feature is currently in a gradual rollout phase and will be fully available on 12 June.
+Websocket API​
+- SBE Order Entry [UPDATE]
+  - Update the xml template from version=1 to version=2, please see template
+  - Add a new request parameter rpiTakerAccess, this feature is currently in a gradual rollout phase and will be fully available on 12 June.
 2026-06-02​
 Websocket API​
 - SBE Order Entry [UPDATE]

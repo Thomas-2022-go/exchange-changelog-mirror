@@ -1,4 +1,14 @@
 Change Log
+2026-06-02​
+Effective Date: 2026-06-02
+USDⓈ-M Futures
+- GET /fapi/v1/algoOrder (Query Algo Order)
+  - Updated response example to clarify field behavior:
+    - actualOrderId: "" if not triggered; orderId if triggered.
+    - actualPrice: 0 if not triggered; average price if filled or partially filled.
+    - actualType: optional field, only returned when triggered.
+    - actualQty: optional field, only returned when filled or partially filled.
+  - Removed deprecated fields from the response: tpPrice, tpTriggerPrice, slPrice, slTriggerPrice.
 2026-05-11​
 Effective Date: 2026-05-13
 USDⓈ-M Futures
@@ -422,7 +432,7 @@ COIN-M Futures
 - WEBSOCKET User Data Stream:
   - Add new field pm in ORDER_TRADE_UPDATE to show price match mode.
 2024-10-10​
-USD Ⓢ-M Futures
+USDⓈ-M Futures
 - Binance will update the following endpoints, estimated to be in force on 2024-10-17 03:00 (UTC). After 2024-10-17 03:00 (UTC), the endpoints will support querying futures trade histories that are not older than one year:
   - GET /fapi/v1/aggTrades
   - GET /dapi/v1/aggTrades
