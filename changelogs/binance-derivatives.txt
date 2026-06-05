@@ -2,13 +2,12 @@ Change Log
 2026-06-02​
 Effective Date: 2026-06-02
 USDⓈ-M Futures
-- GET /fapi/v1/algoOrder (Query Algo Order)
-  - Updated response example to clarify field behavior:
-    - actualOrderId: "" if not triggered; orderId if triggered.
-    - actualPrice: 0 if not triggered; average price if filled or partially filled.
-    - actualType: optional field, only returned when triggered.
-    - actualQty: optional field, only returned when filled or partially filled.
-  - Removed deprecated fields from the response: tpPrice, tpTriggerPrice, slPrice, slTriggerPrice.
+- GET /fapi/v1/tradingSchedule (Trading Schedule)
+  - Extended time range from 7 days forward to 7 days backward and 7 days forward starting from the day prior to the query time.
+  - Added Korean equity market (KR_EQUITY) support. Korean equity market session types: REGULAR and NO_TRADING.
+- WebSocket Stream tradingSession (Trading Session Stream)
+  - Added Korean equity market support.
+  - Added new event type KR_EquityUpdate. Korean equity market session types: REGULAR and NO_TRADING.
 2026-05-11​
 Effective Date: 2026-05-13
 USDⓈ-M Futures
@@ -971,7 +970,7 @@ Portfolio Margin
 USDⓈ-M Futures
 REST
 - Add field notionalCoef in GET /fapi/v1/leverageBracket to show the bracket multiplier comparing to default leverage bracket
-2023-07-13​
+2023-07-13 ​
 European Options
 Websocket Market Streams
 - These change will be effective from 2023-07-14:
