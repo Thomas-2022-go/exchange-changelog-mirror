@@ -1,7 +1,7 @@
-<!-- has_changes=true date=2026-06-06 -->
+<!-- has_changes=false date=2026-06-07 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-06-06 (Asia/Shanghai)
+Generated: 2026-06-07 (Asia/Shanghai)
 
 ## Summary
 
@@ -13,7 +13,7 @@ Generated: 2026-06-06 (Asia/Shanghai)
 
 - [OK] Bitget (Spot + Futures) (`bitget`): no change (26700 bytes)
 
-- [CHANGED] **Bybit V5** (`bybit`): 15 diff lines
+- [OK] Bybit V5 (`bybit`): no change (81117 bytes)
 
 - [OK] KuCoin (Spot + Futures) (`kucoin`): no change (32538 bytes)
 
@@ -25,25 +25,4 @@ Generated: 2026-06-06 (Asia/Shanghai)
 
 ## Changes
 
-### Bybit V5 (`bybit`)
-- Source: https://bybit-exchange.github.io/docs/changelog/v5
-- Raw: https://bybit-exchange.github.io/docs/changelog/v5
-
-```diff
-diff --git a/changelogs/bybit.txt b/changelogs/bybit.txt
-index c737455..941ee0b 100644
---- a/changelogs/bybit.txt
-+++ b/changelogs/bybit.txt
-@@ -1,2 +1,10 @@
-+2026-06-11​
-+REST API​
-+RWA (Real World Assets) — New Endpoints
-+- Get Product List [NEW]
-+- Place Order [NEW]
-+- Get Position List [NEW]
-+- Get Order List [NEW]
-+- Get NAV Chart [NEW]
- 2026-06-09​
- REST API​
-
-```
+No changes on 2026-06-07.
