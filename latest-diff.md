@@ -1,7 +1,7 @@
-<!-- has_changes=false date=2026-06-07 -->
+<!-- has_changes=true date=2026-06-08 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-06-07 (Asia/Shanghai)
+Generated: 2026-06-08 (Asia/Shanghai)
 
 ## Summary
 
@@ -15,7 +15,7 @@ Generated: 2026-06-07 (Asia/Shanghai)
 
 - [OK] Bybit V5 (`bybit`): no change (81117 bytes)
 
-- [OK] KuCoin (Spot + Futures) (`kucoin`): no change (32538 bytes)
+- [CHANGED] **KuCoin (Spot + Futures)** (`kucoin`): 14 diff lines
 
 - [OK] Gate.io Spot WebSocket v4 (`gate-spot-ws`): no change (116554 bytes)
 
@@ -25,4 +25,24 @@ Generated: 2026-06-07 (Asia/Shanghai)
 
 ## Changes
 
-No changes on 2026-06-07.
+### KuCoin (Spot + Futures) (`kucoin`)
+- Source: https://www.kucoin.com/docs-new/change-log
+- Raw: https://www.kucoin.com/docs-new/change-log
+
+```diff
+diff --git a/changelogs/kucoin.txt b/changelogs/kucoin.txt
+index ec007a6..27c84f3 100644
+--- a/changelogs/kucoin.txt
++++ b/changelogs/kucoin.txt
+@@ -1,4 +1,9 @@
+ WARNING
+ The Pro API is currently in beta testing and should not be used in production trading environments.
++2026.06.05#
++[Add] UTA REST Get API Rate Limit
++[Add] UTA REST Get All API Rate Limit
++[Add] UTA REST Get API Rate Limit Cap
++[Add] UTA REST Set Sub Accounts API Rate Limit
+ 2026.06.03#
+ 1. UTA API Upgrade#
+
+```

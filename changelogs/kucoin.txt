@@ -1,5 +1,10 @@
 WARNING
 The Pro API is currently in beta testing and should not be used in production trading environments.
+2026.06.05#
+[Add] UTA REST Get API Rate Limit
+[Add] UTA REST Get All API Rate Limit
+[Add] UTA REST Get API Rate Limit Cap
+[Add] UTA REST Set Sub Accounts API Rate Limit
 2026.06.03#
 1. UTA API Upgrade#
 Currently, certain Pro API endpoints are compatible with both Classic Accounts and Unified Trading Accounts (UTA). Moving forward, we will continue to focus on the Unified Trading Account framework and further enhance the UTA API with new capabilities and feature optimizations. Compatibility support related to Classic Accounts will enter maintenance mode and will no longer be the primary focus for future feature development, performance improvements, or long-term platform evolution.
