@@ -1,4 +1,4 @@
-2026-06-11​
+2026-06-15​
 REST API​
 RWA (Real World Assets) — New Endpoints
 - Get Product List [NEW]
@@ -6,6 +6,14 @@ RWA (Real World Assets) — New Endpoints
 - Get Position List [NEW]
 - Get Order List [NEW]
 - Get NAV Chart [NEW]
+2026-06-10​
+REST API​
+- Withdraw [UPDATE]
+  - Added a new optional request parameter questionnaire, which can be used as a replacement for beneficiary. We recommend integrating this field as soon as possible.
+- Questionnaire [NEW]
+  - It is a questionnaire page that serves as a reference for deposit and withdrawal transactions to meet Travel Rule compliance requirements.
+- Submit Deposit Originator Info [NEW]
+  - A new endpoint has been introduced to submit the originator's compliance information when a deposit is flagged for Travel Rule review.
 2026-06-09​
 REST API​
 - Set MMP [UPDATE]
