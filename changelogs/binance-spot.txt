@@ -1,10 +1,23 @@
 # CHANGELOG for Binance's API
 
-**Last Updated: 2026-06-09**
+**Last Updated: 2026-06-10**
+
+### 2026-06-10
+
+#### FIX API
+
+* Documentation update: removed `LastFragment (893)` from [FIX API](./fix-api.md#marketdataincrementalrefresh).
+  * As [previously announced](#2025-12-02), `MarketDataIncrementalRefresh <X>` messages stopped being fragmented on 2025-12-18, and the server no longer sends `LastFragment (893)`.
+  * The field has been removed from the [FIX API](fix-api.md) field list and from the corresponding [QuickFIX MD schema](https://github.com/binance/binance-spot-api-docs/blob/master/fix/schemas/spot-fix-md.xml).
+* Documentation update: updated the [News `<B>`](./fix-api.md#news-b) message description to be consistent with the announcement from [2026-06-09](#2026-06-09).
+
+---
 
 ### 2026-06-09
 
 **Update:**
+
+* Updated the [Price Range Execution Rule FAQ](../faqs/price_range_execution_rules.md#external-reference-price-calculation-method-1) with new External Reference Price Calculation Methods.
 
 The `serverShutdown` event will be sent when the **server is about to be shut down**; when you receive this event, please disconnect and open a new connection.
 
@@ -14,8 +27,6 @@ All mention of a fixed time before the server shuts down has been removed from t
   * ~~`serverShutdown` event will be sent 10 minutes before disconnection.~~
   * Please establish a new connection as soon as possible to prevent connection interruption.
   * Note that you will receive `serverShutdown` events in JSON in WebSocket text frames.
-
-* Updated the [Price Range Execution Rule FAQ](./faqs/price_range_execution_rules.md#external-reference-price-calculation-method-1) with new External Reference Price Calculation Methods.
 
 ---
 

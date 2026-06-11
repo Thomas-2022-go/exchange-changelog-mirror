@@ -1,4 +1,7 @@
 Change Log
+2026-06-10​
+Effective Date: 2026-06-30
+COIN-M Futures architecture integration with USDⓈ-M Futures — REST endpoints, WebSocket streams, and account-level behavior changes. See Important CM-UM Integration Notice for the full list of affected endpoints and the action items.
 2026-06-02​
 Effective Date: 2026-06-02
 USDⓈ-M Futures
@@ -970,7 +973,7 @@ Portfolio Margin
 USDⓈ-M Futures
 REST
 - Add field notionalCoef in GET /fapi/v1/leverageBracket to show the bracket multiplier comparing to default leverage bracket
-2023-07-13 ​
+2023-07-13​
 European Options
 Websocket Market Streams
 - These change will be effective from 2023-07-14:
@@ -986,7 +989,7 @@ REST
   - GET /dapi/v1/account (HMAC SHA256)
   - GET /dapi/v1/positionRisk (HMAC SHA256)
 WEBSOCKET
-- New field bep represents Break-Even Price in position P of payload to event: Balance and Position Update – "e": "ACCOUNT_UPDATE"
+- New field bep represents Break-Even Price in position P of payload to event: Balance and Position Update   – "e": "ACCOUNT_UPDATE"
 2023-07-11​
 Portfolio Margin
 REST
