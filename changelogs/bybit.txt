@@ -1,3 +1,12 @@
+2026-06-11​
+REST API​
+- Get Tickers [UPDATE]
+  - Added single side open interest fields, singleOpenInterest, singleOpenInterestValue
+- Get Open Interest [UPDATE]
+  - Added single side open interest fields, singleOpenInterest
+Websocket API​
+- Tickers [UPDATE]
+  - Added single side open interest fields, singleOpenInterest, singleOpenInterestValue
 2026-06-10​
 REST API​
 - Withdraw [UPDATE]
