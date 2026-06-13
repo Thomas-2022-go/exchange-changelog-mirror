@@ -1,7 +1,7 @@
-<!-- has_changes=true date=2026-06-12 -->
+<!-- has_changes=false date=2026-06-13 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-06-12 (Asia/Shanghai)
+Generated: 2026-06-13 (Asia/Shanghai)
 
 ## Summary
 
@@ -9,11 +9,11 @@ Generated: 2026-06-12 (Asia/Shanghai)
 
 - [OK] Binance Derivatives (USDS-M / Coin-M / Options) (`binance-derivatives`): no change (87280 bytes)
 
-- [CHANGED] **OKX V5** (`okx`): 12 diff lines
+- [OK] OKX V5 (`okx`): no change (199526 bytes)
 
 - [OK] Bitget (Spot + Futures) (`bitget`): no change (26700 bytes)
 
-- [CHANGED] **Bybit V5** (`bybit`): 16 diff lines
+- [OK] Bybit V5 (`bybit`): no change (81977 bytes)
 
 - [OK] KuCoin (Spot + Futures) (`kucoin`): no change (32707 bytes)
 
@@ -25,46 +25,4 @@ Generated: 2026-06-12 (Asia/Shanghai)
 
 ## Changes
 
-### OKX V5 (`okx`)
-- Source: https://www.okx.com/docs-v5/log_zh/
-- Raw: https://www.okx.com/docs-v5/log_zh/
-
-```diff
-diff --git a/changelogs/okx.txt b/changelogs/okx.txt
-index 59152ca..7161219 100644
---- a/changelogs/okx.txt
-+++ b/changelogs/okx.txt
-@@ -119,4 +119,7 @@ ELP 吃单权限扩展至所有订单类型
- | 参数名 | 类型 | 是否必须 | 描述
- | isElpTakerAccess | Boolean | 否 | 默认值为 false。设为 true 时，订单可以使用 ELP 流动性。适用于所有订单类型。当 isElpTakerAccess 为 true 时，除 post_only 外的所有订单类型都会触发减速带机制；下单时 post_only 订单可免于减速带。isElpTakerAccess 也可在改单接口中使用，且不会从原始订单继承——必须在每次改单请求中显式重新指定（改单时省略则该次改单视为 false）。改单时，减速带适用于所有订单类型（包括 post_only）；如需改 post_only 订单且不想触发减速带，请在该次改单中不设置 isElpTakerAccess。
-+2026-06-11
-+申请账单流水（自 2021 年）：限速放宽
-+POST / 申请账单流水（自 2021 年） 的限速由 12 次/天 调整为 1 次/10s（按用户维度）。
- 2026-06-05
- 获取资金流水全历史：新增 thirdPartyType 请求参数
-
-```
-
-### Bybit V5 (`bybit`)
-- Source: https://bybit-exchange.github.io/docs/changelog/v5
-- Raw: https://bybit-exchange.github.io/docs/changelog/v5
-
-```diff
-diff --git a/changelogs/bybit.txt b/changelogs/bybit.txt
-index 391ed3f..a1f27a6 100644
---- a/changelogs/bybit.txt
-+++ b/changelogs/bybit.txt
-@@ -1,2 +1,11 @@
-+2026-06-11​
-+REST API​
-+- Get Tickers [UPDATE]
-+  - Added single side open interest fields, singleOpenInterest, singleOpenInterestValue
-+- Get Open Interest [UPDATE]
-+  - Added single side open interest fields, singleOpenInterest
-+Websocket API​
-+- Tickers [UPDATE]
-+  - Added single side open interest fields, singleOpenInterest, singleOpenInterestValue
- 2026-06-10​
- REST API​
-
-```
+No changes on 2026-06-13.
