@@ -1,3 +1,20 @@
+2026-06-16​
+REST API​
+- Get Futures Leverage [NEW]
+  - Add a new endpoint to get futures leverage in one request
+Alpha LP — New Endpoints
+- Execute LP Stake [NEW]
+- Execute LP Redeem [NEW]
+- Get LP Order List [NEW]
+- Get LP Pay Token List [NEW]
+- Get LP Pay Token Price [NEW]
+- Get LP Pool Info [NEW]
+- Get LP Pool List [NEW]
+- Get LP Position List [NEW]
+- Get Coupon List [NEW]
+  - New endpoint to query interest-rate coupons and Dual Assets reward cards
+- Stake / Redeem [UPDATE]
+  - Add new optional request parameter interestCard (interest bonus card, only applicable to FlexibleSaving Stake orders)
 2026-06-15​
 REST API​
 RWA (Real World Assets) — New Endpoints

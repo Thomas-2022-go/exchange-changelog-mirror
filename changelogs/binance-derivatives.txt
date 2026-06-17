@@ -1,6 +1,7 @@
 Change Log
 2026-06-16​
-Time-sensitive Notice​
+Time-sensitive Notice
+- Update: The Futures COIN-M demo trading maintenance window is extended by 48 hours. The new window is from 2026-06-16 02:00:00 till 2026-06-18 10:00:00 (UTC). We appreciate your patience and understanding.
 - Please note that Futures COIN-M demo trading will be unavailable from 2026-06-16 02:00:00 till 2026-06-16 10:00:00 (UTC). We appreciate your patience and understanding.
 2026-06-10​
 Effective Date: 2026-06-30
@@ -1405,7 +1406,7 @@ WEBSOCKET
 REST
 - The endpoint GET /dapi/v1/allForceOrders stop being maintained and no longer accepts request.
 2021-04-27​
-USD  Ⓢ-M Futures
+USDⓈ-M Futures
 WEBSOCKET
 - The following liquidation orders streams do not push realtime order data anymore. Instead, they push snapshot order data at a maximum frequency of 1 order push per second.:
   - <symbol>@forceOrder
