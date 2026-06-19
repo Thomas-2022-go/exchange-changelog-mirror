@@ -1,8 +1,7 @@
 Change Log
 2026-06-16​
 Time-sensitive Notice
-- Update: The Futures COIN-M demo trading maintenance window is extended by 48 hours. The new window is from 2026-06-16 02:00:00 till 2026-06-18 10:00:00 (UTC). We appreciate your patience and understanding.
-- Please note that Futures COIN-M demo trading will be unavailable from 2026-06-16 02:00:00 till 2026-06-16 10:00:00 (UTC). We appreciate your patience and understanding.
+- Update: The Futures COIN-M demo trading maintenance window is extended. The new window is from 2026-06-16 02:00:00 till 2026-06-19 10:00:00 (UTC). We appreciate your patience and understanding.
 2026-06-10​
 Effective Date: 2026-06-30
 COIN-M Futures architecture integration with USDⓈ-M Futures — REST endpoints, WebSocket streams, and account-level behavior changes. See Important CM-UM Integration Notice for the full list of affected endpoints and the action items.
@@ -1829,7 +1828,7 @@ USDⓈ-M Futures
     - "wt" as workingType
   - in ACCOUNT_UPDATE:
     - "T" as transaction time
-2019-10-28​
+2019-10-28 ​
 USDⓈ-M Futures
 - New rest endpoint for income flow history GET /fapi/v1/income
 2019-10-25​

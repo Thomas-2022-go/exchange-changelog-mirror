@@ -1,4 +1,18 @@
 待发布内容
+交易产品价格限制 XYZ 参数
+最近更新：2026年6月18日
+为方便 API 用户动态获取合约价格限制参数而无需硬编码，OKX 现通过交易产品基础信息接口公开价格限制 X、Y、Z 参数。由这些参数推算出的价格限制可通过 GET / 获取限价 获取。详情参阅价格限制规则。本次变更预计于 2026年6月23日 上线。
+- 在以下接口新增返回参数 initPxLmtPct、floatPxLmtPct、maxPxLmtPct：
+  - GET / 获取交易产品基础信息（公共）
+  - GET / 获取交易产品基础信息（私有）
+返回参数
+| 参数名 | 类型 | 描述
+| initPxLmtPct | String | 合约上线后前 10 分钟内的初始价格限制区间，小数百分比，例如 0.05 = 5%。
+适用于 SPOT/MARGIN/SWAP/FUTURES；OPTION 和 EVENTS 返回 ""。
+| floatPxLmtPct | String | 常规交易期间的浮动价格限制区间，小数百分比，例如 0.03 = 3%。
+适用于 SPOT/MARGIN/SWAP/FUTURES；OPTION 和 EVENTS 返回 ""。
+| maxPxLmtPct | String | 最大价格限制上限（硬性上限），小数百分比，例如 0.15 = 15%。
+适用于 SPOT/MARGIN/SWAP/FUTURES；OPTION 和 EVENTS 返回 ""。
 WebSocket服务升级断线提示扩展至业务频道
 最后更新：2026 年 5 月 21 日
 WebSocket服务升级断线提示（错误码 64008）将扩展支持业务频道（/ws/v5/business）。
@@ -29,10 +43,10 @@ POST /api/v5/copytrade/create-sgl-link body { "orderId": "3556007031710728192", 
 | 参数名 | 类型 | 描述
 | shortLink | String | 通用分享短链。接收方在 OKX App 中打开该链接后，下单面板将自动填入对应的订单参数。
 深度频道 checksum 字段废弃
-最后更新：2026 年 5 月 19 日
+最后更新：2026 年 6 月 9 日
 为了提升行情数据推送的效率和稳定性，以下深度频道将废弃全量快照和增量更新中的 checksum 字段。
 废弃后，checksum 字段仍会保留在全量快照和增量更新中，但其值将固定为 0，不应再用于数据完整性校验。请在废弃生效之前，改用 seqId/prevSeqId 校验数据的连续性和准确性。
-模拟盘废弃日期：2026 年 6 月 2 日
+模拟盘已于 2026 年 6 月 2 日 废弃
  实盘废弃日期：2026 年 6 月 23 日
 - 废弃全量快照和增量更新中的 checksum 字段（字段仍保留在推送中，但其值将固定为 0）。
   - WS / 深度频道
@@ -42,26 +56,6 @@ POST /api/v5/copytrade/create-sgl-link body { "orderId": "3556007031710728192", 
 注意:
  1. books5 和 bbo-tbt 频道本身不包含 checksum 字段，不在本次变更范围内。
  2. WebSocket 连接已全面启用 TLS（wss://），具备防窃听、防篡改以及完整性校验的能力；结合 seqId/prevSeqId 的严格校验，可有效防止数据乱序、部分丢失或被恶意注入，实现与原 checksum 等效甚至更强的完整性保护。
-风险保证金 API 更新 — REST 日级快照与 WS 推送变更
-最近更新：2026年5月29日
-为优化风险保证金数据披露，REST GET /api/v5/public/insurance-fund 接口和 WS adl-warning 频道将进行以下变更。本次变更预计于 2026年6月9日 上线。
-不兼容变更
-WS adl-warning 频道将停止在 normal 状态下推送数据。所有字段保留在推送响应中，但以下字段将返回空值（""）。如果您的应用依赖 normal 状态推送或这些字段的值，请在上线日期前完成相应调整。
-- 更新了 regular_update 类型的描述。数据粒度从分钟级变更为日级快照。数据在每日结算后更新一次（约 UTC 08:00）。type 字段保留 regular_update 值，但关联字段将返回空值：
-  - GET / 获取风险保证金余额
-- WS adl-warning 频道将停止在 normal 状态下推送数据。在 warning 或 adl 状态下，数据继续每秒推送一次。所有字段保留，但以下字段将返回空值（""）：
-  - WS / 自动减仓预警频道
-WS 推送数据中将返回空值的字段
-| 参数名 | 类型 | 描述
-| > ccy | String | 风险保证金余额对应币种。将返回 ""
-| > maxBal | String | 过去八小时内的风险保证金余额最大值。将返回 ""
-| > maxBalTs | String | 过去八小时内风险保证金余额最大值对应的时间戳。将返回 ""
-| > adlType | String | 关于自动减仓的事件。将返回 ""
-| > adlBal | String | 触发自动减仓的风险保证金余额。将返回 ""
-| > adlRecBal | String | 自动减仓结束的风险保证金余额。将返回 ""
-| > decRate | String | 风险保证金实时下降率（已弃用）。将返回 ""
-| > adlRate | String | 触发自动减仓的风险保证金下降率（已弃用）。将返回 ""
-| > adlRecRate | String | 自动减仓结束的风险保证金下降率（已弃用）。将返回 ""
 ELP 合并深度订单簿
 最近更新：2026年6月8日
 为简化 ELP 行情数据集成，OKX 将推出合并深度频道 books-elp-all，将非 ELP 与当前可交易的 ELP 流动性合并为单一数据流，用户无需再分别订阅 books 和 books-elp 并在客户端自行合并。该能力同时提供 WebSocket 与 REST 两种方式，预计于 2026年6月下旬 上线。
@@ -121,6 +115,24 @@ ELP 吃单权限扩展至所有订单类型
 2026-06-11
 申请账单流水（自 2021 年）：限速放宽
 POST / 申请账单流水（自 2021 年） 的限速由 12 次/天 调整为 1 次/10s（按用户维度）。
+2026-06-09
+风险保证金 API 更新 — REST 变更与 WS 推送变更
+不兼容变更
+- 删除了 type 请求参数中的 regular_update 枚举值。adl 和 platform_revenue 类型已弃用，当前返回空值；将在后续更新中删除：
+  - GET / 获取风险保证金余额
+- WS adl-warning 频道将停止在 normal 状态下推送数据。在 warning 或 adl 状态下，数据继续每秒推送一次。所有字段保留，但以下字段将返回空值（""）。这些字段将在后续更新中删除：
+  - WS / 自动减仓预警频道
+WS 推送数据中将返回空值的字段
+| 参数名 | 类型 | 描述
+| > ccy | String | 风险保证金余额对应币种。将返回 ""
+| > maxBal | String | 过去八小时内的风险保证金余额最大值。将返回 ""
+| > maxBalTs | String | 过去八小时内风险保证金余额最大值对应的时间戳。将返回 ""
+| > adlType | String | 关于自动减仓的事件。将返回 ""
+| > adlBal | String | 触发自动减仓的风险保证金余额。将返回 ""
+| > adlRecBal | String | 自动减仓结束的风险保证金余额。将返回 ""
+| > decRate | String | 风险保证金实时下降率（已弃用）。将返回 ""
+| > adlRate | String | 触发自动减仓的风险保证金下降率（已弃用）。将返回 ""
+| > adlRecRate | String | 自动减仓结束的风险保证金下降率（已弃用）。将返回 ""
 2026-06-05
 获取资金流水全历史：新增 thirdPartyType 请求参数
 GET / 获取资金流水全历史 新增可选请求参数 thirdPartyType，支持在母账户绑定多家第三方托管商时，按指定托管商筛选账单记录。
