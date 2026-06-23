@@ -1,13 +1,13 @@
-<!-- has_changes=true date=2026-06-22 -->
+<!-- has_changes=true date=2026-06-23 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-06-22 (Asia/Shanghai)
+Generated: 2026-06-23 (Asia/Shanghai)
 
 ## Summary
 
-- [CHANGED] **Binance Spot** (`binance-spot`): 20 diff lines
+- [OK] Binance Spot (`binance-spot`): no change (130905 bytes)
 
-- [OK] Binance Derivatives (USDS-M / Coin-M / Options) (`binance-derivatives`): no change (87509 bytes)
+- [CHANGED] **Binance Derivatives (USDS-M / Coin-M / Options)** (`binance-derivatives`): 11 diff lines
 
 - [OK] OKX V5 (`okx`): no change (199931 bytes)
 
@@ -25,30 +25,21 @@ Generated: 2026-06-22 (Asia/Shanghai)
 
 ## Changes
 
-### Binance Spot (`binance-spot`)
-- Source: https://developers.binance.com/docs/binance-spot-api-docs/CHANGELOG
-- Raw: https://raw.githubusercontent.com/binance/binance-spot-api-docs/master/CHANGELOG.md
+### Binance Derivatives (USDS-M / Coin-M / Options) (`binance-derivatives`)
+- Source: https://developers.binance.com/docs/derivatives/change-log
+- Raw: https://developers.binance.com/docs/derivatives/change-log
 
 ```diff
-diff --git a/changelogs/binance-spot.txt b/changelogs/binance-spot.txt
-index 86ffecf..3d6d528 100644
---- a/changelogs/binance-spot.txt
-+++ b/changelogs/binance-spot.txt
-@@ -1,5 +1,14 @@
- # CHANGELOG for Binance's API
- 
--**Last Updated: 2026-06-10**
-+**Last Updated: 2026-06-22**
-+
-+### 2026-06-22
-+
-+REST and WebSocket API:
-+
-+* Reminder that SBE 3:1 schema will be retired on 2026-06-29, [6 months after being deprecated](faqs/sbe_faq.md#sbe-schema).
-+* The [SBE lifecycle for Production](https://github.com/binance/binance-spot-api-docs/blob/master/sbe/schemas/sbe_schema_lifecycle_prod.json) has been updated to reflect this change.
-+
-+---
- 
- ### 2026-06-10
+diff --git a/changelogs/binance-derivatives.txt b/changelogs/binance-derivatives.txt
+index bef0b7d..58ad2ca 100644
+--- a/changelogs/binance-derivatives.txt
++++ b/changelogs/binance-derivatives.txt
+@@ -2,5 +2,5 @@ Change Log
+ 2026-06-16​
+ Time-sensitive Notice
+-- Update: The Futures COIN-M demo trading maintenance window is extended. The new window is from 2026-06-16 02:00:00 till 2026-06-20 10:00:00 (UTC). We appreciate your patience and understanding.
++- Update: The Futures COIN-M demo trading maintenance window is extended. The new window is from 2026-06-16 02:00:00 till 2026-06-22 10:00:00 (UTC). We appreciate your patience and understanding.
+ 2026-06-10​
+ Effective Date: 2026-06-30
 
 ```
