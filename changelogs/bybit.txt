@@ -1,7 +1,17 @@
+2026-06-23​
+REST API​
+- Get Coin Delta Amount [NEW]
+  - New endpoint to query coin delta amount details for institutional loan hedge product
+- Get Product Info [UPDATE]
+  - Add new response field productType (0: Default, 1: CTA, 2: Hedge)
 2026-06-16​
 REST API​
 - Get Futures Leverage [NEW]
   - Add a new endpoint to get futures leverage in one request
+- Get Coupon List [NEW]
+  - New endpoint to query interest-rate coupons and Dual Assets reward cards
+- Stake / Redeem [UPDATE]
+  - Add new optional request parameter interestCard (interest bonus card, only applicable to FlexibleSaving Stake orders)
 Alpha LP — New Endpoints
 - Execute LP Stake [NEW]
 - Execute LP Redeem [NEW]
@@ -11,10 +21,6 @@ Alpha LP — New Endpoints
 - Get LP Pool Info [NEW]
 - Get LP Pool List [NEW]
 - Get LP Position List [NEW]
-- Get Coupon List [NEW]
-  - New endpoint to query interest-rate coupons and Dual Assets reward cards
-- Stake / Redeem [UPDATE]
-  - Add new optional request parameter interestCard (interest bonus card, only applicable to FlexibleSaving Stake orders)
 2026-06-15​
 REST API​
 RWA (Real World Assets) — New Endpoints
