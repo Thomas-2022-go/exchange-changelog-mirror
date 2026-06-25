@@ -1,19 +1,19 @@
-<!-- has_changes=true date=2026-06-24 -->
+<!-- has_changes=true date=2026-06-25 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-06-24 (Asia/Shanghai)
+Generated: 2026-06-25 (Asia/Shanghai)
 
 ## Summary
 
-- [OK] Binance Spot (`binance-spot`): no change (130905 bytes)
+- [CHANGED] **Binance Spot** (`binance-spot`): 18 diff lines
 
 - [OK] Binance Derivatives (USDS-M / Coin-M / Options) (`binance-derivatives`): no change (87509 bytes)
 
-- [CHANGED] **OKX V5** (`okx`): 79 diff lines
+- [CHANGED] **OKX V5** (`okx`): 95 diff lines
 
 - [OK] Bitget (Spot + Futures) (`bitget`): no change (26700 bytes)
 
-- [CHANGED] **Bybit V5** (`bybit`): 30 diff lines
+- [OK] Bybit V5 (`bybit`): no change (82998 bytes)
 
 - [OK] KuCoin (Spot + Futures) (`kucoin`): no change (32707 bytes)
 
@@ -25,127 +25,131 @@ Generated: 2026-06-24 (Asia/Shanghai)
 
 ## Changes
 
+### Binance Spot (`binance-spot`)
+- Source: https://developers.binance.com/docs/binance-spot-api-docs/CHANGELOG
+- Raw: https://raw.githubusercontent.com/binance/binance-spot-api-docs/master/CHANGELOG.md
+
+```diff
+diff --git a/changelogs/binance-spot.txt b/changelogs/binance-spot.txt
+index 3d6d528..c596963 100644
+--- a/changelogs/binance-spot.txt
++++ b/changelogs/binance-spot.txt
+@@ -1,5 +1,12 @@
+ # CHANGELOG for Binance's API
+ 
+-**Last Updated: 2026-06-22**
++**Last Updated: 2026-06-24**
++
++### 2026-06-24
++
++* Beginning at **2026-07-09 07:00 UTC**, [WebSocket Streams](web-socket-streams.md) will undergo an infrastructure upgrade and will approximately take up to an hour.
++* During the upgrade, your WebSocket connection may be disconnected; please reconnect to restore your connection.
++
++---
+ 
+ ### 2026-06-22
+
+```
+
 ### OKX V5 (`okx`)
 - Source: https://www.okx.com/docs-v5/log_zh/
 - Raw: https://www.okx.com/docs-v5/log_zh/
 
 ```diff
 diff --git a/changelogs/okx.txt b/changelogs/okx.txt
-index 208af69..5243184 100644
+index 5243184..3dcd09b 100644
 --- a/changelogs/okx.txt
 +++ b/changelogs/okx.txt
-@@ -1,6 +1,6 @@
- 待发布内容
- 交易产品价格限制 XYZ 参数
--最近更新：2026年6月18日
--为方便 API 用户动态获取合约价格限制参数而无需硬编码，OKX 现通过交易产品基础信息接口公开价格限制 X、Y、Z 参数。由这些参数推算出的价格限制可通过 GET / 获取限价 获取。详情参阅价格限制规则。本次变更预计于 2026年6月23日 上线。
-+最近更新：2026年6月23日
-+为方便 API 用户动态获取合约价格限制参数而无需硬编码，OKX 现通过交易产品基础信息接口公开价格限制 X、Y、Z 参数。由这些参数推算出的价格限制可通过 GET / 获取限价 获取。详情参阅价格限制规则。本次变更预计于 2026年6月24日 在模拟盘上线，并于 2026年6月30日 正式上线。
- - 在以下接口新增返回参数 initPxLmtPct、floatPxLmtPct、maxPxLmtPct：
-   - GET / 获取交易产品基础信息（公共）
-@@ -14,11 +14,4 @@
+@@ -14,4 +14,78 @@
  | maxPxLmtPct | String | 最大价格限制上限（硬性上限），小数百分比，例如 0.15 = 15%。
  适用于 SPOT/MARGIN/SWAP/FUTURES；OPTION 和 EVENTS 返回 ""。
--WebSocket服务升级断线提示扩展至业务频道
--最后更新：2026 年 5 月 21 日
--WebSocket服务升级断线提示（错误码 64008）将扩展支持业务频道（/ws/v5/business）。
--在业务频道服务升级前60秒，将向用户推送如下消息，告知WebSocket连接即将断开。建议用户提前重新建立连接，以避免断线造成影响。
--该功能上线后将支持WebSocket公共频道(/ws/v5/public)、私有频道(/ws/v5/private)和业务频道(/ws/v5/business)。
--模拟盘上线日期：2026 年 6 月 4 日
-- 实盘上线日期：2026 年 6 月 11 日
++OKUSD 申购、赎回与限额 — 新增 API 接口
++最近更新：2026年6月23日
++OKX 现新增 OKUSD 的 V5 API 支持。API 用户可通过接口以 1:1 汇率将 USDT 申购为 OKUSD、通过即时赎回（实时到账）或标准赎回（D+5 工作日）将 OKUSD 赎回为 USDT，并查询当日剩余申购及赎回限额。此变更预计将于 2026年7月2日 上线。
++获取 OKUSD 限额
++- 新增 GET /api/v5/finance/okusd/limits
++需要具有 read 权限的 API Key。频率限制：每 UID 每 2 秒 2 次请求。
++返回参数
++| 参数名 | 类型 | 描述
++| subLimit | Object | 申购限额信息
++| > maxSubAmt | String | 当日最大可申购数量（USDT），= min(personalDailyLimit - personalUsedAmt, platformDailyLimit - platformUsedAmt)
++| > personalDailyLimit | String | 用户 VIP 等级对应的每日申购上限（USDT）
++| > personalUsedAmt | String | 用户当日已申购金额（USDT）
++| > platformDailyLimit | String | 平台每日申购总上限（USDT）
++| > platformUsedAmt | String | 平台当日已申购金额（USDT）
++| fastRedeemLimit | Object | 即时赎回限额信息
++| > personalDailyLimit | String | 用户 VIP 等级对应每日即时赎回上限（OKUSD）
++| > personalUsedAmt | String | 用户当日已使用即时赎回额度（OKUSD）
++| > platformDailyLimit | String | 平台每日即时赎回总上限（OKUSD）
++| > platformUsedAmt | String | 平台当日已使用即时赎回额度（OKUSD）
++| > feeRate | String | 即时赎回手续费率，小数格式（如 "0.001" 表示 0.1%）
++| stdRedeemLimit | Object | 标准赎回（D+5）限额信息
++| > personalDailyLimit | String | 用户 VIP 等级对应每日标准赎回上限（OKUSD）
++| > personalUsedAmt | String | 用户当日已使用标准赎回额度（OKUSD）
++| > platformDailyLimit | String | 平台每日标准赎回总上限（OKUSD）
++| > platformUsedAmt | String | 平台当日已使用标准赎回额度（OKUSD）
++| > feeRate | String | 标准赎回手续费率，小数格式（如 "0.00025" 表示 0.025%）
++| ts | String | 服务器时间戳（Unix 毫秒）
++申购 OKUSD
++- 新增 POST /api/v5/finance/okusd/subscribe
++需要具有 trade 权限的 API Key。频率限制：每 UID 每 2 秒 1 次请求。
++请求参数
++| 参数名 | 类型 | 必填 | 描述
++| amt | String | 是 | 申购 USDT 数量。最小值：1。最多 8 位小数。
++返回参数
++| 参数名 | 类型 | 描述
++| ordId | String | 系统订单 ID
++| ccy | String | 申购货币，固定为 "USDT"
++| amt | String | 实际申购 USDT 数量
++| okusdAmt | String | 到账 OKUSD 数量（等于 amt，汇率 1:1，无申购手续费）
++| state | String | 订单状态：success / pending / failed
++| ts | String | 订单创建时间（Unix 毫秒）
++赎回 OKUSD
++- 新增 POST /api/v5/finance/okusd/redeem
++需要具有 trade 权限的 API Key。频率限制：每 UID 每 2 秒 1 次请求。
++即时赎回实时到账；标准赎回最长 D+5 工作日到账。
++请求参数
++| 参数名 | 类型 | 必填 | 描述
++| amt | String | 是 | 赎回 OKUSD 数量。最小值：1。最多 8 位小数。
++| redeemType | String | 是 | 赎回类型。1 = 即时赎回（实时到账）；2 = 标准赎回（D+5）
++返回参数
++| 参数名 | 类型 | 描述
++| ordId | String | 系统订单 ID
++| ccy | String | 赎回货币，固定为 "OKUSD"
++| amt | String | 赎回 OKUSD 数量
++| fee | String | 实收手续费（USDT），向下截断至 8 位小数
++| usdtAmt | String | 实际到账 USDT 数量 = amt - fee，向下截断至 8 位小数
++| redeemType | String | 赎回类型：1 = 即时赎回；2 = 标准赎回
++| state | String | 订单状态：processing / success / failed
++| estSettlementTime | String | 预计到账时间（Unix 毫秒）。即时赎回为当前时间；标准赎回为提交时间 + 5 工作日
++| ts | String | 订单创建时间（Unix 毫秒）
++- 新增错误码
++| 错误码 | HTTP 状态码 | 错误提示
++| 51763 | 200 | 您的账户不满足该产品的 VIP 等级准入要求
++| 51764 | 200 | 余额不足
++| 51765 | 200 | 超出您当日剩余配额 {x} USDT
++| 51766 | 200 | 平台当日申购限额已达上限
++| 51767 | 200 | 系统维护中，请稍后重试
++| 51768 | 200 | 超出您当日剩余即时赎回配额 {x} OKUSD
++| 51769 | 200 | 平台即时赎回限额已达上限
++| 51770 | 200 | 超出您当日剩余标准赎回配额 {x} OKUSD
++| 51771 | 200 | 平台标准赎回限额已达上限
++| 51772 | 200 | 即时赎回池余额不足
++| 51773 | 200 | 该功能在您所在地区暂不可用
++| 51774 | 200 | OKUSD API 正在维护中
  信号复制新增 API 接口
  最后更新：2026 年 5 月 14 日
-@@ -43,21 +36,7 @@ POST /api/v5/copytrade/create-sgl-link body { "orderId": "3556007031710728192",
- | 参数名 | 类型 | 描述
- | shortLink | String | 通用分享短链。接收方在 OKX App 中打开该链接后，下单面板将自动填入对应的订单参数。
--深度频道 checksum 字段废弃
--最后更新：2026 年 6 月 9 日
--为了提升行情数据推送的效率和稳定性，以下深度频道将废弃全量快照和增量更新中的 checksum 字段。
--废弃后，checksum 字段仍会保留在全量快照和增量更新中，但其值将固定为 0，不应再用于数据完整性校验。请在废弃生效之前，改用 seqId/prevSeqId 校验数据的连续性和准确性。
--模拟盘已于 2026 年 6 月 2 日 废弃
-- 实盘废弃日期：2026 年 6 月 23 日
--- 废弃全量快照和增量更新中的 checksum 字段（字段仍保留在推送中，但其值将固定为 0）。
--  - WS / 深度频道
--    - books
--    - books-l2-tbt
--    - books50-l2-tbt
--注意:
-- 1. books5 和 bbo-tbt 频道本身不包含 checksum 字段，不在本次变更范围内。
-- 2. WebSocket 连接已全面启用 TLS（wss://），具备防窃听、防篡改以及完整性校验的能力；结合 seqId/prevSeqId 的严格校验，可有效防止数据乱序、部分丢失或被恶意注入，实现与原 checksum 等效甚至更强的完整性保护。
- ELP 合并深度订单簿
--最近更新：2026年6月8日
--为简化 ELP 行情数据集成，OKX 将推出合并深度频道 books-elp-all，将非 ELP 与当前可交易的 ELP 流动性合并为单一数据流，用户无需再分别订阅 books 和 books-elp 并在客户端自行合并。该能力同时提供 WebSocket 与 REST 两种方式，预计于 2026年6月下旬 上线。
-+最近更新：2026年6月23日
-+为简化 ELP 行情数据集成，OKX 将推出合并深度频道 books-elp-all，将非 ELP 与当前可交易的 ELP 流动性合并为单一数据流，用户无需再分别订阅 books 和 books-elp 并在客户端自行合并。该能力同时提供 WebSocket 与 REST 两种方式，预计于 2026年7月中旬 在模拟盘上线，并于 2026年7月下旬 正式上线。
- - 通过 /ws/v5/business 端点（wss://ws.okx.com:8443/ws/v5/business）新增 WebSocket 频道 books-elp-all。400 档深度；初始全量推送 + 每 100 毫秒增量推送。推送合并非 ELP 和当前可交易 ELP 流动性的深度数据。不可交易的 ELP 订单在平台端过滤。
-   - WS / books-elp-all 频道
-@@ -99,6 +78,6 @@ GET /api/v5/market/books-elp-all?instId=BTC-USDT-SWAP
- | seqId | Integer | 当前推送消息的序列号
- ELP 吃单权限扩展至所有订单类型
--最近更新：2026年6月8日
--订单参数 isElpTakerAccess 将扩展支持所有订单类型（此前仅 ioc），并新增支持在改单接口中使用。本次变更预计于 2026年6月下旬 上线。
-+最近更新：2026年6月23日
-+订单参数 isElpTakerAccess 将扩展支持所有订单类型（此前仅 ioc），并新增支持在改单接口中使用。本次变更预计于 2026年7月中旬 在模拟盘上线，并于 2026年7月下旬 正式上线。
- - 更新请求参数 isElpTakerAccess 的描述，以反映扩展的订单类型支持和改单行为：
-   - POST / 下单
-@@ -113,5 +92,20 @@ ELP 吃单权限扩展至所有订单类型
+@@ -92,4 +166,11 @@ ELP 吃单权限扩展至所有订单类型
  | 参数名 | 类型 | 是否必须 | 描述
  | isElpTakerAccess | Boolean | 否 | 默认值为 false。设为 true 时，订单可以使用 ELP 流动性。适用于所有订单类型。当 isElpTakerAccess 为 true 时，除 post_only 外的所有订单类型都会触发减速带机制；下单时 post_only 订单可免于减速带。isElpTakerAccess 也可在改单接口中使用，且不会从原始订单继承——必须在每次改单请求中显式重新指定（改单时省略则该次改单视为 false）。改单时，减速带适用于所有订单类型（包括 post_only）；如需改 post_only 订单且不想触发减速带，请在该次改单中不设置 isElpTakerAccess。
-+2026-06-23
-+深度频道 checksum 字段废弃
-+为了提升行情数据推送的效率和稳定性，以下深度频道已废弃全量快照和增量更新中的 checksum 字段。checksum 字段仍保留在全量快照和增量更新中，但其值固定为 0，不应再用于数据完整性校验。请改用 seqId/prevSeqId 校验数据的连续性和准确性。
-+- 废弃全量快照和增量更新中的 checksum 字段（字段仍保留在推送中，但其值固定为 0）。
-+  - WS / 深度频道
-+    - books
-+    - books-l2-tbt
-+    - books50-l2-tbt
-+注意:
-+ 1. books5 和 bbo-tbt 频道本身不包含 checksum 字段，不在本次变更范围内。
-+ 2. WebSocket 连接已全面启用 TLS（wss://），具备防窃听、防篡改以及完整性校验的能力；结合 seqId/prevSeqId 的严格校验，可有效防止数据乱序、部分丢失或被恶意注入，实现与原 checksum 等效甚至更强的完整性保护。
- 2026-06-11
-+WebSocket服务升级断线提示扩展至业务频道
-+WebSocket服务升级断线提示（错误码 64008）已扩展支持业务频道（/ws/v5/business）。
-+在业务频道服务升级前60秒，将向用户推送如下消息，告知WebSocket连接即将断开。建议用户提前重新建立连接，以避免断线造成影响。
-+该功能已支持WebSocket公共频道(/ws/v5/public)、私有频道(/ws/v5/private)和业务频道(/ws/v5/business)。
- 申请账单流水（自 2021 年）：限速放宽
- POST / 申请账单流水（自 2021 年） 的限速由 12 次/天 调整为 1 次/10s（按用户维度）。
-
-```
-
-### Bybit V5 (`bybit`)
-- Source: https://bybit-exchange.github.io/docs/changelog/v5
-- Raw: https://bybit-exchange.github.io/docs/changelog/v5
-
-```diff
-diff --git a/changelogs/bybit.txt b/changelogs/bybit.txt
-index 025789d..c317899 100644
---- a/changelogs/bybit.txt
-+++ b/changelogs/bybit.txt
-@@ -1,6 +1,16 @@
-+2026-06-23​
-+REST API​
-+- Get Coin Delta Amount [NEW]
-+  - New endpoint to query coin delta amount details for institutional loan hedge product
-+- Get Product Info [UPDATE]
-+  - Add new response field productType (0: Default, 1: CTA, 2: Hedge)
- 2026-06-16​
- REST API​
- - Get Futures Leverage [NEW]
-   - Add a new endpoint to get futures leverage in one request
-+- Get Coupon List [NEW]
-+  - New endpoint to query interest-rate coupons and Dual Assets reward cards
-+- Stake / Redeem [UPDATE]
-+  - Add new optional request parameter interestCard (interest bonus card, only applicable to FlexibleSaving Stake orders)
- Alpha LP — New Endpoints
- - Execute LP Stake [NEW]
-@@ -12,8 +22,4 @@ Alpha LP — New Endpoints
- - Get LP Pool List [NEW]
- - Get LP Position List [NEW]
--- Get Coupon List [NEW]
--  - New endpoint to query interest-rate coupons and Dual Assets reward cards
--- Stake / Redeem [UPDATE]
--  - Add new optional request parameter interestCard (interest bonus card, only applicable to FlexibleSaving Stake orders)
- 2026-06-15​
- REST API​
++合约冷静期下单拦截
++最近更新：2026年6月23日
++OKX 将合约冷静期从仅前端 UI 拦截扩展至所有下单渠道，包括 REST API 与 WebSocket。冷静期生效期间，覆盖标的下 SWAP 与 FUTURES 的非只减仓（reduce-only）订单将在服务端被拒绝；只减仓订单不受影响。
++预计上线时间：2026 年 7 月 7 日。
++新增错误码
++| 错误码 | HTTP 状态码 | 错误信息
++| 54094 | 200 | 下单失败，当前交易产品处于冷静期内，暂不支持下单。
+ 2026-06-23
+ 深度频道 checksum 字段废弃
 
 ```
