@@ -33,7 +33,7 @@ REST and WebSocket API:
 
 **Update:**
 
-* Updated the [Price Range Execution Rule FAQ](../faqs/price_range_execution_rules.md#external-reference-price-calculation-method-1) with new External Reference Price Calculation Methods.
+* Updated the [Price Range Execution Rule FAQ](../faqs/price_range_execution_rules.md#externalCalculationId1) with new External Reference Price Calculation Methods.
 
 The `serverShutdown` event will be sent when the **server is about to be shut down**; when you receive this event, please disconnect and open a new connection.
 
@@ -185,7 +185,7 @@ The following will occur on **2026-04-02 at approximately 07:00 UTC**.
 
 ### 2026-03-13
 
-* Updated [Price Range Execution Rule](./faqs/price_range_execution_rules.md#external-reference-price-calculation-method-0) with a new External Reference Price Calculation Method.
+* Updated [Price Range Execution Rule](./faqs/price_range_execution_rules.md#externalCalculationId0) with a new External Reference Price Calculation Method.
 
 ---
 

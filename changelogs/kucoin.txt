@@ -1,5 +1,20 @@
 WARNING
 The Pro API is currently in beta testing and should not be used in production trading environments.
+2026.06.17#
+[Modify] UTA API Orderbook Websocket
+A new incremental depth streaming mode depth=increment@10ms is introduced (supported for both Spot and Futures).
+Compared with the existing depth=increment streaming mode, the new depth streams provide the following improvements:
+Streaming mode
+Changed from incremental updates to a “snapshot + incremental updates” model.
+Depth levels
+Depth coverage is adjusted from full order book to 500 levels.
+Update frequency
+Updates are aggregated and pushed every 10ms instead of real-time pushing.
+Depth update logic
+For price levels outside the top 500 depth, changes in size will not be pushed.
+For price levels within the top 500 depth:
+If a price level size becomes 0 due to trades, a message with size = 0 will be pushed for that price.
+If a price level is pushed out of the top 500 depth due to order book changes, a message with size = 0 will be pushed for that price.
 2026.06.05#
 [Add] UTA REST Get API Rate Limit
 [Add] UTA REST Get All API Rate Limit
