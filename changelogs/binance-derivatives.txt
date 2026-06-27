@@ -1828,7 +1828,7 @@ USDⓈ-M Futures
     - "wt" as workingType
   - in ACCOUNT_UPDATE:
     - "T" as transaction time
-2019-10-28 ​
+2019-10-28​
 USDⓈ-M Futures
 - New rest endpoint for income flow history GET /fapi/v1/income
 2019-10-25​
