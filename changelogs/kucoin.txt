@@ -1,5 +1,25 @@
 WARNING
 The Pro API is currently in beta testing and should not be used in production trading environments.
+2026.07.01#
+[Add] UTA REST Get Client IP Address
+[Add] UTA REST Get Fiat Price
+[Modify] UTA REST Get Klines
+The symbol field has been updated. You can query corresponding K-line data via the values below:
+{symbol}-index-price: Index price K-line for contract trading pairs
+{symbol}-mark-price: Mark price K-line for contract trading pairs
+{symbol}-premium-index: Premium index K-line for contract trading pairs
+[Modify] UTA REST Get Ticker
+New fields added in response: priceChange, priceChangePercent, indexPrice, markPrice
+[Modify] UTA REST Get Account Currency Assets (UTA) . Added response field:
+collateralStatus: platform-level margin collateral status
+[Modify] UTA Websocket Balance. Added push field cS: platform-level margin collateral status
+[Modify] Classic REST Get Deposit List & Classic REST Get Deposit Detail . Add new response value：
+Added preConfirms: Min number for balance confirmation
+Added confirms: Confirmation number for balance unlock
+Added currentConfirms：Current deposit confirmation number
+[Add] UTA WebSocket Public Channel Funding Fee
+[Add] UTA WebSocket Public Channel Mark Price
+[Modify] Classic Websocket / Futures Trading / Private Channels / Positions /contract/positionAll topic. Added Funding Fee Settlement pushes for All Positions, added param symbol in response field data
 2026.06.17#
 [Modify] UTA API Orderbook Websocket
 A new incremental depth streaming mode depth=increment@10ms is introduced (supported for both Spot and Futures).
