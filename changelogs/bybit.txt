@@ -1,3 +1,12 @@
+2026-07-02​
+Websocket API​
+- SBE Fast Order [UPDATE]
+  - The Fast Order XML template version is updated to 1.
+  - A new response field, liquidity, is added to indicate whether the corresponding order execution is Maker or Taker.
+2026-06-29​
+REST API​
+- Get Order List [UPDATE]
+  - Add new response fields: fromAccount, toAccount, externalEventType
 2026-06-23​
 REST API​
 - Get Coin Delta Amount [NEW]

@@ -1,4 +1,12 @@
 Change Log
+2026-06-30​
+COIN-M Futures
+- GET /dapi/v1/constituents (Index Constituents)
+  - Response now includes weight and price fields for each constituent, consistent with the USDⓈ-M Futures endpoint (GET /fapi/v1/constituents).
+- GET /dapi/v1/pmAccountInfo (Classic Portfolio Margin Account Information) is no longer in use. Please use GET /fapi/v1/pmAccountInfo instead.
+- WebSocket Stream <pair>@indexPrice (Index Price Stream)
+  - The pair field in the response payload has been renamed from "i" to "s".
+  - The <pair>@indexPrice@1s (1000ms) variant has been removed. The stream is now available as <pair>@indexPrice only, with an update speed of 1000ms.
 2026-06-29​
 Time-sensitive Notice
 - POST /dapi/v1/countdownCancelAll (COIN-M Auto-Cancel All Open Orders / Countdown)
