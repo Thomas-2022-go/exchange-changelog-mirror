@@ -9,6 +9,7 @@ Gate 提供了一个简单而健壮的 Websocket API 来集成现货交易状态
 # 服务地址
 Websocket 链接地址：
 - 线上交易: wss://api.gateio.ws/ws/v4/
+- 线上交易 SBE: wss://api.gateio.ws/ws/v4/ws/spot/sbe
 - 模拟盘交易: wss://ws-testnet.gate.com/v4/ws/spot
 - 模拟盘 SBE: wss://ws-testnet.gate.com/v4/ws/spot/sbe
 TIP
@@ -141,9 +142,11 @@ WebSocket 认证使用与 Gate APIv4 API 相同的签名计算方法，即: HexE
 # SBE 数据推送
 # 对接SBE
 - 使用地址，在现有的地址后添加 /sbe：
+  - 线上交易: wss://api.gateio.ws/ws/v4/ws/spot/sbe
   - testnet: wss://ws-testnet.gate.com/v4/ws/spot/sbe
 - schema 地址：
   - testnet: gate_spot_ws_latest.xml (opens new window)
+  - 线上交易: gate_spot_ws_latest.xml (opens new window)
 - 如果需要指定 sbe_schema_id，则通过 query 的形式传入 sbe_schema_id 参数，例如：wss://ws-testnet.gate.com/v4/ws/spot/sbe?sbe_schema_id=1
   - 目前支持的 sbe_schema_id 为 0 和 1；sbe_schema_id 为 0 用于客户端测试 sbe schema 不兼容升级的逻辑
   - 不传入 sbe_schema_id 则默认使用最新的 schema 版本（当前为 1）
@@ -1533,4 +1536,4 @@ account: 指定查询账户。不指定默认现货，保证金和逐仓杠杆�
 | »errs | Object | 只有在请求失败时才可用
 | »»label | String | 以字符串格式表示错误类型
 | »»message | String | 错误信息详情
-Last Updated: 6/10/2026, 4:02:40 AM
+Last Updated: 7/2/2026, 7:08:59 AM

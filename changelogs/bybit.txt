@@ -1,4 +1,7 @@
 2026-07-02​
+REST API​
+- Alpha Predication Market [NEW]
+  - Added new endpoints for Alpha prediction market
 Websocket API​
 - SBE Fast Order [UPDATE]
   - The Fast Order XML template version is updated to 1.
