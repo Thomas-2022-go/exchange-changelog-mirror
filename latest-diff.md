@@ -1,7 +1,7 @@
-<!-- has_changes=false date=2026-07-06 -->
+<!-- has_changes=true date=2026-07-07 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-07-06 (Asia/Shanghai)
+Generated: 2026-07-07 (Asia/Shanghai)
 
 ## Summary
 
@@ -13,7 +13,7 @@ Generated: 2026-07-06 (Asia/Shanghai)
 
 - [OK] Bitget (Spot + Futures) (`bitget`): no change (26700 bytes)
 
-- [OK] Bybit V5 (`bybit`): no change (83441 bytes)
+- [CHANGED] **Bybit V5** (`bybit`): 15 diff lines
 
 - [OK] KuCoin (Spot + Futures) (`kucoin`): no change (34939 bytes)
 
@@ -25,4 +25,25 @@ Generated: 2026-07-06 (Asia/Shanghai)
 
 ## Changes
 
-No changes on 2026-07-06.
+### Bybit V5 (`bybit`)
+- Source: https://bybit-exchange.github.io/docs/changelog/v5
+- Raw: https://bybit-exchange.github.io/docs/changelog/v5
+
+```diff
+diff --git a/changelogs/bybit.txt b/changelogs/bybit.txt
+index d814ec6..a5ced9b 100644
+--- a/changelogs/bybit.txt
++++ b/changelogs/bybit.txt
+@@ -1,2 +1,10 @@
++2026-07-06​
++REST API​
++- Integration Guidance [UPDATE]
++  - Add Open API domains for Japan region users.
++2026-07-01​
++REST API​
++- Get Internal Deposit Records [UPDATE]
++  - Add new response field complianceStatus (internal transfer compliance collection status, only applicable to Bybit Turkey site users)
+ 2026-07-02​
+ REST API​
+
+```

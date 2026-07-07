@@ -1,3 +1,11 @@
+2026-07-06​
+REST API​
+- Integration Guidance [UPDATE]
+  - Add Open API domains for Japan region users.
+2026-07-01​
+REST API​
+- Get Internal Deposit Records [UPDATE]
+  - Add new response field complianceStatus (internal transfer compliance collection status, only applicable to Bybit Turkey site users)
 2026-07-02​
 REST API​
 - Alpha Predication Market [NEW]
