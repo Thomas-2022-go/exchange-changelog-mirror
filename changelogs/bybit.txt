@@ -1,3 +1,17 @@
+2026-07-14​
+REST API​
+- Get Flexible Available Inventory [NEW]
+  - New endpoint to query the flexible available inventory (remaining borrowable amount from the lending pool) for a specified coin in spot margin trading
+- Get Fixed-Rate Available Inventory [NEW]
+  - New endpoint to query the available inventory for fixed-rate borrowing by currency, term, and annual rate
+2026-07-10​
+REST API​
+- Get Deposit Records (on-chain) [UPDATE]
+  - Added a new depositType enum: 50. If a deposit is classified as "depositType" = 50, the funds will not be credited to your account. Instead, you’ll need to log in to the Bybit website and withdraw the funds from there.
+- Get Sub Deposit Records (on-chain) [UPDATE]
+  - Added a new depositType enum: 50. If a deposit is classified as "depositType" = 50, the funds will not be credited to your account. Instead, you’ll need to log in to the Bybit website and withdraw the funds from there.
+- Get Sub Account Deposit Records [UPDATE]
+  - Added a new depositType enum: 50. If a deposit is classified as "depositType" = 50, the funds will not be credited to your account. Instead, you’ll need to log in to the Bybit website and withdraw the funds from there.
 2026-07-06​
 REST API​
 - Integration Guidance [UPDATE]
