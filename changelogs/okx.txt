@@ -124,6 +124,9 @@ RPI 挂单费率字段：rpiMaker（替代 elpMaker）
 成交来源字段：source
 - GET /api/v5/market/trades 返回字段 source 取值 1 的说明由"流动性增强计划订单"更新为 RPI 订单（原 ELP 订单）。返回的取值 1 本身不变，仅更新说明文字。
   - GET / 获取交易产品公共成交数据
+2026-07-14
+Stable Rewards 询价、下单及历史记录接口下线
+POST /api/v5/finance/stable-rewards/quote、POST /api/v5/finance/stable-rewards/trade 及 GET /api/v5/finance/stable-rewards/subscribe-redeem-history 接口已停用并从 API 中移除。如需交易 USDG 等稳定币，请使用标准订单簿交易 API。
 2026-07-07
 事件合约 HIT 和 BETWEEN 结算方式
 OKX 预测市场现已支持两种新的结算方式 — hit（价格在事件窗口内触及目标行权价格）和 between（结算价格在指定范围内）——以及新频率 monthly（每月）。
