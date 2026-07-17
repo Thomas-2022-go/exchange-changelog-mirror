@@ -1,3 +1,16 @@
+2026-07-16​
+REST API​
+- Get Full Depth Orderbook [NEW]
+  - You can get up to 10,000 depths per side (Spot)
+- Get Deposit Records (on-chain) [UPDATE]
+  - Added new depositStatus values, 7, 70011, 70012, 70013. For details on each status, please refer to Deposit Status enum definitions⁠
+- Get Sub Deposit Records (on-chain) [UPDATE]
+  - Added new depositStatus values, 7, 70011, 70012, 70013. For details on each status, please refer to Deposit Status enum definitions⁠
+- Get Sub Account Deposit Records [UPDATE]
+  - Added new depositStatus values, 7, 70011, 70012, 70013. For details on each status, please refer to Deposit Status enum definitions⁠
+Websocket API​
+- Full Orderbook [NEW]
+  - You can subscribe full depths orderbook channel (Spot)
 2026-07-14​
 REST API​
 - Get Flexible Available Inventory [NEW]

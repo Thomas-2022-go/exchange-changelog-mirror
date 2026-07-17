@@ -63,6 +63,33 @@ POST /api/v5/copytrade/create-sgl-link body { "orderId": "3556007031710728192", 
 返回参数
 | 参数名 | 类型 | 描述
 | shortLink | String | 通用分享短链。接收方在 OKX App 中打开该链接后，下单面板将自动填入对应的订单参数。
+WebSocket 订单频道推送行为调整
+最近更新：2026 年 7 月 15 日
+为了让客户能够更明确地判断 post-only（包括 mmp_and_post_only）与将要推出的 rpi 新订单的最终状态，避免收到 state: live 后订单仍被撤销的场景，欧易将调整订单频道中 post-only 与 rpi 订单的 state: live 事件行为。
+具体影响
+- state: live 事件的推送时机由订单接收后立即推送，调整为订单成功进入订单簿之后才推送（延后约 1 ms）。
+- 价格穿越 BBO 被撤单的挂单失败场景下，state: live 更新将被完全移除，只推送 state: canceled 更新。
+| 场景 | 调整前 | 调整后
+| post-only 订单挂单失败
+（价格穿越 BBO 被撤单） | state: live → state: canceled | 只推 state: canceled（不再有 state: live）
+| post-only 订单成功挂单 | 立即推 state: live | state: live（延后约 1 ms）
+| post-only 订单成功挂单后被吃单
+（一次成交） | state: live → state: filled | state: live（延后约 1 ms） → state: filled
+| post-only 订单成功挂单后被吃单
+（多次部分成交） | state: live → state: partially_filled → state: filled | state: live（延后约 1 ms） → state: partially_filled → state: filled
+| post-only 订单带 reduceOnly: true，
+size 被修改 | state: live → state: live（amendSource: 4，amendResult: 0） | state: live（amendSource: 4，amendResult: 0） → state: live
+| 将要推出的 rpi 订单，rpiPxRound: false，
+挂单失败
+（不满足价格间距规则被撤单） | N/A | 只推 state: canceled（不会有 state: live）
+| 将要推出的 rpi 订单，rpiPxRound: true，
+并且 price 被修改 | N/A | state: live（amendSource: 6，amendResult: 0） → state: live
+生效时间
+- 对于 rpi 订单：模拟盘 —— 2026 年 7 月 21 日；实盘 —— 2026 年 7 月 28 日。
+- 对于 post_only 和 mmp_and_post_only 订单：模拟盘和实盘均为 2026 年 8 月中旬。
+影响范围
+受影响的订单类型有：post_only、mmp_and_post_only、rpi（Retail Price Improvement）。
+其他订单类型如 limit（普通限价单）、market（市价单）、ioc、fok 订单推送行为保持不变。
 ELP 更名为 RPI（散户价格优化）计划
 最近更新：2026年7月8日
 OKX 将品牌 Enhanced Liquidity Program（ELP） 更名为 Retail Price Improvement（散户价格优化，RPI）。本次变更包含新的 RPI 合并深度订单簿（books-rpi，同时提供 WebSocket 与 REST）、更名后的挂单类型 rpi（替代 elp）、扩展后的下单参数 rpiTakerAccess（替代 isElpTakerAccess）、用于 RPI 挂单价格间距规则的新参数 rpiPxRound，以及更名后的账户字段 rpi/rpiMaker。预计于 2026年7月21日 在模拟盘上线，并于 2026年7月28日 正式上线。
@@ -124,6 +151,23 @@ RPI 挂单费率字段：rpiMaker（替代 elpMaker）
 成交来源字段：source
 - GET /api/v5/market/trades 返回字段 source 取值 1 的说明由"流动性增强计划订单"更新为 RPI 订单（原 ELP 订单）。返回的取值 1 本身不变，仅更新说明文字。
   - GET / 获取交易产品公共成交数据
+2026-07-16
+交易产品接口支持 Pre-market X-Perp
+欧易现已支持 Pre-market X-Perp —— 一种在标的代币正式上线前于盘前阶段交易的永续型 FUTURES 合约。Pre-market X-Perp 通过 ruleType = pre_market 与 instType = FUTURES 组合进行标识。当其转换为正常 X-Perp 后，ruleType 变为 xperp，并且 preMktSwTime 会填充为转换时间戳。
+- 以下接口扩展为返回 Pre-market X-Perp 合约（通过 instType=FUTURES 查询）：
+  - GET / 获取交易产品基础信息（public）
+  - GET / 获取交易产品基础信息（private）
+  - WS / 产品频道
+- 扩展以下响应参数的适用范围：
+| 参数名 | 类型 | 描述
+| ruleType | String | 交易规则类型。
+normal
+pre_market：盘前交易产品（含 Pre-market X-Perp FUTURES）
+rebase_contract
+xperp
+Pre-market X-Perp 在盘前阶段返回 pre_market，转换为正常 X-Perp 后变为 xperp。
+| preMktSwTime | String | 盘前交易产品切换为正常交易的时间，Unix 时间戳，单位为毫秒。
+仅适用于盘前 SWAP 与 Pre-market X-Perp FUTURES。当 Pre-market X-Perp 转换为正常 X-Perp 时填充。
 2026-07-14
 Stable Rewards 询价、下单及历史记录接口下线
 POST /api/v5/finance/stable-rewards/quote、POST /api/v5/finance/stable-rewards/trade 及 GET /api/v5/finance/stable-rewards/subscribe-redeem-history 接口已停用并从 API 中移除。如需交易 USDG 等稳定币，请使用标准订单簿交易 API。

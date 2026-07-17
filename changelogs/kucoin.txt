@@ -1,5 +1,11 @@
 WARNING
 The Pro API is currently in beta testing and should not be used in production trading environments.
+2026.07.17#
+[Modify] UTA REST/WebSocket Get Order Book & Subscription
+The system automatically identifies call auction status based on the symbol field and returns relevant order book data.
+[Add] UTA REST Get Interest Rate Index
+[Add] UTA REST Platform 24h Market Statistics
+[Add] UTA REST/WS Get Call Auction Info & Subscription supports querying details such as the price range during call auction.
 2026.07.01#
 [Add] UTA REST Get Client IP Address
 [Add] UTA REST Get Fiat Price
