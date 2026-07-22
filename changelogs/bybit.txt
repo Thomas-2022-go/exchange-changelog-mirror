@@ -1,3 +1,8 @@
+2026-07-21​
+Websocket API​
+- Fast Order Response [UPDATE]
+  - Option now is available
+  - XML version upgrades to v2, added four response fields
 2026-07-16​
 REST API​
 - Get Full Depth Orderbook [NEW]
