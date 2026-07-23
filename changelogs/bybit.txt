@@ -1,3 +1,7 @@
+2026-07-23​
+REST API​
+- Enum [UPDATE]
+  - Add new execType value: CorporateAction (stock split or reverse stock split)
 2026-07-21​
 Websocket API​
 - Fast Order Response [UPDATE]
