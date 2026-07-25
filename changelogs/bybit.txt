@@ -1,3 +1,7 @@
+2026-07-24​
+REST API​
+- Integration Guidance [UPDATE]
+  - Update Open API domains for Japan region users.
 2026-07-23​
 REST API​
 - Enum [UPDATE]
