@@ -1,11 +1,11 @@
-<!-- has_changes=false date=2026-07-26 -->
+<!-- has_changes=false date=2026-07-27 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-07-26 (Asia/Shanghai)
+Generated: 2026-07-27 (Asia/Shanghai)
 
 ## Summary
 
-- [FAIL] **Binance Spot** (`binance-spot`): URLError
+- [OK] Binance Spot (`binance-spot`): no change (132274 bytes)
 
 - [OK] Binance Derivatives (USDS-M / Coin-M / Options) (`binance-derivatives`): no change (1 bytes)
 
@@ -25,4 +25,4 @@ Generated: 2026-07-26 (Asia/Shanghai)
 
 ## Changes
 
-No changes on 2026-07-26.
+No changes on 2026-07-27.
