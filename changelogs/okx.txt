@@ -1,12 +1,4 @@
 待发布内容
-移除 speedBump 请求参数
-最近更新：2026年7月21日
-事件合约减速带功能的 speedBump 请求参数不再生效。如果客户端仍然发送 speedBump，该参数将被静默忽略，不会产生任何影响。本次变更预计于 2026年7月24日 上线。
-- 在以下接口移除请求参数 speedBump：
-  - POST / 下单
-请求参数
-| 参数名 | 类型 | 描述
-| speedBump | String | 减速带。1：事件合约速度限制（延迟可能因市场情况调整，不提前通知）。
 信号复制新增 API 接口
 最后更新：2026 年 5 月 14 日
 OKX 将为信号复制（订单分享）功能新增 API 支持。API 用户现在可以通过传入订单 ID，以编程方式生成通用分享短链。短链将订单参数（合约、方向、杠杆、价格、止盈止损等）存储在服务端。接收方打开链接后，OKX App 下单面板将自动填入对应参数。
@@ -57,7 +49,7 @@ size 被修改 | state: live → state: live（amendSource: 4，amendResult: 0�
 受影响的订单类型有：post_only、mmp_and_post_only、rpi（Retail Price Improvement）。
 其他订单类型如 limit（普通限价单）、market（市价单）、ioc、fok 订单推送行为保持不变。
 ELP 更名为 RPI（散户价格优化）计划
-最近更新：2026年7月20日
+最近更新：2026年7月27日
 OKX 将品牌 Enhanced Liquidity Program（ELP） 更名为 Retail Price Improvement（散户价格优化，RPI）。本次变更包含新的 RPI 合并深度订单簿（books-rpi，同时提供 WebSocket 与 REST）、更名后的挂单类型 rpi（替代 elp）、扩展后的下单参数 rpiTakerAccess（替代 isElpTakerAccess）、用于 RPI 挂单价格间距规则的新参数 rpiPxRound，以及更名后的账户字段 rpi/rpiMaker。预计于 2026年7月23日 在模拟盘上线，并于 2026年7月28日 正式上线。
 ELP 命名弃用截止日期：2026年10月31日
 在此日期之前，OKX 将以两种不同方式并行运行 ELP 与 RPI 命名：
@@ -81,7 +73,7 @@ REST 请求参数：instId（必填）、sz（每侧深度档数，最大 400，
 | 参数名 | 类型 | 是否必须 | 描述
 | rpiTakerAccess | Boolean | 否 | 默认值为 false。
 设为 true 时，订单可使用 RPI 流动性，适用于所有标准订单类型（此前仅 ioc）。
-下单时，除 post_only 外的所有订单类型都会触发减速带机制；改单时，减速带适用于所有订单类型（包括 post_only）。
+当 rpiTakerAccess 为 true 时，减速带机制在下单和改单时均适用于所有 ordType，包括 post_only。
 改单时不会从原始订单继承，必须每次显式指定（省略则该次改单视为 false）。
 挂单类型：rpi（替代 elp）
 - 下 RPI 挂单时，请将 ordType 设为 rpi 而非 elp。elp 在弃用日期前将继续被接受（见上方迁移说明）——ordType 只能取一个值，二者选其一，不能同时传递。
@@ -117,6 +109,14 @@ RPI 挂单费率字段：rpiMaker（替代 elpMaker）
 成交来源字段：source
 - GET /api/v5/market/trades 返回字段 source 取值 1 的说明由"流动性增强计划订单"更新为 RPI 订单（原 ELP 订单）。返回的取值 1 本身不变，仅更新说明文字。
   - GET / 获取交易产品公共成交数据
+2026-07-24
+移除 speedBump 请求参数
+事件合约减速带功能的 speedBump 请求参数不再生效。如果客户端仍然发送 speedBump，该参数将被静默忽略，不会产生任何影响。
+- 在以下接口移除请求参数 speedBump：
+  - POST / 下单
+请求参数
+| 参数名 | 类型 | 描述
+| speedBump | String | 减速带。1：事件合约速度限制（延迟可能因市场情况调整，不提前通知）。
 2026-07-23
 GLP 做市商表现 API
 新增两个只读接口，面向已加入 Global Liquidity Program (GLP) 的做市商查询自己的考核表现：当日快照（含当日及 MTD）和逐日历史记录。仅已加入且在有效期的 GLP 做市商可调用，子账户解析到其 master account。
