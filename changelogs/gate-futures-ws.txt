@@ -260,13 +260,16 @@ futures.ping操作返回 JSON 结构如下：
 futures.ping
 # 服务升级通知
 服务在即将关闭进行升级时，会向当前连接主动推送一条系统通知，客户端收到后应尽快重连。
-服务端推送格式（SystemNotifyDTO）：
+频道（Channel）： futures.system
+事件（Event）： update
+当 channel 为 futures.system、event 为 update 且 result.type 为 upgrade 时，客户端可将该消息识别为服务升级通知。
+result 格式（SystemNotifyDTO）：
 | 字段 | 类型 | 说明
 | type | String | 通知类型，如 upgrade
 | msg | String | 提示文案
 | data | Object | 可选，扩展数据
 示例（服务升级）：
-{ "type": "upgrade", "msg": "The connection will soon be closed for a service upgrade. Please reconnect." }
+{ "time": 1782378978, "time_ms": 1782378978107, "channel": "futures.system", "event": "update", "result": { "type": "upgrade", "msg": "The connection will soon be closed for a service upgrade. Please reconnect." } }
 # ticker 频道
 ticker是合约状态的高级概述。它向你展示了最高的， 最低的、最后的交易价格。它还包括每日交易量和价格等信息
 # 订阅操作
@@ -2021,4 +2024,4 @@ req_param` API 订单模型的 JSON 字节数据:
 | »errs | Object | 仅当请求失败时可用
 | »»label | String | 错误类型
 | »»message | String | 详细错误信息
-Last Updated: 6/25/2026, 1:23:11 AM
+Last Updated: 7/25/2026, 7:18:17 AM

@@ -210,13 +210,16 @@ TIP
 此频道不需要身份验证
 # 服务升级通知
 服务在即将关闭进行升级时，会向当前连接主动推送一条系统通知，客户端收到后应尽快重连。
-服务端推送格式（SystemNotifyDTO）：
+频道（Channel）： spot.system
+事件（Event）： update
+当 channel 为 spot.system、event 为 update 且 result.type 为 upgrade 时，客户端可将该消息识别为服务升级通知。
+result 格式（SystemNotifyDTO）：
 | 字段 | 类型 | 说明
 | type | String | 通知类型，如 upgrade
 | msg | String | 提示文案
 | data | Object | 可选，扩展数据
 示例（服务升级）：
-{ "type": "upgrade", "msg": "The connection will soon be closed for a service upgrade. Please reconnect." }
+{ "time": 1784800711, "time_ms": 1784800711140, "channel": "spot.system", "event": "update", "result": { "type": "upgrade", "msg": "The connection will soon be closed for a service upgrade. Please reconnect." } }
 # Tickers 频道
 spot.tickers
 更新速度: 1000ms
@@ -1536,4 +1539,4 @@ account: 指定查询账户。不指定默认现货，保证金和逐仓杠杆�
 | »errs | Object | 只有在请求失败时才可用
 | »»label | String | 以字符串格式表示错误类型
 | »»message | String | 错误信息详情
-Last Updated: 7/2/2026, 7:08:59 AM
+Last Updated: 7/25/2026, 7:18:17 AM

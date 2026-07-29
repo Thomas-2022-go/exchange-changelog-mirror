@@ -1,5 +1,14 @@
 WARNING
 The Pro API is currently in beta testing and should not be used in production trading environments.
+2026.08.03#
+Discontinuation of the "Hidden Order" Feature#
+[Modify] Classic REST
+No longer supports the hidden, iceberg and visibleSize parameters. Requests containing these parameters will be rejected with error code "400413" with error message "Invaild order type, hidden and iceberg orders are not supported any more." .
+| # | Business Line | Endpoint
+| 1 | Spot Trading | Add Order ,Add Order Sync ,Add Order Test , Batch Add Orders , Batch Add Orders Sync , Add Stop Order
+| 2 | Margin Trading | Add Order , Add Order Test , Add Stop Order
+| 3 | Futures Trading | Add Order , Add Order Test , Batch Add Orders , Add Take Profit And Stop Loss Order
+| 4 | Copy Trading | Add Order, Add Order Test, Add Take Profit And Stop Loss Order
 2026.07.17#
 [Modify] UTA REST/WebSocket Get Order Book & Subscription
 The system automatically identifies call auction status based on the symbol field and returns relevant order book data.
