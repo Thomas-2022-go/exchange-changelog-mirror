@@ -25,7 +25,6 @@ Coin equity = Balance + Frozen margin + unrealized PnL
 | Balance | The balance of a specific coin in the account.
 | Available | The current available balance of a specific coin in the account for opening positions.
 Available = Balance + unrealized PnL
-Note: Realized PnL in the available balance can be used for opening futures positions but cannot be used to place spot orders.
 | UnrealisedPnL | The total profits of all futures positions settled in a specific coin in the account.
 Unrealized profits = Profits of USDT-M perpetual futures positions in cross margin mode + profits of USDC-M perpetual futures positions in cross margin mode + profits of coin-M perpetual futures positions in cross margin mode
 | Debt | Debt = ABS(min(balance + unrealized PnL, 0))
@@ -37,5 +36,3 @@ Maintenance margin = Position value × maintenance margin rate
 | Margin rate | A risk measurement indicator for cross margin accounts.
 Cross margin account's margin ratio = (maintenance margin + partial liquidation transaction fees)÷Account equity.
 Both maintenance margin and partial liquidation transaction fees are calculated by adding the position size and the open order size.
-Improved Readability​
-The Open API documentation has been revised and proofread, with unclear descriptions from previous versions clarified to reduce customer confusion.
