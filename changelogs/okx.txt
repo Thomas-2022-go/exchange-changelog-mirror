@@ -48,6 +48,17 @@ size 被修改 | state: live → state: live（amendSource: 4，amendResult: 0�
 影响范围
 受影响的订单类型有：post_only、mmp_and_post_only、rpi（Retail Price Improvement）。
 其他订单类型如 limit（普通限价单）、market（市价单）、ioc、fok 订单推送行为保持不变。
+2026-08-03
+联盟受邀用户接口新增 UID、加入时间筛选与滚动窗口成交量
+- 获取直客列表 新增请求参数：
+| 参数名 | 类型 | 是否必须 | 描述
+| uid | String | 否 | 按外部 UID 精确匹配。单个或最多 100 个 UID，以逗号分隔。无法解析的 UID 静默跳过；若全部无法解析，返回空页。
+| joinTimeBegin | String | 条件必填 | 按 joinTime 过滤的下界，Unix时间戳的毫秒数格式，包含端点。需与 joinTimeEnd 同时传入；区间不超过 90 天，且不早于当前时间 180 天前。
+| joinTimeEnd | String | 条件必填 | 按 joinTime 过滤的上界，Unix时间戳的毫秒数格式，包含端点。需与 joinTimeBegin 同时传入。
+- 获取被邀请人返佣信息 新增请求参数 periodType 与响应字段 volPeriod：
+| 参数名 | 类型 | 描述
+| periodType（请求） | String | volPeriod 的统计窗口：last_7d、last_30d、this_month、last_month、total、today、this_week。不传时不返回 volPeriod。
+| volPeriod（响应） | String | 所选 periodType 窗口内的交易量，单位为 USDT。仅当传入 periodType 时返回。窗口内无交易时返回 0。
 2026-07-28
 ELP 更名为 RPI（散户价格优化）计划
 OKX 将品牌 Enhanced Liquidity Program（ELP） 更名为 Retail Price Improvement（散户价格优化，RPI）。本次变更包含新的 RPI 合并深度订单簿（books-rpi，同时提供 WebSocket 与 REST）、更名后的挂单类型 rpi（替代 elp）、扩展后的下单参数 rpiTakerAccess（替代 isElpTakerAccess）、用于 RPI 挂单价格间距规则的新参数 rpiPxRound，以及更名后的账户字段 rpi/rpiMaker。
