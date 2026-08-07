@@ -1,8 +1,41 @@
+2026-08-11​
+REST API​
+- Get Transaction Log [UPDATE]
+  - Add new response field displayType: display type for the transaction log entry, consistent with the UI display
+2026-08-07​
+REST API​
+Crypto Loan (Fixed-Term)
+- Get Available Inventory [NEW]
+  - New endpoint to query available lending pool inventory for fixed-term loan
+- Create Borrow Order [UPDATE]
+  - Add new request parameter strategyType: PARTIAL (allow partial fill, default); FULL (full fill only)
+- Get Borrow Order Info [UPDATE]
+  - Add new response field strategyType: PARTIAL (allow partial fill, default); FULL (full fill only)
+Crypto Loan (Flexible)
+- Get Available Inventory [NEW]
+  - New endpoint to query available lending pool inventory for flexible loan
+2026-08-06​
+REST API​
+- Move Position [UPDATE]
+  - TradFi perpetual contracts (including forex, stock, and commodities) are now supported
+- Switch Position Mode [UPDATE]
+  - USDT futures, USDC perpetual, Inverse perpetual, and Inverse futures now support both one-way and hedge-mode
+- Get Order History [UPDATE]
+  - smpGroup field type changed from integer to string
+- Get Open Orders [UPDATE]
+  - smpGroup field type changed from integer to string
+- Get Trade Behaviour Config [UPDATE]
+  - Add new response field smpType: user SMP (Self-Match Prevention) type configuration. 0: default; 1: cancel taker; 2: cancel maker; 3: cancel both
+Websocket API​
+- Order [UPDATE]
+  - smpGroup field type changed from integer to string
 2026-08-04​
 REST API​
 - Self Match Prevention [UPDATE]
   - Kazakhstan (KAZ) derivatives: SMP is now mandatory for all derivative orders
   - Turkey (TUR), Kazakhstan (KAZ), Georgia (GEO) spot: smpType of None, invalid value, or missing value is automatically set to CancelMaker
+- Upgrade to Unified Account Pro [UPDATE]
+  - Upgrading from UTA PUBLIC to UTA PRO is prohibited daily between 07:55 and 08:05 UTC+0
 2026-07-30​
 REST API​
 - Get Account Instruments Info [UPDATE]

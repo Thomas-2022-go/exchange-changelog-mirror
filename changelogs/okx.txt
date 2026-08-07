@@ -48,6 +48,11 @@ size 被修改 | state: live → state: live（amendSource: 4，amendResult: 0�
 影响范围
 受影响的订单类型有：post_only、mmp_and_post_only、rpi（Retail Price Improvement）。
 其他订单类型如 limit（普通限价单）、market（市价单）、ioc、fok 订单推送行为保持不变。
+2026-08-06
+获取历史市场数据接口最大查询范围下调
+获取历史市场数据 接口的最大查询范围已由 20 下调至 10。
+| 参数名 | 类型 | 描述
+| begin | String | 最大范围：日度 10 天，月度 10 个月（此前为 20 天 / 20 个月）。
 2026-08-03
 联盟受邀用户接口新增 UID、加入时间筛选与滚动窗口成交量
 - 获取直客列表 新增请求参数：
