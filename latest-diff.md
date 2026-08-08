@@ -1,7 +1,7 @@
-<!-- has_changes=true date=2026-08-07 -->
+<!-- has_changes=true date=2026-08-08 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-08-07 (Asia/Shanghai)
+Generated: 2026-08-08 (Asia/Shanghai)
 
 ## Summary
 
@@ -9,11 +9,11 @@ Generated: 2026-08-07 (Asia/Shanghai)
 
 - [OK] Binance Derivatives (USDS-M / Coin-M / Options) (`binance-derivatives`): no change (1 bytes)
 
-- [CHANGED] **OKX V5** (`okx`): 14 diff lines
+- [CHANGED] **OKX V5** (`okx`): 30 diff lines
 
 - [OK] Bitget (Spot + Futures) (`bitget`): no change (3293 bytes)
 
-- [CHANGED] **Bybit V5** (`bybit`): 45 diff lines
+- [CHANGED] **Bybit V5** (`bybit`): 16 diff lines
 
 - [OK] KuCoin (Spot + Futures) (`kucoin`): no change (36254 bytes)
 
@@ -31,19 +31,35 @@ Generated: 2026-08-07 (Asia/Shanghai)
 
 ```diff
 diff --git a/changelogs/okx.txt b/changelogs/okx.txt
-index 4b762ea..404fa9b 100644
+index 404fa9b..bdfe0aa 100644
 --- a/changelogs/okx.txt
 +++ b/changelogs/okx.txt
-@@ -49,4 +49,9 @@ size 被修改 | state: live → state: live（amendSource: 4，amendResult: 0
+@@ -49,4 +49,25 @@ size 被修改 | state: live → state: live（amendSource: 4，amendResult: 0
  受影响的订单类型有：post_only、mmp_and_post_only、rpi（Retail Price Improvement）。
  其他订单类型如 limit（普通限价单）、market（市价单）、ioc、fok 订单推送行为保持不变。
-+2026-08-06
-+获取历史市场数据接口最大查询范围下调
-+获取历史市场数据 接口的最大查询范围已由 20 下调至 10。
-+| 参数名 | 类型 | 描述
-+| begin | String | 最大范围：日度 10 天，月度 10 个月（此前为 20 天 / 20 个月）。
- 2026-08-03
- 联盟受邀用户接口新增 UID、加入时间筛选与滚动窗口成交量
++RPI 挂单价格间距与可见性规则更新
++最近更新：2026年8月7日
++RPI 挂单价格间距规则即将调整。间距规则的交叉校验与价格档位校验仅参考首个可见的对手方 RPI，不参考已隐藏的 RPI。RPI 的可见性同时决定 books-rpi 订单簿上展示的可成交 RPI 深度。本次不涉及任何接口、参数、枚举值或错误码的变更。本次变更预计于 2026年8月11日 上线。
++价格间距规则
++- 交叉校验与价格档位校验仅参考首个可见的对手方 RPI，不参考已隐藏的 RPI
++- 无可见对手方 RPI 时：交叉校验参考对手方有机最优买/卖价，价格档位校验通过
++- bps 校验参考对手方有机最优买/卖价，不参考 RPI（不变）
++- rpiPxRound 取整到首个可见对手方 RPI 之外的下一档，不参考已隐藏的 RPI
++可见性
++- 与对手方有机最优买/卖价交叉的 RPI 予以隐藏
++- 在有机价差内相互交叉的买方 RPI 与卖方 RPI 双方均予以隐藏
++改单
++- 以改单命令到达撮合引擎时的订单簿快照进行校验
++- 被改订单视为仍在订单簿中
++影响 RPI 挂单的下单与改单（ordType: rpi），以及 books-rpi 订单簿：
++- POST / 下单
++- POST / 修改订单
++- WS / 下单
++- WS / 改单
++- WS / 深度频道
++- GET / 获取 RPI 产品深度
+ 2026-08-06
+ 获取历史市场数据接口最大查询范围下调
 
 ```
 
@@ -53,49 +69,20 @@ index 4b762ea..404fa9b 100644
 
 ```diff
 diff --git a/changelogs/bybit.txt b/changelogs/bybit.txt
-index d5e3b21..d16ba7f 100644
+index d16ba7f..47d0e25 100644
 --- a/changelogs/bybit.txt
 +++ b/changelogs/bybit.txt
-@@ -1,2 +1,33 @@
-+2026-08-11​
+@@ -3,4 +3,11 @@ REST API​
+ - Get Transaction Log [UPDATE]
+   - Add new response field displayType: display type for the transaction log entry, consistent with the UI display
++2026-08-09​
 +REST API​
-+- Get Transaction Log [UPDATE]
-+  - Add new response field displayType: display type for the transaction log entry, consistent with the UI display
-+2026-08-07​
-+REST API​
-+Crypto Loan (Fixed-Term)
-+- Get Available Inventory [NEW]
-+  - New endpoint to query available lending pool inventory for fixed-term loan
-+- Create Borrow Order [UPDATE]
-+  - Add new request parameter strategyType: PARTIAL (allow partial fill, default); FULL (full fill only)
-+- Get Borrow Order Info [UPDATE]
-+  - Add new response field strategyType: PARTIAL (allow partial fill, default); FULL (full fill only)
-+Crypto Loan (Flexible)
-+- Get Available Inventory [NEW]
-+  - New endpoint to query available lending pool inventory for flexible loan
-+2026-08-06​
-+REST API​
-+- Move Position [UPDATE]
-+  - TradFi perpetual contracts (including forex, stock, and commodities) are now supported
-+- Switch Position Mode [UPDATE]
-+  - USDT futures, USDC perpetual, Inverse perpetual, and Inverse futures now support both one-way and hedge-mode
-+- Get Order History [UPDATE]
-+  - smpGroup field type changed from integer to string
-+- Get Open Orders [UPDATE]
-+  - smpGroup field type changed from integer to string
-+- Get Trade Behaviour Config [UPDATE]
-+  - Add new response field smpType: user SMP (Self-Match Prevention) type configuration. 0: default; 1: cancel taker; 2: cancel maker; 3: cancel both
++- Integration Guidance
++  - Add Rest API integration method for Argentina users
 +Websocket API​
-+- Order [UPDATE]
-+  - smpGroup field type changed from integer to string
- 2026-08-04​
- REST API​
-@@ -4,4 +35,6 @@ REST API​
-   - Kazakhstan (KAZ) derivatives: SMP is now mandatory for all derivative orders
-   - Turkey (TUR), Kazakhstan (KAZ), Georgia (GEO) spot: smpType of None, invalid value, or missing value is automatically set to CancelMaker
-+- Upgrade to Unified Account Pro [UPDATE]
-+  - Upgrading from UTA PUBLIC to UTA PRO is prohibited daily between 07:55 and 08:05 UTC+0
- 2026-07-30​
++- Connect
++  - Add websocket integration method for Argentina users
+ 2026-08-07​
  REST API​
 
 ```
