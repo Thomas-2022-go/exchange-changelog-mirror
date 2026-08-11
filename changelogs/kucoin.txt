@@ -1,5 +1,13 @@
 WARNING
 The Pro API is currently in beta testing and should not be used in production trading environments.
+2026.08.12#
+[Modify] UTA REST Get Trade History When response param fillType is 'ADL', the liquidityRole will be empty instead of MAKER
+[Modify] UTA REST Get Position List (UTA) added response field
+updateTime: the latest time when the position is updated (including the leverage change and the size change for position)
+[Modify]
+Classic REST Add sub-account API &
+Classic REST Modify sub-account API
+When the permissions include Transfer (Withdraw), ipWhitelist is required. Otherwise, ipWhitelist is optional.
 2026.08.03#
 1. Discontinuation of the "Hidden Order" Feature#
 [Modify] Classic REST

@@ -22,7 +22,7 @@ POST /api/v5/copytrade/create-sgl-link body { "orderId": "3556007031710728192", 
 | 参数名 | 类型 | 描述
 | shortLink | String | 通用分享短链。接收方在 OKX App 中打开该链接后，下单面板将自动填入对应的订单参数。
 WebSocket 订单频道推送行为调整
-最近更新：2026 年 7 月 28 日
+最近更新：2026 年 8 月 10 日
 为了让客户能够更明确地判断 post-only（包括 mmp_and_post_only）与 rpi 新订单的最终状态，避免收到 state: live 后订单仍被撤销的场景，欧易将调整订单频道中 post-only 与 rpi 订单的 state: live 事件行为。
 具体影响
 - state: live 事件的推送时机由订单接收后立即推送，调整为订单成功进入订单簿之后才推送（延后约 1 ms）。
@@ -44,7 +44,7 @@ size 被修改 | state: live → state: live（amendSource: 4，amendResult: 0�
 并且 price 被修改 | N/A | state: live（amendSource: 6，amendResult: 0） → state: live
 生效时间
 - 对于 rpi 订单（包括将要弃用的 elp 订单）：已上线 —— 模拟盘 —— 2026 年 7 月 23 日；实盘 —— 2026 年 7 月 28 日。
-- 对于 post_only 和 mmp_and_post_only 订单：模拟盘和实盘均为 2026 年 8 月中旬。
+- 对于 post_only 和 mmp_and_post_only 订单：模拟盘 —— 2026 年 8 月 10 日（已上线）；实盘 —— 2026 年 8 月 20 日。
 影响范围
 受影响的订单类型有：post_only、mmp_and_post_only、rpi（Retail Price Improvement）。
 其他订单类型如 limit（普通限价单）、market（市价单）、ioc、fok 订单推送行为保持不变。
