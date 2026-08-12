@@ -1,7 +1,7 @@
-<!-- has_changes=true date=2026-08-11 -->
+<!-- has_changes=true date=2026-08-12 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-08-11 (Asia/Shanghai)
+Generated: 2026-08-12 (Asia/Shanghai)
 
 ## Summary
 
@@ -9,13 +9,13 @@ Generated: 2026-08-11 (Asia/Shanghai)
 
 - [OK] Binance Derivatives (USDS-M / Coin-M / Options) (`binance-derivatives`): no change (1 bytes)
 
-- [CHANGED] **OKX V5** (`okx`): 18 diff lines
+- [CHANGED] **OKX V5** (`okx`): 14 diff lines
 
 - [OK] Bitget (Spot + Futures) (`bitget`): no change (3293 bytes)
 
-- [OK] Bybit V5 (`bybit`): no change (90771 bytes)
+- [CHANGED] **Bybit V5** (`bybit`): 27 diff lines
 
-- [CHANGED] **KuCoin (Spot + Futures)** (`kucoin`): 17 diff lines
+- [OK] KuCoin (Spot + Futures) (`kucoin`): no change (36766 bytes)
 
 - [OK] Gate.io Spot WebSocket v4 (`gate-spot-ws`): no change (120484 bytes)
 
@@ -31,47 +31,53 @@ Generated: 2026-08-11 (Asia/Shanghai)
 
 ```diff
 diff --git a/changelogs/okx.txt b/changelogs/okx.txt
-index bdfe0aa..763d12c 100644
+index 763d12c..43ff114 100644
 --- a/changelogs/okx.txt
 +++ b/changelogs/okx.txt
-@@ -23,5 +23,5 @@ POST /api/v5/copytrade/create-sgl-link body { "orderId": "3556007031710728192",
- | shortLink | String | 通用分享短链。接收方在 OKX App 中打开该链接后，下单面板将自动填入对应的订单参数。
- WebSocket 订单频道推送行为调整
--最近更新：2026 年 7 月 28 日
-+最近更新：2026 年 8 月 10 日
- 为了让客户能够更明确地判断 post-only（包括 mmp_and_post_only）与 rpi 新订单的最终状态，避免收到 state: live 后订单仍被撤销的场景，欧易将调整订单频道中 post-only 与 rpi 订单的 state: live 事件行为。
- 具体影响
-@@ -45,5 +45,5 @@ size 被修改 | state: live → state: live（amendSource: 4，amendResult: 0
- 生效时间
- - 对于 rpi 订单（包括将要弃用的 elp 订单）：已上线 —— 模拟盘 —— 2026 年 7 月 23 日；实盘 —— 2026 年 7 月 28 日。
--- 对于 post_only 和 mmp_and_post_only 订单：模拟盘和实盘均为 2026 年 8 月中旬。
-+- 对于 post_only 和 mmp_and_post_only 订单：模拟盘 —— 2026 年 8 月 10 日（已上线）；实盘 —— 2026 年 8 月 20 日。
- 影响范围
+@@ -49,7 +49,7 @@ size 被修改 | state: live → state: live（amendSource: 4，amendResult: 0
  受影响的订单类型有：post_only、mmp_and_post_only、rpi（Retail Price Improvement）。
+ 其他订单类型如 limit（普通限价单）、market（市价单）、ioc、fok 订单推送行为保持不变。
++2026-08-11
+ RPI 挂单价格间距与可见性规则更新
+-最近更新：2026年8月7日
+-RPI 挂单价格间距规则即将调整。间距规则的交叉校验与价格档位校验仅参考首个可见的对手方 RPI，不参考已隐藏的 RPI。RPI 的可见性同时决定 books-rpi 订单簿上展示的可成交 RPI 深度。本次不涉及任何接口、参数、枚举值或错误码的变更。本次变更预计于 2026年8月11日 上线。
++RPI 挂单价格间距规则的交叉校验与价格档位校验现仅参考首个可见的对手方 RPI，不参考已隐藏的 RPI。RPI 的可见性同时决定 books-rpi 订单簿上展示的可成交 RPI 深度。本次不涉及任何接口、参数、枚举值或错误码的变更。
+ 价格间距规则
+ - 交叉校验与价格档位校验仅参考首个可见的对手方 RPI，不参考已隐藏的 RPI
 
 ```
 
-### KuCoin (Spot + Futures) (`kucoin`)
-- Source: https://www.kucoin.com/docs-new/change-log
-- Raw: https://www.kucoin.com/docs-new/change-log
+### Bybit V5 (`bybit`)
+- Source: https://bybit-exchange.github.io/docs/changelog/v5
+- Raw: https://bybit-exchange.github.io/docs/changelog/v5
 
 ```diff
-diff --git a/changelogs/kucoin.txt b/changelogs/kucoin.txt
-index 1e799a4..a83c7a2 100644
---- a/changelogs/kucoin.txt
-+++ b/changelogs/kucoin.txt
-@@ -1,4 +1,12 @@
- WARNING
- The Pro API is currently in beta testing and should not be used in production trading environments.
-+2026.08.12#
-+[Modify] UTA REST Get Trade History When response param fillType is 'ADL', the liquidityRole will be empty instead of MAKER
-+[Modify] UTA REST Get Position List (UTA) added response field
-+updateTime: the latest time when the position is updated (including the leverage change and the size change for position)
-+[Modify]
-+Classic REST Add sub-account API &
-+Classic REST Modify sub-account API
-+When the permissions include Transfer (Withdraw), ipWhitelist is required. Otherwise, ipWhitelist is optional.
- 2026.08.03#
- 1. Discontinuation of the "Hidden Order" Feature#
+diff --git a/changelogs/bybit.txt b/changelogs/bybit.txt
+index 47d0e25..bfae39a 100644
+--- a/changelogs/bybit.txt
++++ b/changelogs/bybit.txt
+@@ -3,11 +3,20 @@ REST API​
+ - Get Transaction Log [UPDATE]
+   - Add new response field displayType: display type for the transaction log entry, consistent with the UI display
++  - Add new "type", DIVIDEND_SETTLEMENT，indicates stock perps dividend
++- Get Full Depth Orderbook [UPDATE]
++  - Support Futures
++- Get Airdrop Products [UPDATE]
++  - Add new response fields personalApy and multiplier under yields: personal APR and personal coefficient for each yield coin
++  - Add new response field personalApy at the product level: sum of personal APR across all yield coins
++Websocket API​
++- Full Orderbook [UPDATE]
++  - Support Futures
+ 2026-08-09​
+ REST API​
+ - Integration Guidance
+-  - Add Rest API integration method for Argentina users
++  - Add Rest API integration method for Brazil users
+ Websocket API​
+ - Connect
+-  - Add websocket integration method for Argentina users
++  - Add websocket integration method for Brazil users
+ 2026-08-07​
+ REST API​
 
 ```

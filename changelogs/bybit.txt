@@ -2,13 +2,22 @@
 REST API​
 - Get Transaction Log [UPDATE]
   - Add new response field displayType: display type for the transaction log entry, consistent with the UI display
+  - Add new "type", DIVIDEND_SETTLEMENT，indicates stock perps dividend
+- Get Full Depth Orderbook [UPDATE]
+  - Support Futures
+- Get Airdrop Products [UPDATE]
+  - Add new response fields personalApy and multiplier under yields: personal APR and personal coefficient for each yield coin
+  - Add new response field personalApy at the product level: sum of personal APR across all yield coins
+Websocket API​
+- Full Orderbook [UPDATE]
+  - Support Futures
 2026-08-09​
 REST API​
 - Integration Guidance
-  - Add Rest API integration method for Argentina users
+  - Add Rest API integration method for Brazil users
 Websocket API​
 - Connect
-  - Add websocket integration method for Argentina users
+  - Add websocket integration method for Brazil users
 2026-08-07​
 REST API​
 Crypto Loan (Fixed-Term)
