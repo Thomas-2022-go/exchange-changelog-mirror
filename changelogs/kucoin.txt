@@ -1,5 +1,21 @@
 WARNING
 The Pro API is currently in beta testing and should not be used in production trading environments.
+2026.08.18#
+[Modify] UTA REST Rate Limit, increase in UTA resource pool rate limit：
+| Level | Current UTA rate limit | Before UTA rate limit
+| VIP0 | 300/s | 200/s
+| VIP1 | 400/s | 400/s
+| VIP2 | 450/s | 450/s
+| VIP3 | 500/s | 500/s
+| VIP4 | 750/s | 500/s
+| VIP5 | 900/s | 700/s
+| VIP6 | 1100/s | 850/s
+| VIP7 | 1200/s | 1000/s
+| VIP8 | 1500/s | 1350/s
+| VIP9 | 2000/s | 1700/s
+| VIP10 | 2500/s | 2000/s
+| VIP11 | 3500/s | 2500/s
+| VIP12 | 4000/s | 3000/s
 2026.08.12#
 [Modify] UTA REST Get Trade History When response param fillType is 'ADL', the liquidityRole will be empty instead of MAKER
 [Modify] UTA REST Get Position List (UTA) added response field
