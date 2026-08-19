@@ -1,5 +1,3 @@
-WARNING
-The Pro API is currently in beta testing and should not be used in production trading environments.
 2026.08.18#
 [Modify] UTA REST Rate Limit, increase in UTA resource pool rate limit：
 | Level | Current UTA rate limit | Before UTA rate limit
