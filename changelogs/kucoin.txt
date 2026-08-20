@@ -1,3 +1,8 @@
+2026.08.20#
+[Modify] UTA REST Get Trade History When fillType is ADL/LIQUID/SETTLEMENT, size must be returned as positive values.
+[Modify] UTA Websocket Execution When fillType/fT is ADL/LIQUID/SETTLEMENT, q(quantity) must be returned as positive values.
+[Add] Classic REST Exchange Broker Set Markup Fee
+[Add] Classic REST Exchange Broker Get Markup Fee
 2026.08.18#
 [Modify] UTA REST Rate Limit, increase in UTA resource pool rate limit：
 | Level | Current UTA rate limit | Before UTA rate limit

@@ -48,15 +48,15 @@ size 被修改 | state: live → state: live（amendSource: 4，amendResult: 0�
 影响范围
 受影响的订单类型有：post_only、mmp_and_post_only、rpi（Retail Price Improvement）。
 其他订单类型如 limit（普通限价单）、market（市价单）、ioc、fok 订单推送行为保持不变。
+2026-08-18
 RPI 挂单最小名义金额限制
-最后更新：2026 年 8 月 17 日
-RPI 挂单（ordType: rpi 或 elp）现需满足最小名义金额门槛。低于门槛的订单将被拒绝，返回错误码 54051。已于 2026 年 8 月 17 日 上线模拟环境。生产环境将于 2026 年 8 月 18 日上午 起对部分币种（BTC/ETH/SNDK XPerp 及 XSNDK-USDT）进行灰度发布，若无异常将于 2026 年 8 月 18 日下午 全量上线。
+RPI 挂单（ordType: rpi 或 elp）现需满足最小名义金额门槛。低于门槛的订单将被拒绝，返回错误码 54051。生产环境自 2026年8月18日 起生效。
 各产品类型最低限额
 | 产品类型 | 最小名义金额
 | SWAP / FUTURES | 10,000 USD
 | SPOT | 1,000 USD
 | EVENTS | 不适用
-本规则独立于各币种现有的最小下单量（minSz）校验——RPI 订单需同时满足两者。
+本规则独立于各产品现有的最小下单量（minSz）校验——RPI 订单需同时满足两者。
 下单
 名义金额低于适用门槛的 RPI 订单将被拒绝，返回 54051。批量请求中每条子订单独立校验——未通过的子订单返回自身 sCode: 54051，其余子订单不受影响。
 非 RPI 订单（包括 rpiTakerAccess: true 的 taker 订单）不受本规则影响。
@@ -67,6 +67,7 @@ RPI 挂单（ordType: rpi 或 elp）现需满足最小名义金额门槛。低�
 存量订单
 本规则生效前已在架的 RPI 挂单不受影响。校验仅适用于上线后新提交的下单与改单请求。
 错误码
+新增错误码：
 | 错误码 | 消息
 | 54051 | RPI 订单被拒绝。订单价值低于 RPI 订单所需的最低金额（{param0} USD）。
 适用于所有 REST 及 WebSocket trade 操作：
