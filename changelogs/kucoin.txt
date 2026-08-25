@@ -1,3 +1,6 @@
+2026.08.27#
+[Modify] For all UTA public WebSocket connections (FUTURES and SPOT), the welcome response sent after a successful connection now returns "data":"welcome" rather than "message":"welcome". A new pingTimeout field is also included, which indicates the estimated interval (in ms) within which the client should receive a pong message from the server.
+[Modify] For all UTA public Websocket connections and private connections, extra spaces between parameters inside JSON body of push data will be removed.
 2026.08.20#
 [Modify] UTA REST Get Trade History When fillType is ADL/LIQUID/SETTLEMENT, size must be returned as positive values.
 [Modify] UTA Websocket Execution When fillType/fT is ADL/LIQUID/SETTLEMENT, q(quantity) must be returned as positive values.
