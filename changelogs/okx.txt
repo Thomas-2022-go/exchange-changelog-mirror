@@ -21,6 +21,11 @@ POST /api/v5/copytrade/create-sgl-link body { "orderId": "3556007031710728192", 
 返回参数
 | 参数名 | 类型 | 描述
 | shortLink | String | 通用分享短链。接收方在 OKX App 中打开该链接后，下单面板将自动填入对应的订单参数。
+2026-08-26
+新增接口：获取 Delta 对冲币种
+部分代币化资产的币种名称与其追踪的标的资产不同，如 XAAPL 与 AAPL、BETH 与 ETH。由于此类币种共享同一标的资产，持有其中一方的仓位可对冲另一方的仓位。现可通过接口获取该对应关系。
+- 新增接口：
+  - 获取 Delta 对冲币种
 2026-08-20
 WebSocket 订单频道推送行为调整
 为了让客户能够更明确地判断 post-only（包括 mmp_and_post_only）与 rpi 新订单的最终状态，避免收到 state: live 后订单仍被撤销的场景，欧易已调整订单频道中 post-only 与 rpi 订单的 state: live 事件行为。
