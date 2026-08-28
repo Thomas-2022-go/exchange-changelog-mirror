@@ -9,6 +9,10 @@ Websocket API​
 REST API​
 - Integration Guidance
   - Add Rest API integration method for Argentina users
+- Get Fee Group Structure [UPDATE]
+  - Add new response field rpiMakerRebate
+- Get Fee Rate [UPDATE]
+  - Add new response field rpiMakerFeeRate
 Websocket API​
 - Connect
   - Add websocket integration method for Argentina users
