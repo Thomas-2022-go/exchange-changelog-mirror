@@ -1,7 +1,7 @@
-<!-- has_changes=true date=2026-08-28 -->
+<!-- has_changes=false date=2026-08-29 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-08-28 (Asia/Shanghai)
+Generated: 2026-08-29 (Asia/Shanghai)
 
 ## Summary
 
@@ -13,7 +13,7 @@ Generated: 2026-08-28 (Asia/Shanghai)
 
 - [OK] Bitget (Spot + Futures) (`bitget`): no change (3293 bytes)
 
-- [CHANGED] **Bybit V5** (`bybit`): 13 diff lines
+- [OK] Bybit V5 (`bybit`): no change (94076 bytes)
 
 - [OK] KuCoin (Spot + Futures) (`kucoin`): no change (41867 bytes)
 
@@ -25,23 +25,4 @@ Generated: 2026-08-28 (Asia/Shanghai)
 
 ## Changes
 
-### Bybit V5 (`bybit`)
-- Source: https://bybit-exchange.github.io/docs/changelog/v5
-- Raw: https://bybit-exchange.github.io/docs/changelog/v5
-
-```diff
-diff --git a/changelogs/bybit.txt b/changelogs/bybit.txt
-index 82d3b2a..3800fab 100644
---- a/changelogs/bybit.txt
-+++ b/changelogs/bybit.txt
-@@ -10,4 +10,8 @@ REST API​
- - Integration Guidance
-   - Add Rest API integration method for Argentina users
-+- Get Fee Group Structure [UPDATE]
-+  - Add new response field rpiMakerRebate
-+- Get Fee Rate [UPDATE]
-+  - Add new response field rpiMakerFeeRate
- Websocket API​
- - Connect
-
-```
+No changes on 2026-08-29.
