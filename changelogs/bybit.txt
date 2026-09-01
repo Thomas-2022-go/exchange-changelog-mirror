@@ -1,3 +1,16 @@
+2026-09-02​
+REST API​
+- Event Trading [NEW]
+  - Launch Event Contract OpenAPI. Includes Market, Trade endpoints and WebSocket streams.
+2026-09-01​
+- Get API Key Information [UPDATE]
+  - Add new response field isFixApi
+- Get Fee Group Structure [UPDATE]
+  - G2 (High Growth), G3 (Mid-Tier Liquidity), G4 (Mid-Tier Activation), G5 (Long Tail), USDC are merged to Altcoin
+- Get Instruments Info [UPDATE]
+  - Add a new "status" for Futures, PendingOpen. You cannot place orders until it becomes Trading
+- Get Account Instruments Info [UPDATE]
+  - Add a new "status" for Futures, PendingOpen. You cannot place orders until it becomes Trading
 2026-08-31​
 REST API​
 - Integration Guidance
