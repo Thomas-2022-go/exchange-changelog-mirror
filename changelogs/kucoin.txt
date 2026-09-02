@@ -1,3 +1,7 @@
+2026.09.04#
+New error code
+| Error Code | Message
+| 110188 | Too many requests right now. The system is busy. Please try again late.
 2026.08.27 V2 Upgrade#
 1.
 The URLs of all UTA API V2 endpoints have been updated, and all endpoints have been upgraded to the V2 version.
