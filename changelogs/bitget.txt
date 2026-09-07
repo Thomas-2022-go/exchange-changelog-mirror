@@ -1,8 +1,5 @@
-Unified Trading Account
-Copy Page
-Unified Trading Account
 The unified account is a next-generation trading system introduced by Bitget, designed to allow users to trade spot and various derivatives using multiple crypto assets within a single account. This system simplifies the trading process by eliminating the need for fund transfers between different accounts. Moreover, profits and losses across different products can be calculated and offset together, enhancing capital efficiency.
-Comparison of Account Mode​
+Comparison of Account Mode
 The Unified Account provides users with three new account modes to satisfy the trading preferences and needs of different users: Isolated margin mode, Basic Mode, and Advanced Mode.
 | Account mode | Feature | Available products | Margin support
 | Isolated margin mode | Each position carries independent risk, and PnL from one position does not affect others | 1. Spot
@@ -16,9 +13,8 @@ The Unified Account provides users with three new account modes to satisfy the t
 3. USDT-M Futures (cross/isolated margin)
 4. USDC-M Futures (cross/isolated margin)
 5. Coin-M Futures (cross/isolated margin) | Collateral settings are supported.
-In Advanced Mode, all assets across product types can be used as shared margin, and PnL can be mutually offset.
- Please refer to this document for details.
-Asset-related Terminology​
+In Advanced Mode, all assets across product types can be used as shared margin, and PnL can be mutually offset. Please refer to this document for details.
+Asset-related Terminology
 | Term | Explanation
 | Equity | The total equity of a specific coin in the cross margin account.
 Coin equity = Balance + Frozen margin + unrealized PnL
@@ -34,5 +30,6 @@ Account equity = sum (coin equity × coin in USD price)
 Maintenance margin = Sum[quantity of coin in cross margin positions × coin price]
 Maintenance margin = Position value × maintenance margin rate
 | Margin rate | A risk measurement indicator for cross margin accounts.
-Cross margin account's margin ratio = (maintenance margin + partial liquidation transaction fees)÷Account equity.
+Cross margin account's margin ratio = (maintenance margin + partial liquidation transaction fees) ÷ Account equity.
 Both maintenance margin and partial liquidation transaction fees are calculated by adding the position size and the open order size.
+Reality Trading Guide
