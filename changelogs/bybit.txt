@@ -1,3 +1,9 @@
+2026-09-10​
+REST API​
+- Get Instruments Info [UPDATE]
+  - baseCoin now supports passing All to return all option symbols. Only valid when category=option
+- Create Order [UPDATE]
+  - rpiTakerAccess=true now supports orderType=Limit with timeInForce=IOC or FOK
 2026-09-07​
 REST API​
 - Integration Guidance

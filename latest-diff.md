@@ -1,7 +1,7 @@
-<!-- has_changes=false date=2026-09-09 -->
+<!-- has_changes=true date=2026-09-10 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-09-09 (Asia/Shanghai)
+Generated: 2026-09-10 (Asia/Shanghai)
 
 ## Summary
 
@@ -13,7 +13,7 @@ Generated: 2026-09-09 (Asia/Shanghai)
 
 - [OK] Bitget (Spot + Futures) (`bitget`): no change (3256 bytes)
 
-- [OK] Bybit V5 (`bybit`): no change (95162 bytes)
+- [CHANGED] **Bybit V5** (`bybit`): 13 diff lines
 
 - [OK] KuCoin (Spot + Futures) (`kucoin`): no change (42000 bytes)
 
@@ -25,4 +25,23 @@ Generated: 2026-09-09 (Asia/Shanghai)
 
 ## Changes
 
-No changes on 2026-09-09.
+### Bybit V5 (`bybit`)
+- Source: https://bybit-exchange.github.io/docs/changelog/v5
+- Raw: https://bybit-exchange.github.io/docs/changelog/v5
+
+```diff
+diff --git a/changelogs/bybit.txt b/changelogs/bybit.txt
+index 8ec94be..4e2eda9 100644
+--- a/changelogs/bybit.txt
++++ b/changelogs/bybit.txt
+@@ -1,2 +1,8 @@
++2026-09-10​
++REST API​
++- Get Instruments Info [UPDATE]
++  - baseCoin now supports passing All to return all option symbols. Only valid when category=option
++- Create Order [UPDATE]
++  - rpiTakerAccess=true now supports orderType=Limit with timeInForce=IOC or FOK
+ 2026-09-07​
+ REST API​
+
+```
