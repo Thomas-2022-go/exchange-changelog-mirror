@@ -1,3 +1,13 @@
+2026.09.21#
+[Modify] UTA REST Get Trade History Add the fillPnl field, FillPnl data before 2026.9.05 (UTC-8) cannot be queried and will return ""
+[Modify] UTA Websocket Execution Add new field fP, FillPnl data before 2026.9.05 (UTC-8) cannot be queried and will return ""
+[Modify] Classic REST Get Symbol & Get All Symbols
+Add the response field assetClass ,subMarketType. Updated response field status:marketType marked as deprecated; use assetClass and subMarketType instead.
+[Modify] UTA REST Place Order& Get Order Details & UTA WebSocket Order
+Add brokerTag (≤50 chars) to all place-order interfaces, decoupling from capped tags (20 chars) to fix broker API order failures. Covers UTA REST/WebSocket order.
+New error code
+| Error Code | Message
+| 116241 | Positions in your associated accounts have reached the system risk limit. You can't open new positions or add to existing ones. Please use close position or reduce-only orders.
 2026.09.04#
 New error code
 | Error Code | Message
