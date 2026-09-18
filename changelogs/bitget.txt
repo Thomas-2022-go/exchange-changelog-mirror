@@ -32,4 +32,4 @@ Maintenance margin = Position value × maintenance margin rate
 | Margin rate | A risk measurement indicator for cross margin accounts.
 Cross margin account's margin ratio = (maintenance margin + partial liquidation transaction fees) ÷ Account equity.
 Both maintenance margin and partial liquidation transaction fees are calculated by adding the position size and the open order size.
-Reality Trading Guide
+Quick Start
