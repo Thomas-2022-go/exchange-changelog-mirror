@@ -1,10 +1,18 @@
-2026-09-17​
+2026-09-23​
 REST API​
 - Strategy [UPDATE]
   - pov now supports Spot (category=UTA_SPOT), covering all three execution modes and One-Time execution
   - pov adds new request parameter positionValue: total order quantity by value, denominated in the quote currency. Mutually exclusive with size
   - pov adds new request parameter leverageType: 0: normal, 1: borrow to trade (UTA_SPOT only)
   - iceberg maximum number of sub-orders raised from 100 to 200
+2026-09-22​
+REST API​
+- Get Option Base Coins [NEW]
+  - Add GET /v5/market/option-base-coins to query option base coins, including display names, launch times, and tradable symbol availability. Supports filtering by multiple underlying asset types.
+- Get Delay Liquidation Status [NEW]
+  - Add GET /v5/ins-loan/delay-liq-status to query the current LTV, liquidation status, and delay liquidation timing information for an institutional loan account.
+- Integration Guidance [UPDATE]
+  - Remove Netherlands domain.
 2026-09-10​
 REST API​
 - Get Instruments Info [UPDATE]
