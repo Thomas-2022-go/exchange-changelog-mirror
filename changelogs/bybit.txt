@@ -1,3 +1,7 @@
+2026-10-14​
+REST API​
+- Get Instrument Summary [NEW]
+  - Add GET /v5/market/instrument-summary to query summary information and trading increments for linear and option instruments.
 2026-10-13​
 REST API​
 - Enum [UPDATE]
