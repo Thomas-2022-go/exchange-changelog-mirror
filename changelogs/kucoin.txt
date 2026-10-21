@@ -1,3 +1,5 @@
+2026.10.21#
+[Remove] Classic REST Get Loan Market; Get Loan Market Interest Rate; Purchase; Modify Purchase; Get Purchase Orders; Redeem; Get Redeem Orders
 2026.09.21#
 [Modify] UTA REST Get Trade History Add the fillPnl field, FillPnl data before 2026.9.05 (UTC-8) cannot be queried and will return ""
 [Modify] UTA Websocket Execution Add new field fP, FillPnl data before 2026.9.05 (UTC-8) cannot be queried and will return ""
