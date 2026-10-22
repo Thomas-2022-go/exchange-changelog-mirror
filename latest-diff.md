@@ -1,7 +1,7 @@
-<!-- has_changes=true date=2026-10-21 -->
+<!-- has_changes=false date=2026-10-22 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-10-21 (Asia/Shanghai)
+Generated: 2026-10-22 (Asia/Shanghai)
 
 ## Summary
 
@@ -15,7 +15,7 @@ Generated: 2026-10-21 (Asia/Shanghai)
 
 - [OK] Bybit V5 (`bybit`): no change (97947 bytes)
 
-- [CHANGED] **KuCoin (Spot + Futures)** (`kucoin`): 9 diff lines
+- [OK] KuCoin (Spot + Futures) (`kucoin`): no change (42580 bytes)
 
 - [OK] Gate.io Spot WebSocket v4 (`gate-spot-ws`): no change (130500 bytes)
 
@@ -25,19 +25,4 @@ Generated: 2026-10-21 (Asia/Shanghai)
 
 ## Changes
 
-### KuCoin (Spot + Futures) (`kucoin`)
-- Source: https://www.kucoin.com/docs-new/change-log
-- Raw: https://www.kucoin.com/docs-new/change-log
-
-```diff
-diff --git a/changelogs/kucoin.txt b/changelogs/kucoin.txt
-index c773e10..f45604f 100644
---- a/changelogs/kucoin.txt
-+++ b/changelogs/kucoin.txt
-@@ -1,2 +1,4 @@
-+2026.10.21#
-+[Remove] Classic REST Get Loan Market; Get Loan Market Interest Rate; Purchase; Modify Purchase; Get Purchase Orders; Redeem; Get Redeem Orders
- 2026.09.21#
- [Modify] UTA REST Get Trade History Add the fillPnl field, FillPnl data before 2026.9.05 (UTC-8) cannot be queried and will return ""
-
-```
+No changes on 2026-10-22.
