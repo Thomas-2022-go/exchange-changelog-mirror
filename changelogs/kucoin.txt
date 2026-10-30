@@ -1,3 +1,28 @@
+2026.11.02#
+[Modify] UTA REST Get Loan Market
+API Access Adjustment
+Effective Time: November 2, 2026, at 17:00 (UTC+8)
+1.
+The endpoint will be changed from a private endpoint to a public endpoint. Authentication will no longer be required.
+2.
+Orderbook Depth Parameter Adjustment
+The Orderbook depth parameter will be changed from an enumerated type to a String type, allowing users to specify a wider range of depth values, as well as FULL.
+3.
+API Rate Limit Weight Adjustment
+The endpoint's rate limit weight will be adjusted based on the requested Orderbook depth, as follows:
+Orderbook Depth
+| Orderbook Depth | API Weight
+| 1–20 | 5
+| 21–100 | 20
+| 101–500 | 50
+| 501 and above, or FULL | 250
+4.
+Rate Limit Pool and API Channel Adjustments
+Rate Limit Pool: Public Pool
+API Channel: Public
+5.
+Impact on Existing Users
+If you have already integrated this endpoint, these changes will not affect your existing API calls, and you can continue using the endpoint as usual. Please pay attention to the updated rate limit weights and adjust your request frequency accordingly.
 2026.10.21#
 [Remove] Classic REST Get Loan Market; Get Loan Market Interest Rate; Purchase; Modify Purchase; Get Purchase Orders; Redeem; Get Redeem Orders
 2026.09.21#
