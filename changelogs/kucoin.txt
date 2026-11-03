@@ -1,5 +1,21 @@
+2026.11.06#
+[Add] UTA WebSocket Private Channel FundingFeeSettle
+[Modify] Classic REST Get Account Summary Info (V3)
+Updated response structure to V3:
+Removed: subQuantity, spotSubQuantity, futuresSubQuantity, marginSubQuantity, optionSubQuantity, maxSubQuantity, maxDefaultSubQuantity, maxSpotSubQuantity, maxFuturesSubQuantity, maxMarginSubQuantity, maxOptionSubQuantity
+Added: level, maxSharedSubCount, usedSharedSubCount
+Updated response required fields:
+level, maxSharedSubCount, usedSharedSubCount
+[Modify] UTA REST Add Sub Account
+Added optional request field:
+mode — CLASSIC creates a classic sub-account; UNIFIED creates a unified sub-account
+[Modify] Classic REST Add Sub Account (Classic)
+Updated summary:
+Add sub-account → Add Sub Account (Classic)
+Added optional request field:
+mode — CLASSIC creates a classic sub-account; UNIFIED creates a unified sub-account
 2026.11.02#
-[Modify] UTA REST Get Loan Market
+[Modify] UTA REST Get Orderbook
 API Access Adjustment
 Effective Time: November 2, 2026, at 17:00 (UTC+8)
 1.
