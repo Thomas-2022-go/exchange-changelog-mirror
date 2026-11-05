@@ -1,7 +1,7 @@
-<!-- has_changes=true date=2026-11-04 -->
+<!-- has_changes=false date=2026-11-05 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-11-04 (Asia/Shanghai)
+Generated: 2026-11-05 (Asia/Shanghai)
 
 ## Summary
 
@@ -13,7 +13,7 @@ Generated: 2026-11-04 (Asia/Shanghai)
 
 - [OK] Bitget (Spot + Futures) (`bitget`): no change (3246 bytes)
 
-- [CHANGED] **Bybit V5** (`bybit`): 23 diff lines
+- [OK] Bybit V5 (`bybit`): no change (99970 bytes)
 
 - [OK] KuCoin (Spot + Futures) (`kucoin`): no change (44528 bytes)
 
@@ -25,33 +25,4 @@ Generated: 2026-11-04 (Asia/Shanghai)
 
 ## Changes
 
-### Bybit V5 (`bybit`)
-- Source: https://bybit-exchange.github.io/docs/changelog/v5
-- Raw: https://bybit-exchange.github.io/docs/changelog/v5
-
-```diff
-diff --git a/changelogs/bybit.txt b/changelogs/bybit.txt
-index 8b95625..721bc4a 100644
---- a/changelogs/bybit.txt
-+++ b/changelogs/bybit.txt
-@@ -1,2 +1,18 @@
-+2026-11-04​
-+REST API​
-+- Get Deposit Records (on-chain) [UPDATE]
-+  - Add response field requestId.
-+- Get Sub Deposit Records (on-chain) [UPDATE]
-+  - Add response field requestId.
-+2026-11-03​
-+REST API​
-+- Get API Key Information [UPDATE]
-+  - Add the Compliance permission category. When granted, it returns ComplianceAppeal, which permits querying TM Onchain appeal status and submitting related materials.
-+- Modify Master API Key [UPDATE]
-+  - Support granting or revoking the ComplianceAppeal permission through the Compliance category. This is available only to Bybit global master accounts with read-write API keys.
-+- Submit Quote [UPDATE]
-+  - Add optional request parameter cancelAfterMs to automatically cancel an Event Contract quote. 0 uses quoteMaxValidMs; non-zero values cannot exceed quoteMaxValidMs.
-+- Cancel All Quotes [NEW]
-+  - Add POST /v5/event/cancel-all to cancel all active Event Contract quotes for a specified symbol.
- 2026-10-29​
- REST API​
-
-```
+No changes on 2026-11-05.
