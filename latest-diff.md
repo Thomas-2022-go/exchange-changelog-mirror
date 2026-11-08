@@ -1,7 +1,7 @@
-<!-- has_changes=true date=2026-11-07 -->
+<!-- has_changes=false date=2026-11-08 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-11-07 (Asia/Shanghai)
+Generated: 2026-11-08 (Asia/Shanghai)
 
 ## Summary
 
@@ -13,7 +13,7 @@ Generated: 2026-11-07 (Asia/Shanghai)
 
 - [OK] Bitget (Spot + Futures) (`bitget`): no change (3246 bytes)
 
-- [CHANGED] **Bybit V5** (`bybit`): 15 diff lines
+- [OK] Bybit V5 (`bybit`): no change (100865 bytes)
 
 - [OK] KuCoin (Spot + Futures) (`kucoin`): no change (44528 bytes)
 
@@ -25,25 +25,4 @@ Generated: 2026-11-07 (Asia/Shanghai)
 
 ## Changes
 
-### Bybit V5 (`bybit`)
-- Source: https://bybit-exchange.github.io/docs/changelog/v5
-- Raw: https://bybit-exchange.github.io/docs/changelog/v5
-
-```diff
-diff --git a/changelogs/bybit.txt b/changelogs/bybit.txt
-index 9960cf1..12dfc66 100644
---- a/changelogs/bybit.txt
-+++ b/changelogs/bybit.txt
-@@ -1,2 +1,10 @@
-+2026-11-09​
-+REST API​
-+- Set Auto Repay Mode [UPDATE]
-+  - When currency is omitted and autoRepayMode is enabled, the setting is now a global switch: it also applies to currencies that become borrowable after the setting is saved. Single-currency settings are unchanged.
-+- Get Trade Auto Repay [NEW]
-+  - Add GET /v5/spot-margin-trade/get-trade-auto-repay to retrieve the Unified account's trade auto repayment switch.
-+- Set Trade Auto Repay [NEW]
-+  - Add POST /v5/spot-margin-trade/set-trade-auto-repay to update the Unified account's trade auto repayment switch.
- 2026-11-05​
- REST API​
-
-```
+No changes on 2026-11-08.
