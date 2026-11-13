@@ -1,19 +1,20 @@
 The unified account is a next-generation trading system introduced by Bitget, designed to allow users to trade spot and various derivatives using multiple crypto assets within a single account. This system simplifies the trading process by eliminating the need for fund transfers between different accounts. Moreover, profits and losses across different products can be calculated and offset together, enhancing capital efficiency.
 Comparison of Account Mode
-The Unified Account provides users with three new account modes to satisfy the trading preferences and needs of different users: Isolated margin mode, Basic Mode, and Advanced Mode.
+The Unified Account provides users with three new account modes to satisfy the trading preferences and needs of different users: Spot + Isolated Margin Mode, Stablecoin Margin Mode, and Multi-Asset Margin Mode.
+Note: These modes were previously named Isolated margin mode, Basic Mode, and Advanced Mode respectively. The API enum values (isolated / basic / advanced) remain unchanged.
 | Account mode | Feature | Available products | Margin support
-| Isolated margin mode | Each position carries independent risk, and PnL from one position does not affect others | 1. Spot
+| Spot + Isolated Margin Mode | Each position carries independent risk, and PnL from one position does not affect others | 1. Spot
 2. USDT-M Futures (isolated margin)
 3. USDC-M Futures (isolated margin) | Collateral settings are not supported
-| Basic mode | Improves capital efficiency, but only supports stablecoins as margin (no multi-asset collateral). | 1. Spot
+| Stablecoin Margin Mode | Improves capital efficiency, but only supports stablecoins as margin (no multi-asset collateral). | 1. Spot
 2. USDT-M Futures (cross/isolated margin)
 3. USDC-M Futures (cross/isolated margin) | USDT- and USDC-margined pairs share the same margin pool. Collateral settings are not supported
-| Advanced mode | Multiple assets can be used as margin based on their respective collateral ratios. Supports cross-currency risk hedging and maximizes capital efficiency. | 1. Spot
+| Multi-Asset Margin Mode | Multiple assets can be used as margin based on their respective collateral ratios. Supports cross-currency risk hedging and maximizes capital efficiency. | 1. Spot
 2. Spot margin
 3. USDT-M Futures (cross/isolated margin)
 4. USDC-M Futures (cross/isolated margin)
 5. Coin-M Futures (cross/isolated margin) | Collateral settings are supported.
-In Advanced Mode, all assets across product types can be used as shared margin, and PnL can be mutually offset. Please refer to this document for details.
+In Multi-Asset Margin Mode, all assets across product types can be used as shared margin, and PnL can be mutually offset. Please refer to this document for details.
 Asset-related Terminology
 | Term | Explanation
 | Equity | The total equity of a specific coin in the cross margin account.
