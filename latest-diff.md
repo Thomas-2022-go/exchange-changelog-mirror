@@ -1,7 +1,7 @@
-<!-- has_changes=false date=2026-11-16 -->
+<!-- has_changes=true date=2026-11-17 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-11-16 (Asia/Shanghai)
+Generated: 2026-11-17 (Asia/Shanghai)
 
 ## Summary
 
@@ -13,7 +13,7 @@ Generated: 2026-11-16 (Asia/Shanghai)
 
 - [OK] Bitget (Spot + Futures) (`bitget`): no change (3488 bytes)
 
-- [OK] Bybit V5 (`bybit`): no change (100865 bytes)
+- [CHANGED] **Bybit V5** (`bybit`): 11 diff lines
 
 - [OK] KuCoin (Spot + Futures) (`kucoin`): no change (44528 bytes)
 
@@ -25,4 +25,21 @@ Generated: 2026-11-16 (Asia/Shanghai)
 
 ## Changes
 
-No changes on 2026-11-16.
+### Bybit V5 (`bybit`)
+- Source: https://bybit-exchange.github.io/docs/changelog/v5
+- Raw: https://bybit-exchange.github.io/docs/changelog/v5
+
+```diff
+diff --git a/changelogs/bybit.txt b/changelogs/bybit.txt
+index 12dfc66..83e0919 100644
+--- a/changelogs/bybit.txt
++++ b/changelogs/bybit.txt
+@@ -1,2 +1,6 @@
++2026-11-17​
++REST API​
++- Get Institution Connection Limit [NEW]
++  - Add GET /v5/ins/connection-limit to retrieve the JSON and SBE connection limits and current usage for each dedicated endpoint.
+ 2026-11-09​
+ REST API​
+
+```
