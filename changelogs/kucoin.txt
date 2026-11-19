@@ -1,3 +1,18 @@
+2026.11.20#
+[Modify] UTA REST Get Symbol
+The response field st of the API now supports a new type:
+st (symbol type) previously supported spot only. Futures is now supported as well.
+[Add] UTA REST Get Small Balance Currencies
+Queries currencies eligible for small-balance conversion in FUNDING or SPOT accounts. The response includes the source amount, estimated KCS amount, and estimated fee in KCS.
+[Add] UTA REST Convert Small Balance
+Converts between 1 and 20 source currencies into KCS in a single request. The response includes the order status, net KCS total, and per-currency conversion amounts, fees, and statuses.
+[Add] UTA REST Get Small Balance Convert Order Detail
+Queries a small-balance conversion order by orderId or clientOrderId. The response includes the order status, net KCS total, order time, and per-currency conversion results.
+[Add] UTA REST Get Small Balance Convert Order History
+Returns paginated small-balance conversion order history for FUNDING or SPOT accounts. Supports optional start and end timestamps and returns page metadata with complete order details.
+[Modify] UTA REST Cancel Withdrawal
+api-rate-limit-pool change into Management
+[Add] UTA API V2 Error Code 111235, "Service busy, please reduce request frequency and retry later". Error code 111235 will replace 111202 and 111209, error codes 111202 and 111209 will be deprecated.
 2026.11.06#
 [Add] UTA WebSocket Private Channel FundingFeeSettle
 [Modify] Classic REST Get Account Summary Info (V3)
