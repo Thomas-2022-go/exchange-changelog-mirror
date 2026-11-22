@@ -1,7 +1,7 @@
-<!-- has_changes=false date=2026-11-21 -->
+<!-- has_changes=false date=2026-11-22 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-11-21 (Asia/Shanghai)
+Generated: 2026-11-22 (Asia/Shanghai)
 
 ## Summary
 
@@ -25,4 +25,4 @@ Generated: 2026-11-21 (Asia/Shanghai)
 
 ## Changes
 
-No changes on 2026-11-21.
+No changes on 2026-11-22.
