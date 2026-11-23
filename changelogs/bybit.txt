@@ -1,3 +1,9 @@
+2026-11-23​
+REST API​
+- Move Position [UPDATE]
+  - Add an optional request parameter reduceOnly
+- Get Move Position History [UPDATE]
+  - Add a response parameter reduceOnly
 2026-11-20​
 REST API​
 - Query Card List [NEW]
