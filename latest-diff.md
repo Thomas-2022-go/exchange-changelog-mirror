@@ -1,11 +1,11 @@
-<!-- has_changes=true date=2026-11-23 -->
+<!-- has_changes=true date=2026-11-24 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-11-23 (Asia/Shanghai)
+Generated: 2026-11-24 (Asia/Shanghai)
 
 ## Summary
 
-- [OK] Binance Spot (`binance-spot`): no change (146418 bytes)
+- [CHANGED] **Binance Spot** (`binance-spot`): 20 diff lines
 
 - [OK] Binance Derivatives (USDS-M / Coin-M / Options) (`binance-derivatives`): no change (1 bytes)
 
@@ -13,7 +13,7 @@ Generated: 2026-11-23 (Asia/Shanghai)
 
 - [OK] Bitget (Spot + Futures) (`bitget`): no change (3488 bytes)
 
-- [CHANGED] **Bybit V5** (`bybit`): 13 diff lines
+- [OK] Bybit V5 (`bybit`): no change (101402 bytes)
 
 - [OK] KuCoin (Spot + Futures) (`kucoin`): no change (45900 bytes)
 
@@ -25,23 +25,30 @@ Generated: 2026-11-23 (Asia/Shanghai)
 
 ## Changes
 
-### Bybit V5 (`bybit`)
-- Source: https://bybit-exchange.github.io/docs/changelog/v5
-- Raw: https://bybit-exchange.github.io/docs/changelog/v5
+### Binance Spot (`binance-spot`)
+- Source: https://developers.binance.com/docs/binance-spot-api-docs/CHANGELOG
+- Raw: https://raw.githubusercontent.com/binance/binance-spot-api-docs/master/CHANGELOG.md
 
 ```diff
-diff --git a/changelogs/bybit.txt b/changelogs/bybit.txt
-index 10194b6..0d9eece 100644
---- a/changelogs/bybit.txt
-+++ b/changelogs/bybit.txt
-@@ -1,2 +1,8 @@
-+2026-11-23​
-+REST API​
-+- Move Position [UPDATE]
-+  - Add an optional request parameter reduceOnly
-+- Get Move Position History [UPDATE]
-+  - Add a response parameter reduceOnly
- 2026-11-20​
- REST API​
+diff --git a/changelogs/binance-spot.txt b/changelogs/binance-spot.txt
+index 6b6fef5..4f9fb9f 100644
+--- a/changelogs/binance-spot.txt
++++ b/changelogs/binance-spot.txt
+@@ -1,5 +1,14 @@
+ # CHANGELOG for Binance's API
+ 
+-**Last Updated: 2026-11-11**
++**Last Updated: 2026-11-24**
++
++### 2026-11-24
++
++- Order Book depth now supports additional levels. This affects the following endpoints:
++  - REST API: [`GET /api/v3/depth`](rest-api.md#order-book)
++  - WebSocket API: [`depth`](web-socket-api.md#order-book)
++  - FIX Market Data: [MarketDataRequest `<V>`](fix-api.md#marketdatarequest)
++
++---
+ 
+ ### 2026-11-11
 
 ```
