@@ -1,11 +1,11 @@
-<!-- has_changes=true date=2026-11-24 -->
+<!-- has_changes=false date=2026-11-25 -->
 # Exchange API Changelog Diff
 
-Generated: 2026-11-24 (Asia/Shanghai)
+Generated: 2026-11-25 (Asia/Shanghai)
 
 ## Summary
 
-- [CHANGED] **Binance Spot** (`binance-spot`): 20 diff lines
+- [OK] Binance Spot (`binance-spot`): no change (146725 bytes)
 
 - [OK] Binance Derivatives (USDS-M / Coin-M / Options) (`binance-derivatives`): no change (1 bytes)
 
@@ -25,30 +25,4 @@ Generated: 2026-11-24 (Asia/Shanghai)
 
 ## Changes
 
-### Binance Spot (`binance-spot`)
-- Source: https://developers.binance.com/docs/binance-spot-api-docs/CHANGELOG
-- Raw: https://raw.githubusercontent.com/binance/binance-spot-api-docs/master/CHANGELOG.md
-
-```diff
-diff --git a/changelogs/binance-spot.txt b/changelogs/binance-spot.txt
-index 6b6fef5..4f9fb9f 100644
---- a/changelogs/binance-spot.txt
-+++ b/changelogs/binance-spot.txt
-@@ -1,5 +1,14 @@
- # CHANGELOG for Binance's API
- 
--**Last Updated: 2026-11-11**
-+**Last Updated: 2026-11-24**
-+
-+### 2026-11-24
-+
-+- Order Book depth now supports additional levels. This affects the following endpoints:
-+  - REST API: [`GET /api/v3/depth`](rest-api.md#order-book)
-+  - WebSocket API: [`depth`](web-socket-api.md#order-book)
-+  - FIX Market Data: [MarketDataRequest `<V>`](fix-api.md#marketdatarequest)
-+
-+---
- 
- ### 2026-11-11
-
-```
+No changes on 2026-11-25.
