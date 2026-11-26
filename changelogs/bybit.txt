@@ -1,3 +1,7 @@
+2026-11-26​
+Websocket API​
+- Tickers [UPDATE]
+  - The Options push frequency has updated from 100ms to 300ms
 2026-11-23​
 REST API​
 - Move Position [UPDATE]

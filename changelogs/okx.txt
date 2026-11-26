@@ -79,6 +79,16 @@ POST /api/v5/copytrade/create-sgl-link body { "orderId": "3556007031710728192", 
 返回参数
 | 参数名 | 类型 | 描述
 | shortLink | String | 通用分享短链。接收方在 OKX App 中打开该链接后，下单面板将自动填入对应的订单参数。
+2026-11-26
+GLP-C 做市商 API（Beta）
+在做市商申请板块的 /api/v5/users/glp-c/ 下新增六个 REST 接口。GLP-C（Global Liquidity Program - C）白名单账户可查询及注册产品，并查询分钟和小时报价考核结果。
+新增接口
+- GET / 获取 GLP-C 可参与产品
+- POST / 注册 GLP-C 产品
+- GET / 获取 GLP-C 注册统计
+- GET / 获取 GLP-C 分钟考核
+- GET / 获取 GLP-C 产品小时考核
+- GET / 获取 GLP-C 小时考核汇总
 2026-11-19
 国际转账规则充值接口
 - 新增以下接口文档：
